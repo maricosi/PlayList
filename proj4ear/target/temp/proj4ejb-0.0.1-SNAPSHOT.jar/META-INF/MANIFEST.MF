@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: Toshiba
+Class-Path: lib/proj4jpa-0.0.1-SNAPSHOT.jar
+Created-By: Apache Maven
+Build-Jdk: 1.8.0_40
+
