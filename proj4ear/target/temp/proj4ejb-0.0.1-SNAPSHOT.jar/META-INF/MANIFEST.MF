@@ -1,7 +1,8 @@
 Manifest-Version: 1.0
 Archiver-Version: Plexus Archiver
 Built-By: Toshiba
-Class-Path: lib/proj4jpa-0.0.1-SNAPSHOT.jar
+Class-Path: lib/proj4jpa-0.0.1-SNAPSHOT.jar lib/slf4j-log4j12-1.7.7.ja
+ r lib/log4j-1.2.17.jar lib/slf4j-api-1.7.7.jar
 Created-By: Apache Maven
 Build-Jdk: 1.8.0_40
 

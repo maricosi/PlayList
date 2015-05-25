@@ -16,26 +16,22 @@
 	<!-- As dependencias que este projeto tem .. por agora só jee -->
 	<dependencies>
 		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
 			<groupId>dei.uc.pt.aor.paj</groupId>
 			<artifactId>proj4ejb</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
 		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<scope>provided</scope>
 		</dependency>
-
 	</dependencies>
 </project>
