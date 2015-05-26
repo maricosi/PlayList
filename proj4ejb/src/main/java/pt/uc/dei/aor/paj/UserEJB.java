@@ -10,7 +10,7 @@ import javax.persistence.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import pt.uc.dei.aor.paj.User;
+import pt.uc.dei.aor.paj.User1;
 
 /**
  * Session Bean implementation class UserEJB
@@ -34,15 +34,15 @@ public class UserEJB {
 		logger.info("Sample info message");
 		logger.warn("Sample warn message");
 		logger.error("Sample error message");
-		em.persist(new User("Filipa", "123", "filipapedrosa@gmail.com"));
-		em.persist(new User("Marisa", "456", "marisaisimoes@gmail.com"));
+		em.persist(new User1("Filipa", "123", "filipapedrosa@gmail.com"));
+		em.persist(new User1("Marisa", "456", "marisaisimoes@gmail.com"));
 	}
 
-	public List<User> getUsers() {
+	public List<User1> getUsers() {
 		// List<String> usernames = new LinkedList<>();
 
 		Query q = em.createQuery("from User u");
-		List<User> users = q.getResultList();
+		List<User1> users = q.getResultList();
 
 		// for (User u : users) {
 		// usernames.add(u.toString());

@@ -5,7 +5,7 @@
 	<persistence-unit name="Utilizador" transaction-type="JTA">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:jboss/datasources/Proj4</jta-data-source>
-		<class>pt.uc.dei.aor.paj.User</class>
+		<class>pt.uc.dei.aor.paj.User1</class>
 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />

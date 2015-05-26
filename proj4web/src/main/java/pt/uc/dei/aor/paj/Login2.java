@@ -37,7 +37,7 @@ public class Login2 implements Serializable {
 		userEJB.populate();
 	}
 
-	public List<User> getUsers() {
+	public List<User1> getUsers() {
 		return userEJB.getUsers();
 	}
 
