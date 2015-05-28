@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaQuery;
+
 
 
 
@@ -46,6 +46,7 @@ public abstract class GenericDAO<T> implements Serializable{
     public void save(T entity) {
         em.persist(entity);
     }
+  
 
 
 

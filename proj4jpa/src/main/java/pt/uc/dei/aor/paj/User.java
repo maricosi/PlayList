@@ -1,60 +1,57 @@
 package pt.uc.dei.aor.paj;
 
-import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-/**
- * Entity implementation class for Entity: Player
- *
- */
 @Entity
-@Table(name = "USERS")
-public class User implements Serializable {
+@Table(name = "Users")
+@NamedQuery(name = "User.findByUsernamePass", 
+query = "SELECT u FROM User u WHERE u.name like :username AND u.password like :password")
 
-	private static final long serialVersionUID = 6489766761681319838L;
+public class User{
+	
+	public static final String FIND_BY_USERNAME_PASS = "User.findByUsernamePass";
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private int id;
 	@Column(name = "name", nullable = false, length = 25)
 	private String name;
-	@Column(name = "email", nullable = false, length = 50, unique = true)
+	@Column(name = "username", nullable = false, length = 15, unique = true)
+	private String username;	
+	@Column(name = "email", nullable = false, length = 50, unique = true)	
 	private String email;
 	@Column(name = "password", nullable = false, length = 20)
 	private String password;
-	@OneToMany(mappedBy="user")
-	private List<Playlist> myPlaylist;
-	@OneToMany(mappedBy="user")
-	private List<Music> myMusics;
-
+	@OneToMany(mappedBy = "user")
+	private List<Playlist> playlist;
+	@OneToMany(mappedBy = "user")
+	private List<Music> musics;
 
 	public User() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
-
-	public List<Music> getMyMusics() {
-		return myMusics;
+	public User(String name, String email, String password) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
 	}
 
-	public void setMyMusics(List<Music> myMusics) {
-		this.myMusics = myMusics;
-	}
-
-
-	public boolean isLogged(){
-		return name !=null;
-	}
-	//	
-	//	public boolean isOwner(){
-	//		return 
-	//	}
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -83,20 +80,31 @@ public class User implements Serializable {
 	}
 
 	public List<Playlist> getPlaylist() {
-		return myPlaylist;
+		return playlist;
 	}
 
 	public void setPlaylist(List<Playlist> playlist) {
-		this.myPlaylist = playlist;
+		this.playlist = playlist;
 	}
 
-
-	public List<Playlist> getMyPlaylist() {
-		return myPlaylist;
+	public List<Music> getMusics() {
+		return musics;
 	}
 
-	public void setMyPlaylist(List<Playlist> myPlaylist) {
-		this.myPlaylist = myPlaylist;
+	public void setMusics(List<Music> musics) {
+		this.musics = musics;
+	}
+
+	public boolean isLogged(){
+		return name !=null;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	@Override
@@ -138,7 +146,8 @@ public class User implements Serializable {
 	}
 
 	public String toString() {
-		return "";
+		return name + " -> " + email;
 	}
 
 }
+

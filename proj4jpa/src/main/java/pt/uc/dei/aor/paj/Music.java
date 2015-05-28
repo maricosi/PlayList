@@ -1,63 +1,66 @@
 package pt.uc.dei.aor.paj;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 @Entity
-public class Music {
+@Table
+@NamedQueries({
+	@NamedQuery(name = "Music.findAll", query="SELECT m FROM Music m"),
+	@NamedQuery(name = "Music.findByArtist", query="SELECT m FROM Music m WHERE m.artist like :artist"),
+	@NamedQuery(name = "Music.findByTitle", query="SELECT m FROM Music m WHERE m.title like :title"),
+	@NamedQuery(name = "Music.findByAlbum", query="SELECT m FROM Music m WHERE m.album like :album"),
+	@NamedQuery(name = "Music.findByYear", query="SELECT m FROM Music m WHERE m.year like :year"),
+	@NamedQuery(name = "Music.findByUser", query="SELECT m FROM Music m WHERE m.user like :user"),
+})
 
-
+public class Music{
+	
+	public static final String FIND_ALL = "Music.findAll";
+	public static final String FIND_BY_ARTIST = "Music.findByArtist";
+	public static final String FIND_BY_TITLE = "Music.findByTitle";
+	public static final String FIND_BY_ALBUM = "Music.findByAlbum";
+	public static final String FIND_BY_YEAR = "Music.findByYear";
+	public static final String FIND_BY_USER = "Music.findByUser";
+	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
-
+	private int id;	
 	@Column (name="artist", nullable=false, length=20)
-	private String artist;
-
+	private String artist;	
 	@Column (name="title", nullable=false, length=30)
-	private String title;
-
+	private String title;	
 	@Column (name="album", nullable=false, length=30)
 	private String album;
-
 	@Column (name="year", nullable=false, length=10)
-	private int year;
-
-	@Column (name="path", nullable=false, length=80)
-	private String path;
-
+	private int year;	
+	@Column (name="url", nullable=false, length=80)
+	private String url;
 	@ManyToOne
-	private User user;
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
+    private User user;
+	
 	public Music() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-	public Music(String artist, String album, String title, int year, String path, User user) {
+	
+	public Music(String artist, String title, String album, int year, String url, User user ) {
+		super();
 		this.artist = artist;
 		this.title = title;
+		this.album=album;
 		this.year = year;
-		this.path = path;
-		this.album = album;
+		this.url = url;
 		this.user=user;
-		
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -69,14 +72,6 @@ public class Music {
 
 	public String getArtist() {
 		return artist;
-	}
-
-	public String getAlbum() {
-		return album;
-	}
-
-	public void setAlbum(String album) {
-		this.album = album;
 	}
 
 	public void setArtist(String artist) {
@@ -91,6 +86,14 @@ public class Music {
 		this.title = title;
 	}
 
+	public String getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(String album) {
+		this.album = album;
+	}
+
 	public int getYear() {
 		return year;
 	}
@@ -99,12 +102,20 @@ public class Music {
 		this.year = year;
 	}
 
-	public String getPath() {
-		return path;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setPath(String path) {
-		this.path = path;
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
@@ -140,8 +151,9 @@ public class Music {
 			return false;
 		return true;
 	}
-
-
+	
+	public String toString() {
+		return artist + " / " + title + " / " + " / " + album + " / " + year + " / " + url ;
+	}
+	
 }
-
-

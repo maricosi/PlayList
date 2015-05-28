@@ -5,10 +5,10 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import javax.persistence.Column;
+
 
 import pt.uc.dei.aor.paj.fachada.IntMusicFachada;
-import pt.uc.dei.aor.paj.fachada.MusicFachada;
+
 
 @Named
 @RequestScoped
@@ -21,7 +21,7 @@ public class MusicWeb {
 	private String title;
 	private String album;
 	private int year;
-	private String path;
+	private String url;
 	private String messagem="";
 
 	public MusicWeb() {
@@ -33,7 +33,7 @@ public class MusicWeb {
 	}
 	
 	public void save (){
-		this.messagem=music.save(title, artist, album, path, year);
+		this.messagem=music.save(title, artist, album, url, year);
 	}
 	public String getMessagem() {
 		return messagem;
@@ -75,12 +75,12 @@ public class MusicWeb {
 		this.year = year;
 	}
 
-	public String getPath() {
-		return path;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setPath(String path) {
-		this.path = path;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 

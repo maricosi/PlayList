@@ -1,6 +1,5 @@
 package pt.uc.dei.aor.paj;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -13,48 +12,65 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@NamedQueries ({
-	@NamedQuery(name="Playlist.findAll", query="SELECT p FROM Playlist p"),
-	@NamedQuery(name="Playlist.findByDate", query="SELECT p FROM Playlist p"),
-	@NamedQuery(name="Playlist.findByName", query="SELECT p FROM Playlist p"),
+@Table(name = "Playlist")
+@NamedQueries({
+		@NamedQuery(name = "Playlist.findAll", query="SELECT p FROM Playlist p"),
+		@NamedQuery(name = "Playlist.findByNameASC", query="SELECT p FROM Playlist p ORDER BY p.name ASC"),
+		@NamedQuery(name = "Playlist.findByNameDESC", query="SELECT p FROM Playlist p ORDER BY p.name DESC"),
+		@NamedQuery(name = "Playlist.findByDateASC", query="SELECT p FROM Playlist p ORDER BY p.date ASC"),
+		@NamedQuery(name = "Playlist.findByDateDESC", query="SELECT p FROM Playlist p ORDER BY p.date DESC"),
+		@NamedQuery(name = "Playlist.findBySizeASC", query="SELECT p FROM Playlist p ORDER BY p.date ASC"),
+		@NamedQuery(name = "Playlist.findBySizeDESC", query="SELECT p FROM Playlist p ORDER BY p.size DESC"),
 })
-public class Playlist implements Serializable {
 
-	private static final long serialVersionUID = -1097188855453216718L;
+public class Playlist{
+	
+	public static final String FIND_ALL = "Playlist.findAll";
+	public static final String FIND_BY_NAME_ASC = "Playlist.findByNameASC";
+	public static final String FIND_BY_NAME_DESC = "Playlist.findByNameDESC";
+	public static final String FIND_BY_DATE_ASC = "Playlist.findByDateASC";
+	public static final String FIND_BY_DATE_DESC = "Playlist.findByDateDESC";
+	public static final String FIND_BY_SIZE_ASC = "Playlist.findBySizeASC";
+	public static final String FIND_BY_SIZE_DESC = "Playlist.findBySizeDESC";
+
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
-
+	private int id;	
 	@Column (name="name", nullable=false, length=25)	
-	private String name;
-	
+	private String name;	
 	@Temporal(TemporalType.DATE)
 	@Column (name="date", nullable=false, length=50)
-	private Date date;
-	
+	private Date date;	
 	@Column (name="size", nullable=false, length=10)
-	private int size;
-	
+	private int size;	
 	@ManyToMany
 	private List<Music> musics;
-	
 	@ManyToOne
 	private User user;
-	
-	public User getUser() {
-		return user;
+
+	public Playlist() {
+		super();
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public Playlist(String name, Date date, int size, User user) {
+		super();
+		this.name = name;
+		this.date = date;
+		this.size = size;
+		this.user=user;
 	}
 
-	public void setMusics(List<Music> musics) {
-		this.musics = musics;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -85,21 +101,17 @@ public class Playlist implements Serializable {
 		return musics;
 	}
 
-	public void setMusics(Music musics) {
-		this.musics.add(musics);
-	}
-	
-	public Long getId() {
-		return id;
+	public void setMusics(List<Music> musics) {
+		this.musics = musics;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public User getUser() {
+		return user;
 	}
-	
-//	public void setMusics(List<Music> musics) {
-//		this.musics = musics;
-//	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	@Override
 	public int hashCode() {
@@ -132,10 +144,8 @@ public class Playlist implements Serializable {
 		return true;
 	}
 
-	
-
-	
-	
-
+	public String toString() {
+		return  name+ " / " + date;
+	}
 
 }

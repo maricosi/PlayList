@@ -18,8 +18,8 @@ public class MusicFachada implements IntMusicFachada{
 	@EJB
 	private MusicDAO musicDAO;
 
-	public String save(String title, String artist, String album, String path, int year) {
-		Music music =new Music(artist,album,title,year,path,null);
+	public String save(String title, String artist, String album, String url, int year) {
+		Music music =new Music(artist,title,album,year,url,null);
 		try{
 			isMusicWithAllData(music);
 			musicDAO.save(music);
@@ -91,7 +91,7 @@ public class MusicFachada implements IntMusicFachada{
 			mensagemErro=mensagemErro+"Título ";
 		}
 		
-		if(music.getPath() == null || "".equals(music.getPath().trim())){
+		if(music.getUrl()== null || "".equals(music.getUrl().trim())){
 			hasError = true;
 			mensagemErro=mensagemErro+"Url ";
 		}
