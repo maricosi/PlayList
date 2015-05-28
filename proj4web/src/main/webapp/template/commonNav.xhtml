@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+	<script type="text/javascript" src="../resources/JS/soupt.js" />
+
+</h:head>
+<body>
+	<ui:composition>
+		<aside id="nav">
+			<h:form rendered="#{!login.logged}">
+				<h1>Login</h1>
+				<h:inputText id="username" title="Nome: " value="#{login.name}"
+					required="true" requiredMessage="Erro: Escreva o seu username."
+					maxlength="25" />
+				<p></p>
+				<h:commandButton id="Validar" value="Validar" action="/index" />
+				<h:commandButton id="apagar" value="Apagar" type="reset" />
+			</h:form>
+
+
+			<div class="messagecolor">
+				<h:messages showSummary="true" showDetail="false"
+					errorStyle="color: #d20005" infoStyle="color: blue" />
+			</div>
+			<h1>
+				<h:outputText value="Benvindo #{login.name}!!"
+					rendered="#{login.logged}" />
+			</h1>
+			<h:form rendered="#{login.logged}">
+
+				<h:commandButton id="Logout" value="Logout" action="#{login.logout}" />
+				<p></p>
+			</h:form>
+			<a
+				href="${facesContext.externalContext.requestContextPath}/pages/proximotorneio.xhtml"><img
+				src="${facesContext.externalContext.requestContextPath}/resources/images/torneiosueca.jpg"/>
+			</a>
+			<a
+				href="${facesContext.externalContext.requestContextPath}/pages/danca.xhtml"><img
+				src="${facesContext.externalContext.requestContextPath}/resources/images/logo_festival_danca.jpg"/>
+				</a>
+		</aside>
+	</ui:composition>
+</body>
+</html>

@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import pt.uc.dei.aor.paj.User1;
+import pt.uc.dei.aor.paj.DAO.UserDAO;
 
 /**
  * Session Bean implementation class UserEJB

@@ -1,5 +1,12 @@
-C:\Users\Toshiba\Desktop\exemploMaven\firstear\proj4Maven\proj4ejb\src\main\java\pt\uc\dei\aor\paj\MusicDAO.java
-C:\Users\Toshiba\Desktop\exemploMaven\firstear\proj4Maven\proj4ejb\src\main\java\pt\uc\dei\aor\paj\GenericDAO.java
-C:\Users\Toshiba\Desktop\exemploMaven\firstear\proj4Maven\proj4ejb\src\main\java\pt\uc\dei\aor\paj\PlaylistDAO.java
-C:\Users\Toshiba\Desktop\exemploMaven\firstear\proj4Maven\proj4ejb\src\main\java\pt\uc\dei\aor\paj\UserDAO.java
+C:\Users\Toshiba\Desktop\exemploMaven\firstear\proj4Maven\proj4ejb\src\main\java\pt\uc\dei\aor\paj\DAO\PlaylistDAO.java
+C:\Users\Toshiba\Desktop\exemploMaven\firstear\proj4Maven\proj4ejb\src\main\java\pt\uc\dei\aor\paj\fachada\IntUserFachada.java
+C:\Users\Toshiba\Desktop\exemploMaven\firstear\proj4Maven\proj4ejb\src\main\java\pt\uc\dei\aor\paj\fachada\PlaylistFachada.java
+C:\Users\Toshiba\Desktop\exemploMaven\firstear\proj4Maven\proj4ejb\src\main\java\pt\uc\dei\aor\paj\fachada\IntPlaylistFachada.java
+C:\Users\Toshiba\Desktop\exemploMaven\firstear\proj4Maven\proj4ejb\src\main\java\pt\uc\dei\aor\paj\DAO\MusicDAO.java
+C:\Users\Toshiba\Desktop\exemploMaven\firstear\proj4Maven\proj4ejb\src\main\java\pt\uc\dei\aor\paj\fachada\IntMusicFachada.java
+C:\Users\Toshiba\Desktop\exemploMaven\firstear\proj4Maven\proj4ejb\src\main\java\pt\uc\dei\aor\paj\fachada\UserFachada.java
+C:\Users\Toshiba\Desktop\exemploMaven\firstear\proj4Maven\proj4ejb\src\main\java\pt\uc\dei\aor\paj\LoginEJB.java
+C:\Users\Toshiba\Desktop\exemploMaven\firstear\proj4Maven\proj4ejb\src\main\java\pt\uc\dei\aor\paj\DAO\UserDAO.java
+C:\Users\Toshiba\Desktop\exemploMaven\firstear\proj4Maven\proj4ejb\src\main\java\pt\uc\dei\aor\paj\DAO\GenericDAO.java
+C:\Users\Toshiba\Desktop\exemploMaven\firstear\proj4Maven\proj4ejb\src\main\java\pt\uc\dei\aor\paj\fachada\MusicFachada.java
 C:\Users\Toshiba\Desktop\exemploMaven\firstear\proj4Maven\proj4ejb\src\main\java\pt\uc\dei\aor\paj\UserEJB.java

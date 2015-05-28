@@ -14,7 +14,7 @@ public class Music {
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
+	private int id;
 
 	@Column (name="artist", nullable=false, length=20)
 	private String artist;
@@ -47,20 +47,23 @@ public class Music {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Music(String artist, String title, int year, String path) {
+	public Music(String artist, String album, String title, int year, String path, User user) {
 		this.artist = artist;
 		this.title = title;
 		this.year = year;
 		this.path = path;
+		this.album = album;
+		this.user=user;
+		
 	}
 
 
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

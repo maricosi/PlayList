@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<body>
+	<ui:composition>
+
+		<!-- Inicio do header -->
+		<header id="header">
+
+			<h1 id="tituloHeader">Associação Recreativa Maria Laurinda</h1>
+		</header>
+		<!-- Fim do header -->
+
+		<!-- Inicio DA SECÇÃO NAVEGAÇÃO -->
+		<nav id="cssmenu">
+			<ul>
+				<li><a
+					href="${facesContext.externalContext.requestContextPath}/index.xhtml">Início</a></li>
+				<li class="has-sub"><a href="#">Associação</a>
+					<ul>
+						<li><a
+							href="${facesContext.externalContext.requestContextPath}/pages/OrgaosSociais.xhtml">Orgãos
+								Sociais</a></li>
+						<li ><a
+							href="${facesContext.externalContext.requestContextPath}/pages/historial.xhtml">Historial
+						</a></li>
+						<li class="last"><a
+							href="${facesContext.externalContext.requestContextPath}/pages/galeriaimagens.xhtml">Galeria de Imagens
+						</a></li>
+
+					</ul></li>
+				<li class="has-sub"><a href="#">Actividades Culturais e
+						Recreativas</a>
+					<ul>
+						<li class="has-sub"><a
+							href="${facesContext.externalContext.requestContextPath}/pages/sueca.xhtml">Secção
+								Sueca</a>
+							<ul>
+								<li><a
+									href="${facesContext.externalContext.requestContextPath}/pages/torneisueca.xhtml">Torneio
+										de Sueca</a></li>
+								<li class="last"><a
+									href="${facesContext.externalContext.requestContextPath}/pages/proximotorneio.xhtml">Próximo
+										Torneio </a></li>
+
+							</ul></li>
+						<li class="has-sub"><a
+							href="${facesContext.externalContext.requestContextPath}/pages/danca.xhtml">Secção
+								de Dança</a>
+							<ul>
+								<li><a
+									href="${facesContext.externalContext.requestContextPath}/pages/dancafitness.xhtml">Fitness</a></li>
+								<li><a
+									href="${facesContext.externalContext.requestContextPath}/pages/dancafolclore.xhtml">Folclore</a></li>
+								<li class="last"><a
+									href="${facesContext.externalContext.requestContextPath}/pages/dancasalao.xhtml">Danças
+										de Salão</a></li>
+							</ul></li>
+						<li class="last"><a
+							href="${facesContext.externalContext.requestContextPath}/pages/musica.xhtml">Musica</a></li>
+					</ul></li>
+				<li class="has-sub"><a href="#">Actividades Desportivas</a>
+					<ul>
+						<li><a
+							href="${facesContext.externalContext.requestContextPath}/pages/percursospedestres.xhtml">Percursos
+								Pedestres</a></li>
+						<li class="last"><a
+							href="${facesContext.externalContext.requestContextPath}/pages/jogostradicionais.xhtml">Jogos
+								Tradicionais</a></li>
+					</ul></li>
+
+				<li class="has-sub"><a href="#">Jogos Online</a>
+					<ul>
+						<li><a
+							href="${facesContext.externalContext.requestContextPath}/pages/copas.xhtml">Copas</a></li>
+						<li class="last"><a
+							href="${facesContext.externalContext.requestContextPath}/pages/paciencia.xhtml">Paciência</a></li>
+					</ul></li>
+				<li class="last"><a
+					href="${facesContext.externalContext.requestContextPath}/pages/contactos.xhtml">Contatos</a></li>
+			</ul>
+
+		</nav>
+
+		<!-- FIM DA SECÇÃO NAVEGAÇÃO -->
+
+
+	</ui:composition>
+</body>
+</html>

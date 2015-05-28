@@ -1,4 +1,6 @@
-package pt.uc.dei.aor.paj;
+package pt.uc.dei.aor.paj.DAO;
+
+import pt.uc.dei.aor.paj.User;
 
 
 
