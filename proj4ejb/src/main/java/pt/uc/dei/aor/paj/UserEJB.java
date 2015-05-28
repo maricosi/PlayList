@@ -1,5 +1,6 @@
 package pt.uc.dei.aor.paj;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -38,16 +39,18 @@ public class UserEJB {
 		em.persist(new User1("Marisa", "456", "marisaisimoes@gmail.com"));
 	}
 
-	public List<User1> getUsers() {
-		// List<String> usernames = new LinkedList<>();
+	public List<UserDAO> getUsers() {
+		List<UserDAO> userDAOS = new LinkedList<>();
 
-		Query q = em.createQuery("from User u");
+		Query q = em.createQuery("from User1 u");
 		List<User1> users = q.getResultList();
+		logger.info(users.size()+" ejb");
+		
+		for (User1 u : users) {
+			userDAOS.add(new UserDAO(u.getName(),u.getEmail()));
+		}
 
-		// for (User u : users) {
-		// usernames.add(u.toString());
-		// }
-
-		return users;
+		return userDAOS;
 	}
+	
 }

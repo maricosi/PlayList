@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
+Built-By: Toshiba
 Class-Path: lib/proj4ejb-0.0.1-SNAPSHOT.jar lib/proj4jpa-0.0.1-SNAPSHO
  T.jar lib/slf4j-log4j12-1.7.7.jar lib/log4j-1.2.17.jar lib/slf4j-api-
  1.7.7.jar
-Build-Jdk: 1.7.0_79
-Built-By: Filipa Pedrosa
+Build-Jdk: 1.8.0_40
 Created-By: Maven Integration for Eclipse
 

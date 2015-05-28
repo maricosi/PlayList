@@ -23,23 +23,33 @@ public class User implements Serializable {
 	private String email;
 	@Column(name = "password", nullable = false, length = 20)
 	private String password;
-//	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy="user")
 	private List<Playlist> myPlaylist;
-//	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy="user")
 	private List<Music> myMusics;
 
-	
+
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 
+
+	public List<Music> getMyMusics() {
+		return myMusics;
+	}
+
+	public void setMyMusics(List<Music> myMusics) {
+		this.myMusics = myMusics;
+	}
+
+
 	public boolean isLogged(){
 		return name !=null;
 	}
-//	
-//	public boolean isOwner(){
-//		return 
-//	}
+	//	
+	//	public boolean isOwner(){
+	//		return 
+	//	}
 	public Long getId() {
 		return id;
 	}
@@ -71,7 +81,7 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public List<Playlist> getPlaylist() {
 		return myPlaylist;
 	}

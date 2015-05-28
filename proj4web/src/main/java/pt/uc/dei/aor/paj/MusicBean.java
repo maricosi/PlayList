@@ -3,13 +3,14 @@ package pt.uc.dei.aor.paj;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import pt.uc.dei.aor.paj.Music;
 
 @Named
-@ViewScoped
+@RequestScoped
 public class MusicBean {
 
 	private List <Music> musics;

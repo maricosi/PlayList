@@ -2,7 +2,7 @@
     <wb-module deploy-name="firstear">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
-        <dependent-module archiveName="proj4web-0.0.1-SNAPSHOT.war" deploy-path="/" handle="module:/classpath/var/M2_REPO/dei/uc/pt/aor/paj/proj4web/0.0.1-SNAPSHOT/proj4web-0.0.1-SNAPSHOT.war">
+        <dependent-module archiveName="proj4web-0.0.1-SNAPSHOT.war" deploy-path="/" handle="module:/resource/proj4web/proj4web">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="proj4ejb-0.0.1-SNAPSHOT.jar" deploy-path="/" handle="module:/resource/proj4ejb/proj4ejb">

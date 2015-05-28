@@ -1,47 +1,52 @@
 package pt.uc.dei.aor.paj;
 
-
-import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 
 @Entity
-public class Music implements Serializable {
+public class Music {
 
-	private static final long serialVersionUID = 5818937964164259216L;
+
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column (name="artist", nullable=false, length=20)
 	private String artist;
-	
+
 	@Column (name="title", nullable=false, length=30)
 	private String title;
-	
+
 	@Column (name="album", nullable=false, length=30)
 	private String album;
 
 	@Column (name="year", nullable=false, length=10)
 	private int year;
-	
+
 	@Column (name="path", nullable=false, length=80)
 	private String path;
 
-//	@ManyToMany(mappedBy="musics")
-    private List<User> users;
-	
+	@ManyToOne
+	private User user;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public Music() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public Music(String artist, String title, int year, String path) {
 		this.artist = artist;
 		this.title = title;
@@ -132,9 +137,8 @@ public class Music implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
+
+
 }
 
 
-	

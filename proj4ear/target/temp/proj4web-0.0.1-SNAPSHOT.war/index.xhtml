@@ -13,8 +13,7 @@
 	</h:form>
 
 	<h:dataTable value="#{login2.getUsers()}" var="user">
-		<h:column>#{user.name}</h:column>
-		<h:column>#{user.password}</h:column>
+		<h:column>#{user.username}</h:column>
 		<h:column>#{user.email}</h:column>
 	</h:dataTable>
 </h:body>

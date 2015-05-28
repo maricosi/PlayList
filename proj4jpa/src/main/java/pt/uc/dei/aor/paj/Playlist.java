@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -32,9 +34,24 @@ public class Playlist implements Serializable {
 	@Column (name="size", nullable=false, length=10)
 	private int size;
 	
-//	@ManytoMany
+	@ManyToMany
 	private List<Music> musics;
 	
+	@ManyToOne
+	private User user;
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public void setMusics(List<Music> musics) {
+		this.musics = musics;
+	}
+
 	public String getName() {
 		return name;
 	}

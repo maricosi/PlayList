@@ -13,9 +13,16 @@
 	</h:form>
 
 	<h:dataTable value="#{login2.getUsers()}" var="user">
-		<h:column>#{user.name}</h:column>
-		<h:column>#{user.password}</h:column>
+		<h:column>#{user.username}</h:column>
 		<h:column>#{user.email}</h:column>
 	</h:dataTable>
+	
+	<h:form>
+	<h:outputLabel value="Username" />
+	<h:inputText value=#{} />
+	<h:outputLabel value="Password" />
+	<h:inputText value=#{} />
+	</h:form>
+	
 </h:body>
 </html>
