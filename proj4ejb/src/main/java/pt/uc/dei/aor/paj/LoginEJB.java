@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import pt.uc.dei.aor.paj.User;
+import pt.uc.dei.aor.paj.User1;
 
 public class LoginEJB {
 	

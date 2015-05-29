@@ -1,43 +1,46 @@
 package pt.uc.dei.aor.paj.DAO;
 
+import java.util.List;
+
+import javax.ejb.Stateless;
+import javax.persistence.Query;
 import pt.uc.dei.aor.paj.User;
 
 
 
-public class UserDAO extends GenericDAO<User>{
+@Stateless
+public class UserDAO extends GenericDAO<User> {
 
-	private static final long serialVersionUID = -7769472638184179598L;
-	private String username, email;
-	
-	public UserDAO(String username, String email) {
+	private static final long serialVersionUID = 6917832142336265801L;
+
+	public UserDAO(){
 		super(User.class);
-		this.username = username;
-		this.email = email;
+
+	}
+
+	public User find (User user) {
+		return super.find(user.getId());
 	}
 	
-	public String getUsername() {
-		return username;
+	public User findUsernamePass(String username, String password){
+		Query q = em.createNamedQuery(User.FIND_BY_USERNAME_PASS);
+		   q.setParameter("username", username);
+	       q.setParameter("password",password);
+		
+		return (User) q.getSingleResult();
+		
 	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-
-
-	
-
-	
-	
-
-
 
 }
+
+
+
+
+	
+
+	
+	
+
+
+
+

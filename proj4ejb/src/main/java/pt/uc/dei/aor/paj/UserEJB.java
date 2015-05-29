@@ -40,7 +40,7 @@ public class UserEJB {
 	}
 
 	
-	public List<UserDAO> getUsers() {
+/*	public List<UserDAO> getUsers() {
 		List<UserDAO> userDAOS = new LinkedList<>();
 
 		Query q = em.createQuery("from User1 u");
@@ -53,5 +53,5 @@ public class UserEJB {
 
 		return userDAOS;
 	}
-	
+	*/
 }

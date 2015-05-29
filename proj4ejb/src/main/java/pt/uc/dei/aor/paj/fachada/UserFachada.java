@@ -1,7 +1,9 @@
 package pt.uc.dei.aor.paj.fachada;
 
 import java.util.List;
+
 import javax.ejb.EJB;
+
 import pt.uc.dei.aor.paj.User;
 import pt.uc.dei.aor.paj.DAO.UserDAO;
 
@@ -60,16 +62,46 @@ public class UserFachada implements IntUserFachada {
 		return !hasError;
 	}
 
-	private boolean isUserExist(String email, String username){
-		boolean exist=false;
+
+
+	public String validate(String username, String password){
+		String mensagem="";
+		try{
+			isUserLoginWithAllData(username, password);
+			@SuppressWarnings("unchecked")
+			List<User> user= (List<User>) userDAO.findUsernamePass(username,password);
+			if(user.size()==0){
+				mensagem="User inexistente!!";
+			} else if(user.size()!=0){
+				mensagem= "User logado!!";
+			}
+			return mensagem;
+		} catch (IllegalArgumentException e){
+			return e.getMessage();
+		}
+
+	}
+
+	private boolean isUserLoginWithAllData(String username, String password) {
+		boolean hasError = false;
 		String mensagemErro="";
 
-		if 
 
+		if ( "".equals(username)){
+			hasError = true;
+			mensagemErro=mensagemErro+"Username ";
+		}
 
-		return false;
+		if( "".equals(password)){
+			hasError = true;
+			mensagemErro=mensagemErro+"Password ";
+		}
 
+		if (hasError){
+			throw new IllegalArgumentException("Prencha o(s) campo(s): " + mensagemErro + "!!!");
+		}
 
+		return !hasError;
 
 	}
 

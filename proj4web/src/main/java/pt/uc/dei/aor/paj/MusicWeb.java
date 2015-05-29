@@ -6,41 +6,39 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-
 import pt.uc.dei.aor.paj.fachada.IntMusicFachada;
 
 
 @Named
 @RequestScoped
 public class MusicWeb {
+	
 	@EJB
 	private IntMusicFachada music;
-	
-
 	private String artist;
 	private String title;
 	private String album;
 	private int year;
 	private String url;
-	private String messagem="";
+	private String mensagem="";
 
 	public MusicWeb() {
 		super();
 	}
 	
-	public List<Music> findAll (){
+	public List<Music> findAll(){
 		return music.findAll();
 	}
 	
 	public void save (){
-		this.messagem=music.save(title, artist, album, url, year, null);
+		this.mensagem=music.save(title, artist, album, url, year, null);
 	}
-	public String getMessagem() {
-		return messagem;
+	public String getMensagem() {
+		return mensagem;
 	}
 
-	public void setMessagem(String messagem) {
-		this.messagem = messagem;
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
 	}
 
 	public String getArtist() {

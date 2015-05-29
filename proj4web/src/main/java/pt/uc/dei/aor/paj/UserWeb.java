@@ -16,7 +16,7 @@ public class UserWeb {
 		private String username;
 		private String email;
 		private String password;
-		private String messagem="";
+		private String menssagem="";
 
 		public UserWeb() {
 			super();
