@@ -6,7 +6,7 @@ import pt.uc.dei.aor.paj.User;
 
 @Local
 public interface IntUserFachada {
-	public abstract void save(User user);
+	public abstract String save(String name, String username, String email , String password);
 
 	public abstract User update(User user);
 
@@ -15,4 +15,6 @@ public interface IntUserFachada {
 	public abstract User find(int entityID);
 
 	public abstract List<User> findAll();
+
+	
 }

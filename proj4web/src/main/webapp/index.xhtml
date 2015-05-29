@@ -9,7 +9,12 @@
 <h:body>
 	<h1>Hello World!</h1>
 	<h:form>
-		<h:commandButton action="#{login.populate}" value="submit" />
+			<h:outputLabel value="Userame" />
+			<h:inputText value="#{login.username}" />
+			
+			<h:outputLabel value="Password" />
+			<h:inputText value="#{login.password}" />
+	<h:commandButton action="#{login.populate}" value="submit" />
 	</h:form>
 
 	<h:dataTable value="#{login.getUsers()}" var="user">
@@ -43,6 +48,34 @@
 
 		<h:outputText value="#{musicWeb.messagem}" />
 	</h:form>
+	
+		<h:form>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Nome" />
+			<h:inputText value="#{login.}" />
+
+			<h:outputLabel value="Título" />
+			<h:inputText value="#{musicWeb.title}" />
+
+			<h:outputLabel value="Album" />
+			<h:inputText value="#{musicWeb.album}" />
+
+			<h:outputLabel value="Ano" />
+			<h:inputText value="#{musicWeb.year}" />
+
+			<h:outputLabel value="URL" />
+			<h:inputText value="#{musicWeb.url}" />
+
+			<h:outputLabel />
+			<h:commandButton value="Adicionar"
+				actionListener="#{musicWeb.save()}" />
+
+		</h:panelGrid>
+
+		<h:outputText value="#{musicWeb.messagem}" />
+	</h:form>
+	
+	
 
 	<h:dataTable value="#{musicWeb.findAll()}" var="music">
 		<h:column>#{music.album}</h:column>

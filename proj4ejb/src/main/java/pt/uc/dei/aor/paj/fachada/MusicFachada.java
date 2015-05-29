@@ -8,7 +8,9 @@ import javax.ejb.Stateless;
 
 
 
+
 import pt.uc.dei.aor.paj.Music;
+import pt.uc.dei.aor.paj.User;
 import pt.uc.dei.aor.paj.DAO.MusicDAO;
 
 
@@ -18,7 +20,7 @@ public class MusicFachada implements IntMusicFachada{
 	@EJB
 	private MusicDAO musicDAO;
 
-	public String save(String title, String artist, String album, String url, int year) {
+	public String save(String title, String artist, String album, String url, int year, User user) {
 		Music music =new Music(artist,title,album,year,url,null);
 		try{
 			isMusicWithAllData(music);

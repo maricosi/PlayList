@@ -9,7 +9,12 @@
 <h:body>
 	<h1>Hello World!</h1>
 	<h:form>
-		<h:commandButton action="#{login.populate}" value="submit" />
+			<h:outputLabel value="Userame" />
+			<h:inputText value="#{login.username}" />
+			
+			<h:outputLabel value="Password" />
+			<h:inputText value="#{login.password}" />
+	<h:commandButton action="#{login.populate}" value="submit" />
 	</h:form>
 
 	<h:dataTable value="#{login.getUsers()}" var="user">
@@ -43,6 +48,9 @@
 
 		<h:outputText value="#{musicWeb.messagem}" />
 	</h:form>
+	
+	
+	
 
 	<h:dataTable value="#{musicWeb.findAll()}" var="music">
 		<h:column>#{music.album}</h:column>

@@ -30,7 +30,6 @@ public class UserEJB {
 	}
 
 	public void populate() {
-		System.out.println("OLA");
 		logger.trace("dsnklan");
 		logger.debug("Sample debug message");
 		logger.info("Sample info message");
@@ -40,6 +39,7 @@ public class UserEJB {
 		em.persist(new User1("Marisa", "456", "marisaisimoes@gmail.com"));
 	}
 
+	
 	public List<UserDAO> getUsers() {
 		List<UserDAO> userDAOS = new LinkedList<>();
 

@@ -14,14 +14,10 @@ public class LoginEJB {
 	private EntityManager em;
 
 
-
 	public LoginEJB() {
 		super();
 		
 	}
-	
-
-
 
 	public boolean verificarUser (String username,String password){
 		boolean verificarUser=false;

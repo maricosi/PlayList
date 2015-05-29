@@ -3,6 +3,7 @@ package pt.uc.dei.aor.paj.DAO;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 import pt.uc.dei.aor.paj.Music;
 
@@ -21,8 +22,11 @@ public class MusicDAO extends GenericDAO<Music> {
 		return super.find(music.getId());
 	}
 
+	
 	public List<Music> all(){
-		return em.createQuery("from Music t", Music.class).getResultList();
+		Query query = em.createNamedQuery(Music.FIND_ALL);
+		return (List<Music>)query.getResultList();
+		
 	}
 
 }

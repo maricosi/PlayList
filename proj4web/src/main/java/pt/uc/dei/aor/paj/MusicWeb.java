@@ -33,7 +33,7 @@ public class MusicWeb {
 	}
 	
 	public void save (){
-		this.messagem=music.save(title, artist, album, url, year);
+		this.messagem=music.save(title, artist, album, url, year, null);
 	}
 	public String getMessagem() {
 		return messagem;

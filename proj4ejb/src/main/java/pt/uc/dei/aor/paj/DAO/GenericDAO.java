@@ -24,12 +24,6 @@ public abstract class GenericDAO<T> implements Serializable{
 		this.entityClass = entityClass;
 	}
 
-/*	public void beginTransaction() {
-
-		emf.createEntityManager();	 
-		em.getTransaction().begin();
-	}
-*/
 	public void delete(Object id, Class<T> classe) {
 		T entityToBeRemoved = em.getReference(classe, id);			 
 		em.remove(entityToBeRemoved);			
