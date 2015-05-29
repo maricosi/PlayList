@@ -1,19 +1,25 @@
 package pt.uc.dei.aor.paj;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import pt.uc.dei.aor.paj.fachada.IntUserFachada;
+import java.io.Serializable;
 
 @Named
-@RequestScoped
-public class Login {
+@SessionScoped
+public class Login implements Serializable {
 	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@EJB
 	private IntUserFachada user;
 	private String username;
@@ -27,11 +33,12 @@ public class Login {
 		super();
 	}
 
-/*	public Login(String username, String password) {
+	public Login(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
-	}*/
+	}
+	
 
 	public void validate (){
 		this.setMensagem(user.validate(username, password));
@@ -42,8 +49,14 @@ public class Login {
 			this.loged=false;
 			logger.debug("Alguém está a tentar aceder a conta com " + username + " e " + password);
 		}
-		
-
+	}
+	
+	
+	public void logout (){
+		this.loged=false;
+		this.mensagem="";
+		this.username="";
+		this.password="";
 	}
 
 	public Boolean getLoged() {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.Query;
+
 import pt.uc.dei.aor.paj.User;
 
 
@@ -22,12 +23,13 @@ public class UserDAO extends GenericDAO<User> {
 		return super.find(user.getId());
 	}
 	
-	public User findUsernamePass(String username, String password){
+	@SuppressWarnings("unchecked")
+	public List <User> findUsernamePass(String username, String password){
 		Query q = em.createNamedQuery(User.FIND_BY_USERNAME_PASS);
 		   q.setParameter("username", username);
 	       q.setParameter("password",password);
 		
-		return (User) q.getSingleResult();
+		return q.getResultList();
 		
 	}
 

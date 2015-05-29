@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Users")
 @NamedQuery(name = "User.findByUsernamePass", 
-query = "SELECT u FROM User u WHERE u.name like :username AND u.password like :password")
+query = "SELECT u FROM User u WHERE u.username like :username AND u.password like :password")
 
 public class User{
 	

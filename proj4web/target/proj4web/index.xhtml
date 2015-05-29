@@ -14,12 +14,37 @@
 		<h:inputText value="#{login.username}" />
 
 		<h:outputText value="Password" />
-		<h:inputText value="#{login.password}" />
-		<h:commandButton actionListener="#{login.validate}" value="submit" />
+		<h:inputSecret value="#{login.password}" />
+		<h:commandButton actionListener="#{login.validate}" value="Login" />
+		<h:commandButton actionListener="#{login.logout()}" value="Logout" />
 		<h:outputText value="#{login.mensagem}" />
 	</h:form>
 
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="name" />
+			<h:inputText value="#{registoUser.name}" />
 
+			<h:outputLabel value="email" />
+			<h:inputText value="#{registoUser.email}" />
+
+			<h:outputLabel value="username" />
+			<h:inputText value="#{registoUser.username}" />
+
+			<h:outputLabel value="Password" />
+			<h:inputSecret  value="#{registoUser.password}" />
+
+			<h:outputLabel value="Repita Password" />
+			<h:inputSecret value="#{registoUser.verifyPassword}" />
+
+			<h:outputLabel />
+			<h:commandButton value="Adicionar"
+				actionListener="#{registoUser.registUser()}" />
+
+		</h:panelGrid>
+
+		<h:outputText value="#{registoUser.mensagem}" />
+	</h:form>
 
 	<h:form>
 		<h:panelGrid columns="2">

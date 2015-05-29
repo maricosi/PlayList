@@ -22,6 +22,7 @@ public class MusicDAO extends GenericDAO<Music> {
 		return super.find(music.getId());
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Music> all(){
 		Query query = em.createNamedQuery(Music.FIND_ALL);
 		return (List<Music>)query.getResultList();

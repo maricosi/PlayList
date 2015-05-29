@@ -3,19 +3,21 @@ package pt.uc.dei.aor.paj.fachada;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 import pt.uc.dei.aor.paj.User;
 import pt.uc.dei.aor.paj.DAO.UserDAO;
 
 
-
+@Stateless
 public class UserFachada implements IntUserFachada {
 
 	@EJB
 	private UserDAO userDAO;
 
 	public String save(String name, String username, String email, String password) {
-		User user =new User(name,username,email,password);
+		User user =new User(name,email,username,password);
+		System.out.println(name+" "+username+" "+email+" "+password);
 		try{
 			isUserWithAllData(user);
 			userDAO.save(user);
@@ -69,7 +71,7 @@ public class UserFachada implements IntUserFachada {
 		try{
 			isUserLoginWithAllData(username, password);
 			@SuppressWarnings("unchecked")
-			List<User> user= (List<User>) userDAO.findUsernamePass(username,password);
+			List<User> user= userDAO.findUsernamePass(username,password);
 			if(user.size()==0){
 				mensagem="User inexistente!!";
 			} else if(user.size()!=0){
