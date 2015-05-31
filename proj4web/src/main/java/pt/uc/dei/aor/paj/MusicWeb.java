@@ -30,7 +30,7 @@ public class MusicWeb {
 		return music.findAll();
 	}
 	
-	public void save (){
+	public void save(){
 		this.mensagem=music.save(title, artist, album, url, year, null);
 	}
 	public String getMensagem() {

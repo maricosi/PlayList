@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import pt.uc.dei.aor.paj.User;
 
 
 
@@ -40,9 +42,8 @@ public abstract class GenericDAO<T> implements Serializable{
     public void save(T entity) {
         em.persist(entity);
     }
-  
+    
+    public abstract List <User> findUsernamePass(String username, String password);
 
-
-
-
+	
 }

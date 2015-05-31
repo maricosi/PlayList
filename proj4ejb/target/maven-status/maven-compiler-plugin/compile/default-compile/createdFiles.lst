@@ -1,10 +1,10 @@
-pt\uc\dei\aor\paj\fachada\MusicFachada.class
-pt\uc\dei\aor\paj\fachada\PlaylistFachada.class
 pt\uc\dei\aor\paj\DAO\GenericDAO.class
 pt\uc\dei\aor\paj\DAO\MusicDAO.class
 pt\uc\dei\aor\paj\fachada\IntMusicFachada.class
-pt\uc\dei\aor\paj\fachada\IntPlaylistFachada.class
 pt\uc\dei\aor\paj\DAO\PlaylistDAO.class
+pt\uc\dei\aor\paj\fachada\MusicFachada.class
+pt\uc\dei\aor\paj\fachada\PlaylistFachada.class
+pt\uc\dei\aor\paj\fachada\IntPlaylistFachada.class
 pt\uc\dei\aor\paj\fachada\IntUserFachada.class
 pt\uc\dei\aor\paj\DAO\UserDAO.class
 pt\uc\dei\aor\paj\fachada\UserFachada.class

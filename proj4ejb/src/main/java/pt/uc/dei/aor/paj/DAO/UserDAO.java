@@ -22,7 +22,7 @@ public class UserDAO extends GenericDAO<User> {
 	public User find (User user) {
 		return super.find(user.getId());
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List <User> findUsernamePass(String username, String password){
 		Query q = em.createNamedQuery(User.FIND_BY_USERNAME_PASS);
@@ -32,6 +32,7 @@ public class UserDAO extends GenericDAO<User> {
 		return q.getResultList();
 		
 	}
+
 
 }
 
