@@ -1,76 +1,78 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
 	<title>Facelets Hello World</title>
-     <h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
-	<h1>Hello World!</h1>
-	<h:form>
-		<h:commandButton actionListener="#{login.logout}" value="Logout" />
-		<h:outputText value="#{login.mensagem}" />
-	</h:form>
+	<ui:composition template="template/commonLayout.xhtml">
+		<ui:define name="bodyLogin">
+		<article id="bodyLogin">
+			<h:form>
+				<h:commandButton actionListener="#{login.logout}" value="Logout" />
+				<h:outputText value="#{login.mensagem}" />
+			</h:form>
 
-	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputLabel value="name" />
-			<h:inputText value="#{registoUser.name}" />
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="name" />
+					<h:inputText value="#{registoUser.name}" />
 
-			<h:outputLabel value="email" />
-			<h:inputText value="#{registoUser.email}" />
+					<h:outputLabel value="email" />
+					<h:inputText value="#{registoUser.email}" />
 
-			<h:outputLabel value="username" />
-			<h:inputText value="#{registoUser.username}" />
+					<h:outputLabel value="username" />
+					<h:inputText value="#{registoUser.username}" />
 
-			<h:outputLabel value="Password" />
-			<h:inputSecret  value="#{registoUser.password}" />
+					<h:outputLabel value="Password" />
+					<h:inputSecret value="#{registoUser.password}" />
 
-			<h:outputLabel value="Repita Password" />
-			<h:inputSecret value="#{registoUser.verifyPassword}" />
+					<h:outputLabel value="Repita Password" />
+					<h:inputSecret value="#{registoUser.verifyPassword}" />
 
-			<h:outputLabel />
-			<h:commandButton value="Adicionar"
-				actionListener="#{registoUser.registUser()}" />
+					<h:outputLabel />
+					<h:commandButton value="Adicionar"
+						actionListener="#{registoUser.registUser()}" />
 
-		</h:panelGrid>
+				</h:panelGrid>
 
-		<h:outputText value="#{registoUser.mensagem}" />
-	</h:form>
+				<h:outputText value="#{registoUser.mensagem}" />
+			</h:form>
 
-	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputLabel value="Artista" />
-			<h:inputText value="#{musicWeb.artist}" />
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Artista" />
+					<h:inputText value="#{musicWeb.artist}" />
 
-			<h:outputLabel value="Título" />
-			<h:inputText value="#{musicWeb.title}" />
+					<h:outputLabel value="Título" />
+					<h:inputText value="#{musicWeb.title}" />
 
-			<h:outputLabel value="Album" />
-			<h:inputText value="#{musicWeb.album}" />
+					<h:outputLabel value="Album" />
+					<h:inputText value="#{musicWeb.album}" />
 
-			<h:outputLabel value="Ano" />
-			<h:inputText value="#{musicWeb.year}" />
+					<h:outputLabel value="Ano" />
+					<h:inputText value="#{musicWeb.year}" />
 
-			<h:outputLabel value="URL" />
-			<h:inputText value="#{musicWeb.url}" />
+					<h:outputLabel value="URL" />
+					<h:inputText value="#{musicWeb.url}" />
 
-			<h:outputLabel />
-			<h:commandButton value="Adicionar"
-				actionListener="#{musicWeb.save()}" />
+					<h:outputLabel />
+					<h:commandButton value="Adicionar"
+						actionListener="#{musicWeb.save()}" />
 
-		</h:panelGrid>
+				</h:panelGrid>
 
-		<h:outputText value="#{musicWeb.mensagem}" />
-	</h:form>
-
-
-
-      
-    </h:body>
+				<h:outputText value="#{musicWeb.mensagem}" />
+			</h:form>
+			</article>
+		</ui:define>
+	</ui:composition>
+</h:body>
 </html>
 
 

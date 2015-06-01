@@ -44,8 +44,9 @@ public class Login implements Serializable {
 	
 
 	public String validate () throws IOException{
-		this.setMensagem(user.validate(username, password));
-		if(mensagem.equals("User logado!!")){
+		String mensagemFachada=(user.validate(username, password));
+		if(mensagemFachada.equals("User logado!!")){
+			this.mensagem="Olá " + username + "!!!";
 			this.logged=true;
 			logger.debug("Utilizador com "+username + "e" + password+ "logado");
 			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();

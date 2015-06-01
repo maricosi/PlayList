@@ -16,12 +16,24 @@ public class UserFachada implements IntUserFachada {
 	private UserDAO userDAO;
 
 	public String save(String name, String username, String email, String password) {
+		String mensagemRegisto="";
 		User user =new User(name,email,username,password);
 		System.out.println(name+" "+username+" "+email+" "+password);
 		try{
 			isUserWithAllData(user);
-			userDAO.save(user);
-			return "Utilizador criado com sucesso";
+			List<User> userUsername= userDAO.findUsername(username);
+			List<User> userEmail= userDAO.findEmail(email);
+			if(userUsername.size()==0 && userEmail.size()==0){
+				userDAO.save(user);
+				mensagemRegisto="Utilizador criado com sucesso";
+			}else if(userUsername.size()==1 && userEmail.size()==0){
+				mensagemRegisto="Username existente!!";
+			}else if(userUsername.size()==0 && userEmail.size()==1){
+				mensagemRegisto="Email existente!!";
+			}else if(userUsername.size()==1 && userEmail.size()==1){
+				mensagemRegisto="Username e Email existente!!";
+			}
+			return mensagemRegisto;
 		} catch (IllegalArgumentException e){
 			return e.getMessage();
 		}

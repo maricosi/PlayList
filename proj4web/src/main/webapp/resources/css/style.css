@@ -13,6 +13,15 @@ body {
 	margin: 0px auto;
 }
 
+#page2 {
+	/* 	background-image: url("../resources/images/radio_by_TiViD.jpg");
+	background-repeat: no-repeat;
+	background-size: cover; */
+	width: 95%;
+	position: relative;
+	margin: 0px auto;
+}
+
 #header2 {
 	margin-bottom: -3px;
 	position: relative;

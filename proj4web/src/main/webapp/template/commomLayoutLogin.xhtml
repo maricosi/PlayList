@@ -12,10 +12,10 @@
 <body>
 	<div id="page">
 
-		<div id="header2">
-			<header>
-				<h1>RadioK7</h1>
-			</header>
+		<div >
+			<ui:insert name="header2">
+				<ui:include src="commonHeader.xhtml" />
+			</ui:insert>
 		</div>
 
 		<div id="bodyLogin">
@@ -40,7 +40,6 @@
 						</h:commandButton>
 						<h:commandButton styleClass="buto" actionListener="#{login.logout}" value="Logout" />
 					</p>
-					<br />
 					<h2 class="out">
 						<h:outputText value="#{login.mensagem}" />
 					</h2>

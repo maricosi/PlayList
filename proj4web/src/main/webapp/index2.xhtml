@@ -11,25 +11,24 @@
 
 <body>
 	<ui:composition template="template/commonLayout.xhtml">
-	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputLabel value="Name" />
-			<h:inputText value="#{playlistWeb.name}" />
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Name" />
+				<h:inputText value="#{playlistWeb.name}" />
 
-			<h:outputLabel value="Date" />
-			<h:inputText value="#{playlistWeb.date}" />
+				<h:outputLabel value="Date" />
+				<h:inputText value="#{playlistWeb.date}" />
 
-			<h:outputLabel />
-			<h:commandButton value="Criar"
-				actionListener="#{playlistWeb.save}" />
+				<h:outputLabel />
+				<h:commandButton value="Criar" actionListener="#{playlistWeb.save}" />
 
-		</h:panelGrid>
-		<h:outputText value="#{playlistWeb.mensagem}" />
-		
-	</h:form>
-	
-	
-	
+			</h:panelGrid>
+			<h:outputText value="#{playlistWeb.mensagem}" />
+
+		</h:form>
+
+
+
 	</ui:composition>
 </body>
 </html>
