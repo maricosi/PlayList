@@ -6,9 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pt.uc.dei.aor.paj.User;
 
-
-
-
 public abstract class GenericDAO<T> implements Serializable{
 
 	private static final long serialVersionUID = -7473203207346198235L;

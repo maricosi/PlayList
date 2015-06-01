@@ -42,6 +42,9 @@ public class MusicWeb {
 	
 	public void findByTitleArtist (){
 		this.procuraMusic=music.findAllByTitleArtist(title, artist);
+		if(procuraMusic.size()==0){
+			this.mensagem="Critério(s) de procura sem resultados";
+		}
 	}
 	
 	public List<Music> getProcuraMusic() {

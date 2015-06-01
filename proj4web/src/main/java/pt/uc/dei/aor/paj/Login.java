@@ -62,9 +62,7 @@ public class Login implements Serializable {
 			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 			ec.redirect(ec.getRequestContextPath() + "/login.xhtml");
 			return "login.xhtml";
-		}
-		
-		
+		}		
 	}
 	
 	
