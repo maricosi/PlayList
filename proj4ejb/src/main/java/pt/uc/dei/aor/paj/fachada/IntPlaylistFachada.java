@@ -2,10 +2,7 @@ package pt.uc.dei.aor.paj.fachada;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.ejb.Local;
-
-import pt.uc.dei.aor.paj.Music;
 import pt.uc.dei.aor.paj.Playlist;
 import pt.uc.dei.aor.paj.User;
 
