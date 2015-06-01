@@ -1,33 +1,95 @@
 package pt.uc.dei.aor.paj.fachada;
 
+import java.util.Date;
+import java.util.List;
+
+import javax.ejb.EJB;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-public class PlaylistFachada {
+import pt.uc.dei.aor.paj.Music;
+import pt.uc.dei.aor.paj.Playlist;
+import pt.uc.dei.aor.paj.User;
+import pt.uc.dei.aor.paj.DAO.MusicDAO;
+import pt.uc.dei.aor.paj.DAO.PlaylistDAO;
+
+public class PlaylistFachada implements IntPlaylistFachada{
+	@EJB
+	private PlaylistDAO playlistDAO;
+
+
+	public String save(String name, Date date, User user) {
+		Playlist playlist =new Playlist(name,date,user);
+		try{
+			isPlaylistWithAllData(playlist);
+			playlistDAO.save(playlist);
+			return "Playlist criada com sucesso";
+		} catch (IllegalArgumentException e){
+			return e.getMessage();
+		}
+	}
+
+
+	private boolean isPlaylistWithAllData(Playlist playlist){
+		boolean hasError = false;
+		String mensagemErro="";
+
+		if(playlist == null){
+			hasError = true;
+		}
+		
+		if (playlist.getName() == null || "".equals(playlist.getName().trim())){
+			hasError = true;
+			mensagemErro=mensagemErro+"Nome ";
+		}
+
+		if(playlist.getDate()== null){
+			hasError = true;
+			mensagemErro=mensagemErro+"Date ";
+		}
+
+		if (hasError){
+			throw new IllegalArgumentException("Prencha o(s) campo(s): " + mensagemErro + "!!!");
+		}
+
+		return !hasError;
+	}
+
+	@Override
+	public Playlist update(Playlist playlist) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Playlist playlist) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Playlist find(int entityID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
-	
-	
-	
-	
-//	@NamedQueries({
-//		@NamedQuery(name = "Playlist.findAll", query="SELECT p FROM Playlist p"),
-//		@NamedQuery(name = "Playlist.findByNameASC", query="SELECT p FROM Playlist p ORDER BY p.name ASC"),
-//		@NamedQuery(name = "Playlist.findByNameDESC", query="SELECT p FROM Playlist p ORDER BY p.name DESC"),
-//		@NamedQuery(name = "Playlist.findByDateASC", query="SELECT p FROM Playlist p ORDER BY p.date ASC"),
-//		@NamedQuery(name = "Playlist.findByDateDESC", query="SELECT p FROM Playlist p ORDER BY p.date DESC"),
-//		@NamedQuery(name = "Playlist.findBySizeASC", query="SELECT p FROM Playlist p ORDER BY p.date ASC"),
-//		@NamedQuery(name = "Playlist.findBySizeDESC", query="SELECT p FROM Playlist p ORDER BY p.size DESC"),
-//})
-//
-//public class Playlist{
-//	
-//	public static final String FIND_ALL = "Playlist.findAll";
-//	public static final String FIND_BY_NAME_ASC = "Playlist.findByNameASC";
-//	public static final String FIND_BY_NAME_DESC = "Playlist.findByNameDESC";
-//	public static final String FIND_BY_DATE_ASC = "Playlist.findByDateASC";
-//	public static final String FIND_BY_DATE_DESC = "Playlist.findByDateDESC";
-//	public static final String FIND_BY_SIZE_ASC = "Playlist.findBySizeASC";
-//	public static final String FIND_BY_SIZE_DESC = "Playlist.findBySizeDESC";
+	@Override
+	public List<Playlist> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
 
 
 }
+
+	
+	
+	
+
+
+

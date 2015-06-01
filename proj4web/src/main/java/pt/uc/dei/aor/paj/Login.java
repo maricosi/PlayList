@@ -15,7 +15,6 @@ import java.io.Serializable;
 @SessionScoped
 public class Login implements Serializable {
 	
-
 	/**
 	 * 
 	 */

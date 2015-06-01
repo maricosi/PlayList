@@ -11,6 +11,24 @@
 
 <body>
 	<ui:composition template="template/commonLayout.xhtml">
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Name" />
+			<h:inputText value="#{playlistWeb.name}" />
+
+			<h:outputLabel value="Date" />
+			<h:inputText value="#{playlistWeb.date}" />
+
+			<h:outputLabel />
+			<h:commandButton value="Criar"
+				actionListener="#{registoUser.registUser()}" />
+
+		</h:panelGrid>
+		<h:outputText value="#{registoUser.mensagem}" />
+	</h:form>
+	
+	
+	
 	</ui:composition>
 </body>
 </html>

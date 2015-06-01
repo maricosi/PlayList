@@ -52,16 +52,14 @@ public class Playlist{
 	private List<Music> musics;
 	@ManyToOne
 	private User user;
-
-	public Playlist() {
-		super();
+	
+	public Playlist(){		
 	}
 
-	public Playlist(String name, Date date, int size, User user) {
+	public Playlist(String name, Date date, User user) {
 		super();
 		this.name = name;
 		this.date = date;
-		this.size = size;
 		this.user=user;
 	}
 
@@ -112,6 +110,11 @@ public class Playlist{
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+//    public String noSongs(){
+//        return ""+musics.size();
+//    }
+ 
 
 	@Override
 	public int hashCode() {
