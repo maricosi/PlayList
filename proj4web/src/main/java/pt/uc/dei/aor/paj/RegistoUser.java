@@ -22,7 +22,6 @@ public class RegistoUser {
 		super();
 	}
 
-
 	public RegistoUser(String name, String username, String password, String verifyPassword,
 			String email, String mensagem) {
 		super();
@@ -41,7 +40,6 @@ public class RegistoUser {
 		}	
 	}
 	
-
 	public String getName() {
 		return name;
 	}
