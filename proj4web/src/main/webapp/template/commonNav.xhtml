@@ -13,9 +13,9 @@
 <body>
 	<ui:composition>
 		<aside id="nav">
-			<h:form rendered="#{!login.logged}">
+			<h:form rendered="#{!login.loged}">
 				<h1>Login</h1>
-				<h:inputText id="username" title="Nome: " value="#{login.name}"
+				<h:inputText id="username" title="Nome: " value="#{login.username}"
 					required="true" requiredMessage="Erro: Escreva o seu username."
 					maxlength="25" />
 				<p></p>
@@ -29,10 +29,10 @@
 					errorStyle="color: #d20005" infoStyle="color: blue" />
 			</div>
 			<h1>
-				<h:outputText value="Benvindo #{login.name}!!"
-					rendered="#{login.logged}" />
+				<h:outputText value="Benvindo #{login.username}!!"
+					rendered="#{login.loged}" />
 			</h1>
-			<h:form rendered="#{login.logged}">
+			<h:form rendered="#{login.loged}">
 
 				<h:commandButton id="Logout" value="Logout" action="#{login.logout}" />
 				<p></p>
