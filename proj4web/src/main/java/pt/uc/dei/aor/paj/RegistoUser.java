@@ -1,8 +1,13 @@
 package pt.uc.dei.aor.paj;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+
 import pt.uc.dei.aor.paj.fachada.IntUserFachada;
 
 @Named
@@ -34,12 +39,30 @@ public class RegistoUser {
 
 	public void registUser (){
 		if (verifyPassword.equals(password)){
+			//this.password=sha256(password);			
 			this.mensagem=user.save(name, username, email, password);
 		} else {
 			this.mensagem="Passwords não coincidem!!";
 		}	
 	}
 	
+	public static String sha256(String password) {
+	    try{
+	        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+	        byte[] hash = digest.digest(password.getBytes("UTF-8"));
+	        StringBuffer hexString = new StringBuffer();
+
+	        for (int i = 0; i < hash.length; i++) {
+	            String hex = Integer.toHexString(0xff & hash[i]);
+	            if(hex.length() == 1) hexString.append('0');
+	            hexString.append(hex);
+	        }
+
+	        return hexString.toString();
+	    } catch(Exception ex){
+	       throw new RuntimeException(ex);
+	    }
+	}
 	public String getName() {
 		return name;
 	}

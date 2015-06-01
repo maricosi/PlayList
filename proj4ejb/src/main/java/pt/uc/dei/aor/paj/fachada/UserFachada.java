@@ -22,8 +22,12 @@ public class UserFachada implements IntUserFachada {
 		try{
 			isUserWithAllData(user);
 			List<User> userUsername= userDAO.findUsername(username);
+			System.out.println(userUsername);
 			List<User> userEmail= userDAO.findEmail(email);
-			if(userUsername.size()==0 && userEmail.size()==0){
+			if(userUsername==null && userEmail==null ){
+				userDAO.save(user);
+				mensagemRegisto="Utilizador criado com sucesso";
+			}else if(userUsername.size()==0 && userEmail.size()==0 ){
 				userDAO.save(user);
 				mensagemRegisto="Utilizador criado com sucesso";
 			}else if(userUsername.size()==1 && userEmail.size()==0){

@@ -36,16 +36,14 @@ public class UserDAO extends GenericDAO<User> {
 	@SuppressWarnings("unchecked")
 	public List<User> findUsername(String username){
 		Query q = em.createNamedQuery(User.FIND_BY_USERNAME);
-		   q.setParameter("username", username);
-		   
+		   q.setParameter("username", username);		   
 			return q.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<User> findEmail(String email){
 		Query q = em.createNamedQuery(User.FIND_BY_EMAIL);
-		   q.setParameter("email", email);
-		   
+		   q.setParameter("email", email);		   
 			return q.getResultList();
 	}
 	
