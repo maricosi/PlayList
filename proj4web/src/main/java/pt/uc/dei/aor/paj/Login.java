@@ -2,6 +2,7 @@ package pt.uc.dei.aor.paj;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import pt.uc.dei.aor.paj.fachada.IntUserFachada;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 @Named
@@ -41,26 +43,36 @@ public class Login implements Serializable {
 	}
 	
 
-	public void validate (){
+	public String validate () throws IOException{
 		this.setMensagem(user.validate(username, password));
 		if(mensagem.equals("User logado!!")){
 			this.logged=true;
 			logger.debug("Utilizador com "+username + "e" + password+ "logado");
-			HttpSession session= (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-			session.setAttribute("loggedin",true);
-			session.setMaxInactiveInterval(60);
+			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+			HttpSession sessao= (HttpSession) ec.getSession(true);
+			sessao.setAttribute("loggedin", true);
+			ec.redirect(ec.getRequestContextPath() + "/index.xhtml");
+			return "index.xhtml";
 		} else {
 			this.logged=false;
 			logger.debug("Alguém está a tentar aceder a conta com " + username + " e " + password);
+			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+			ec.redirect(ec.getRequestContextPath() + "/login.xhtml");
+			return "login.xhtml";
 		}
+		
+		
 	}
 	
 	
-	public void logout (){
+	public void logout () throws IOException{
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+		ec.invalidateSession();
 		this.logged=false;
 		this.mensagem="";
 		this.username="";
 		this.password="";
+		ec.redirect(ec.getRequestContextPath() + "/login.xhtml");
 	}
 
 	public Boolean getLoged() {

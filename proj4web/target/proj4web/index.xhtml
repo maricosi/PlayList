@@ -6,17 +6,11 @@
 
 <h:head>
 	<title>Facelets Hello World</title>
-	<h:outputStylesheet name="resources/css/style.css"/>
+     <h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
 	<h1>Hello World!</h1>
 	<h:form>
-		<h:outputText value="Username" />
-		<h:inputText value="#{login.username}" />
-
-		<h:outputText value="Password" />
-		<h:inputSecret value="#{login.password}" />
-		<h:commandButton actionListener="#{login.validate}" value="Login" />
 		<h:commandButton actionListener="#{login.logout}" value="Logout" />
 		<h:outputText value="#{login.mensagem}" />
 	</h:form>

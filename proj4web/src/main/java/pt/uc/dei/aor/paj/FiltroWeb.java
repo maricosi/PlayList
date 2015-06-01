@@ -11,7 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-@WebFilter("/*")
+@WebFilter("/index.xhtml")
 public class FiltroWeb  implements Filter{
 
 	@Override
@@ -33,7 +33,7 @@ public class FiltroWeb  implements Filter{
 		if (req.getSession().getAttribute("loggedin")!=null){
 			boolean a=(boolean) req.getSession().getAttribute("loggedin");
 			if(!a){
-				req.getRequestDispatcher("login.xhtml").forward(request,response);
+				req.getRequestDispatcher("index.xhtml").forward(request,response);
 				return;
 			}
 		}
