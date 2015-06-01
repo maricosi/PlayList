@@ -9,7 +9,7 @@ import pt.uc.dei.aor.paj.User;
 
 @Local
 public interface IntMusicFachada {
-	public abstract String save(String title, String artist, String album, String path, int year, User user);
+	public abstract String save(String title, String artist, String album, String path, int year, String username);
 
 	public abstract Music update(Music music);
 
@@ -18,4 +18,8 @@ public interface IntMusicFachada {
 	public abstract Music find(int entityID);
 
 	public abstract List<Music> findAll();
+
+	public abstract List<Music> findAllByTitleArtist(String title, String artist);
+	public abstract List<Music> findAllByTitle(String title);
+	public abstract List<Music> findAllByArtist(String artist);
 }

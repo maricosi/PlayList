@@ -2,12 +2,8 @@ package pt.uc.dei.aor.paj.DAO;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import pt.uc.dei.aor.paj.User;
 
 

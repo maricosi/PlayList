@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import pt.uc.dei.aor.paj.fachada.IntMusicFachada;
@@ -15,12 +16,17 @@ public class MusicWeb {
 	
 	@EJB
 	private IntMusicFachada music;
+	@Inject
+	private Login login;
 	private String artist;
 	private String title;
 	private String album;
 	private int year;
 	private String url;
 	private String mensagem="";
+	private List<Music> procuraMusic;
+
+
 
 	public MusicWeb() {
 		super();
@@ -31,7 +37,15 @@ public class MusicWeb {
 	}
 	
 	public void save(){
-		this.mensagem=music.save(title, artist, album, url, year, null);
+		this.mensagem=music.save(title, artist, album, url, year, login.getUsername());
+	}
+	
+	public void findByTitleArtist (){
+		this.procuraMusic=music.findAllByTitleArtist(title, artist);
+	}
+	
+	public List<Music> getProcuraMusic() {
+		return procuraMusic;
 	}
 	
 	public String getMensagem() {

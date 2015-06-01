@@ -1,18 +1,23 @@
 package pt.uc.dei.aor.paj;
 
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+
+
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import pt.uc.dei.aor.paj.fachada.IntUserFachada;
+import java.io.Serializable;
 
 @Named
-@RequestScoped
-public class RegistoUser {
+@SessionScoped
+public class RegistoUser implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@EJB
 	private IntUserFachada user;
 	private String name;
@@ -21,6 +26,7 @@ public class RegistoUser {
 	private String verifyPassword;
 	private String email;
 	private String mensagem="";
+	private boolean registo=false;
 	
 	
 	public RegistoUser() {
@@ -36,33 +42,29 @@ public class RegistoUser {
 		this.email = email;
 		this.mensagem = mensagem;
 	}
+	
+	public void novoRegisto(){
+		this.registo=true;
+	}
+
+	public boolean isRegisto() {
+		return registo;
+	}
+
+	public void setRegisto(boolean registo) {
+		this.registo = registo;
+	}
 
 	public void registUser (){
-		if (verifyPassword.equals(password)){
-			//this.password=sha256(password);			
+		if (verifyPassword.equals(password)){			
 			this.mensagem=user.save(name, username, email, password);
 		} else {
 			this.mensagem="Passwords não coincidem!!";
+			this.password="";
 		}	
 	}
 	
-	public static String sha256(String password) {
-	    try{
-	        MessageDigest digest = MessageDigest.getInstance("SHA-256");
-	        byte[] hash = digest.digest(password.getBytes("UTF-8"));
-	        StringBuffer hexString = new StringBuffer();
 
-	        for (int i = 0; i < hash.length; i++) {
-	            String hex = Integer.toHexString(0xff & hash[i]);
-	            if(hex.length() == 1) hexString.append('0');
-	            hexString.append(hex);
-	        }
-
-	        return hexString.toString();
-	    } catch(Exception ex){
-	       throw new RuntimeException(ex);
-	    }
-	}
 	public String getName() {
 		return name;
 	}

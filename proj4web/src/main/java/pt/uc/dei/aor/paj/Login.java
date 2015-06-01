@@ -15,6 +15,7 @@ import pt.uc.dei.aor.paj.fachada.IntUserFachada;
 import java.io.IOException;
 import java.io.Serializable;
 
+
 @Named
 @SessionScoped
 public class Login implements Serializable {
@@ -25,6 +26,7 @@ public class Login implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@EJB
 	private IntUserFachada user;
+	private String nome;
 	private String username;
 	private String password;
 	private String mensagem="";
@@ -46,7 +48,7 @@ public class Login implements Serializable {
 	public String validate () throws IOException{
 		String mensagemFachada=(user.validate(username, password));
 		if(mensagemFachada.equals("User logado!!")){
-			this.mensagem="Olá " + username + "!!!";
+			this.mensagem="Olá " +user.nameUser(username, password)+ "!!!";
 			this.logged=true;
 			logger.debug("Utilizador com "+username + "e" + password+ "logado");
 			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
@@ -90,6 +92,7 @@ public class Login implements Serializable {
 	}
 
 	public void setUsername(String username) {
+		
 		this.username = username;
 	}
 
@@ -98,8 +101,9 @@ public class Login implements Serializable {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password =password;
 	}
+	
 
 	public String getMensagem() {
 		return mensagem;
@@ -108,5 +112,15 @@ public class Login implements Serializable {
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
 	}
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	
 
 }

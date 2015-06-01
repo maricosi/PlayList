@@ -33,6 +33,7 @@ public class UserDAO extends GenericDAO<User> {
 		
 	}
 	
+	
 	@SuppressWarnings("unchecked")
 	public List<User> findUsername(String username){
 		Query q = em.createNamedQuery(User.FIND_BY_USERNAME);

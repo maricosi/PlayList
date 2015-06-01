@@ -19,6 +19,8 @@ public interface IntUserFachada {
 	public abstract List<User> findAll();
 
 	public abstract String validate(String username, String password);
+	
+	public String nameUser(String username, String password);
 
 	
 }

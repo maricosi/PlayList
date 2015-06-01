@@ -11,9 +11,12 @@ import javax.ejb.Stateless;
 
 
 
+
+
 import pt.uc.dei.aor.paj.Music;
 import pt.uc.dei.aor.paj.User;
 import pt.uc.dei.aor.paj.DAO.MusicDAO;
+import pt.uc.dei.aor.paj.DAO.UserDAO;
 
 
 @Stateless
@@ -21,6 +24,8 @@ public class MusicFachada implements IntMusicFachada{
 
 	@EJB
 	private MusicDAO musicDAO;
+	@EJB
+	private UserDAO userDAO;
 
 
 
@@ -49,8 +54,9 @@ public class MusicFachada implements IntMusicFachada{
 		return musicDAO.all();
 	}
 
-	public String save(String title, String artist, String album, String url, int year, User user) {
-		Music music =new Music(artist,title,album,year,url,null);
+	public String save(String title, String artist, String album, String url, int year, String username) {
+		User user=userDAO.findUsername(username).get(0);
+		Music music =new Music(artist,title,album,year,url,user);
 		try{
 			isMusicWithAllData(music);
 			musicDAO.save(music);
@@ -101,6 +107,23 @@ public class MusicFachada implements IntMusicFachada{
 		}
 
 		return !hasError;
+	}
+
+	@Override
+	public List<Music> findAllByTitleArtist(String title, String artist) {
+		return musicDAO.findByTitleArtist(title, artist);
+	}
+
+	@Override
+	public List<Music> findAllByTitle(String title) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Music> findAllByArtist(String artist) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

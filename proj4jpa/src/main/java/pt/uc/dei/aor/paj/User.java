@@ -37,7 +37,7 @@ public class User{
 	private String username;	
 	@Column(name = "email", nullable = false, length = 50, unique = true)	
 	private String email;
-	@Column(name = "password", nullable = false, length = 20)
+	@Column(name = "password", nullable = false)
 	private String password;
 	@OneToMany(mappedBy = "user")
 	private List<Playlist> playlist;
@@ -155,7 +155,7 @@ public class User{
 	}
 
 	public String toString() {
-		return name + " -> " + email;
+		return name + "";
 	}
 
 }

@@ -20,21 +20,21 @@ public class PlaylistWeb {
 	private String mensagem="";
 	private User user;
 	private Music musics;
-	
-	
-	
+
+
+
 	public PlaylistWeb() {
 		super();
 	}
-	
+
 	public List<Playlist> findAll(){
 		return playlist.findAll();
 	}
-	
+
 	public void save(){
 		this.mensagem=playlist.save(name, date, user);
 	}
-	
+
 	public String getMensagem() {
 		return mensagem;
 	}
@@ -54,45 +54,45 @@ public class PlaylistWeb {
 	public IntPlaylistFachada getPlaylist() {
 		return playlist;
 	}
-	
+
 	public void setPlaylist(IntPlaylistFachada playlist) {
 		this.playlist = playlist;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public Date getDate() {
 		return date;
 	}
-	
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
 	public int getSize() {
 		return size;
 	}
-	
+
 	public void setSize(int size) {
 		this.size = size;
 	}
-	
+
 	public User getUser() {
 		return user;
 	}
-	
+
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
 
-	}
-	
-	
+
+}
+
+
 
 

@@ -6,7 +6,6 @@ import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 import pt.uc.dei.aor.paj.Music;
-import pt.uc.dei.aor.paj.Playlist;
 import pt.uc.dei.aor.paj.User;
 
 @Stateless
@@ -43,6 +42,14 @@ public class MusicDAO extends GenericDAO<Music> {
 	public List <Music> findByTitle(String title){
 		Query q = em.createNamedQuery(Music.FIND_BY_TITLE);
 		q.setParameter("title",title);
+		return q.getResultList();	
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List <Music> findByTitleArtist(String title,String artist){
+		Query q = em.createNamedQuery(Music.FIND_BY_TITLE_ARTIST);
+		q.setParameter("title","%"+title+"%");
+		q.setParameter("artist","%"+artist+"%");
 		return q.getResultList();	
 	}
 

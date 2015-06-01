@@ -1,5 +1,7 @@
 package pt.uc.dei.aor.paj.fachada;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -21,6 +23,8 @@ public class UserFachada implements IntUserFachada {
 		System.out.println(name+" "+username+" "+email+" "+password);
 		try{
 			isUserWithAllData(user);
+			String passwordEncript=(passwordEncrip(password));
+			user.setPassword(passwordEncript);
 			List<User> userUsername= userDAO.findUsername(username);
 			System.out.println(userUsername);
 			List<User> userEmail= userDAO.findEmail(email);
@@ -86,17 +90,24 @@ public class UserFachada implements IntUserFachada {
 		String mensagem="";
 		try{
 			isUserLoginWithAllData(username, password);
-			List<User> user= userDAO.findUsernamePass(username,password);
+			String passwordEncript=(passwordEncrip(password));
+			List<User> user= userDAO.findUsernamePass(username,passwordEncript);
 			if(user.size()==0){
 				mensagem="User inexistente!!";
 			} else if(user.size()!=0){
-				mensagem= "User logado!!";
+				mensagem="User logado!!";
 			}
 			return mensagem;
 		} catch (IllegalArgumentException e){
 			return e.getMessage();
 		}
 
+	}
+
+	public String nameUser(String username, String password){
+		String passwordEncript=(passwordEncrip(password));
+		List<User> users= userDAO.findUsernamePass(username,passwordEncript);
+		return users.get(0).getName();
 	}
 
 	private boolean isUserLoginWithAllData(String username, String password) {
@@ -120,6 +131,25 @@ public class UserFachada implements IntUserFachada {
 
 		return !hasError;
 
+	}
+
+	private String passwordEncrip(String password){
+		String generatedPassword = null;
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(password.getBytes());
+			byte[] bytes = md.digest();
+			StringBuilder sb = new StringBuilder();
+			for(int i=0; i< bytes.length ;i++){
+				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+			}
+			generatedPassword = sb.toString();
+			return generatedPassword;
+		}
+		catch (NoSuchAlgorithmException e)
+		{
+			return e.getMessage();
+		}
 	}
 
 	@Override

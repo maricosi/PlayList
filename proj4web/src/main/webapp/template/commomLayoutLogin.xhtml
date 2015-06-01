@@ -35,17 +35,17 @@
 						</tr>
 					</table>
 					<p>
-						<h:commandButton styleClass="buto" tabindex="4" value="Login"
+						<h:commandButton styleClass="buto login" tabindex="4" value="Login"
 							actionListener="#{login.validate()}">
 						</h:commandButton>
-						<h:commandButton styleClass="buto" actionListener="#{login.logout}" value="Logout" />
+						<h:commandButton styleClass="buto novoRegisto" actionListener="#{registoUser.novoRegisto()}" value="NovoRegisto" />
 					</p>
 					<h2 class="out">
 						<h:outputText value="#{login.mensagem}" />
 					</h2>
 
 				</h:form>
-				<h:form prependId="false">
+				<h:form prependId="false" rendered="#{registoUser.registo}">
 
 					<h2>Novo Registo</h2>
 
@@ -72,7 +72,7 @@
 						</tr>
 					</table>
 					<p>
-						<h:commandButton styleClass="buto" value="Registar"
+						<h:commandButton styleClass="buto registar" value="Registar"
 							actionListener="#{registoUser.registUser()}">
 						</h:commandButton>
 					</p>

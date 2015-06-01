@@ -12,63 +12,63 @@
 <h:body>
 	<ui:composition template="template/commonLayout.xhtml">
 		<ui:define name="bodyLogin">
-		<article id="bodyLogin">
-			<h:form>
-				<h:commandButton actionListener="#{login.logout}" value="Logout" />
-				<h:outputText value="#{login.mensagem}" />
-			</h:form>
+			<article id="bodyLogin">
+				<h:form>
+					<h:commandButton actionListener="#{login.logout}" value="Logout" />
+					<h:outputText value="#{login.mensagem}" />
+				</h:form>
 
-			<h:form>
-				<h:panelGrid columns="2">
-					<h:outputLabel value="name" />
-					<h:inputText value="#{registoUser.name}" />
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:outputLabel value="Artista" />
+						<h:inputText value="#{musicWeb.artist}" />
 
-					<h:outputLabel value="email" />
-					<h:inputText value="#{registoUser.email}" />
+						<h:outputLabel value="Título" />
+						<h:inputText value="#{musicWeb.title}" />
 
-					<h:outputLabel value="username" />
-					<h:inputText value="#{registoUser.username}" />
+						<h:outputLabel value="Album" />
+						<h:inputText value="#{musicWeb.album}" />
 
-					<h:outputLabel value="Password" />
-					<h:inputSecret value="#{registoUser.password}" />
+						<h:outputLabel value="Ano" />
+						<h:inputText value="#{musicWeb.year}" />
 
-					<h:outputLabel value="Repita Password" />
-					<h:inputSecret value="#{registoUser.verifyPassword}" />
+						<h:outputLabel value="URL" />
+						<h:inputText value="#{musicWeb.url}" />
 
-					<h:outputLabel />
-					<h:commandButton value="Adicionar"
-						actionListener="#{registoUser.registUser()}" />
+						<h:outputLabel />
+						<h:commandButton value="Adicionar"
+							actionListener="#{musicWeb.save()}" />
 
-				</h:panelGrid>
+					</h:panelGrid>
 
-				<h:outputText value="#{registoUser.mensagem}" />
-			</h:form>
+					<h:outputText value="#{musicWeb.mensagem}" />
+				</h:form>
 
-			<h:form>
-				<h:panelGrid columns="2">
-					<h:outputLabel value="Artista" />
-					<h:inputText value="#{musicWeb.artist}" />
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:outputLabel value="Artista" />
+						<h:inputText value="#{musicWeb.artist}" />
 
-					<h:outputLabel value="Título" />
-					<h:inputText value="#{musicWeb.title}" />
+						<h:outputLabel value="Título" />
+						<h:inputText value="#{musicWeb.title}" />
 
-					<h:outputLabel value="Album" />
-					<h:inputText value="#{musicWeb.album}" />
+	
+						<h:outputLabel />
+						<h:commandButton value="Procurar"
+							actionListener="#{musicWeb.findByTitleArtist()}" />
 
-					<h:outputLabel value="Ano" />
-					<h:inputText value="#{musicWeb.year}" />
+					</h:panelGrid>
 
-					<h:outputLabel value="URL" />
-					<h:inputText value="#{musicWeb.url}" />
+					<h:outputText value="#{musicWeb.mensagem}" />
+				</h:form>
 
-					<h:outputLabel />
-					<h:commandButton value="Adicionar"
-						actionListener="#{musicWeb.save()}" />
+				<h:dataTable value="#{musicWeb.procuraMusic}" var="music">
+					<h:column>#{music.album}</h:column>
+					<h:column>#{music.title}</h:column>
+					<h:column>#{music.year}</h:column>
+					<h:column>#{music.user.username}</h:column>
+				</h:dataTable>
 
-				</h:panelGrid>
-
-				<h:outputText value="#{musicWeb.mensagem}" />
-			</h:form>
 			</article>
 		</ui:define>
 	</ui:composition>

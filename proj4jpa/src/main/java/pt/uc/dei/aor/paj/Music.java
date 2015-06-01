@@ -21,6 +21,7 @@ import javax.persistence.Table;
 	@NamedQuery(name = "Music.findByAlbum", query="SELECT m FROM Music m WHERE m.album like :album"),
 	@NamedQuery(name = "Music.findByYear", query="SELECT m FROM Music m WHERE m.year like :year"),
 	@NamedQuery(name = "Music.findByUser", query="SELECT m FROM Music m WHERE m.user like :user"),
+	@NamedQuery(name = "Music.findByTitleArtist", query="SELECT m FROM Music m WHERE m.title like :title and m.artist like :artist"),
 })
 
 public class Music{
@@ -31,6 +32,7 @@ public class Music{
 	public static final String FIND_BY_ALBUM = "Music.findByAlbum";
 	public static final String FIND_BY_YEAR = "Music.findByYear";
 	public static final String FIND_BY_USER = "Music.findByUser";
+	public static final String FIND_BY_TITLE_ARTIST = "Music.findByTitleArtist";
 	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
