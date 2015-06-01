@@ -2,15 +2,9 @@ package pt.uc.dei.aor.paj.fachada;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.ejb.EJB;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-
-import pt.uc.dei.aor.paj.Music;
 import pt.uc.dei.aor.paj.Playlist;
 import pt.uc.dei.aor.paj.User;
-import pt.uc.dei.aor.paj.DAO.MusicDAO;
 import pt.uc.dei.aor.paj.DAO.PlaylistDAO;
 
 public class PlaylistFachada implements IntPlaylistFachada{

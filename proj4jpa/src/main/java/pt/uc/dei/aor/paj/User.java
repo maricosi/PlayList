@@ -7,18 +7,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Users")
-@NamedQuery(name = "User.findByUsernamePass", 
-query = "SELECT u FROM User u WHERE u.username like :username AND u.password like :password")
+@NamedQueries({
+	@NamedQuery(name = "User.findByUsernamePass", 
+			query = "SELECT u FROM User u WHERE u.username like :username AND u.password like :password"),
+	@NamedQuery(name = "User.findByUsername", query="SELECT u FROM User u WHERE u.username like :username"),
+	@NamedQuery(name = "User.findByEmail", query="SELECT u FROM User u WHERE u.email like :email")})
+
+
 
 public class User{
 	
 	public static final String FIND_BY_USERNAME_PASS = "User.findByUsernamePass";
+	public static final String FIND_BY_USERNAME = "User.findByUsername";
+	public static final String FIND_BY_EMAIL = "User.findByEmail";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
