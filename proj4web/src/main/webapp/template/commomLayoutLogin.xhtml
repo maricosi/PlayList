@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<body>
+	<div id="page">
+
+		<div id="header2">
+			<header>
+				<h1>RadioK7</h1>
+			</header>
+		</div>
+
+		<div id="bodyLogin">
+
+			<div id="loginRegisto">
+				<h:form id="false">
+
+					<h2>Login</h2>
+					<table id="login">
+						<tr>
+							<td class="textoLogin">Name:</td>
+							<td><h:inputText id="nome" value="#{login.username}" /></td>
+						</tr>
+						<tr>
+							<td class="textoLogin">Password:</td>
+							<td><h:inputSecret id="password" value="#{login.password}" /></td>
+						</tr>
+					</table>
+					<p>
+						<h:commandButton styleClass="buto" tabindex="4" value="Login"
+							action="#{login.loged}">
+						</h:commandButton>
+					</p>
+					<br />
+					<h2 class="out">
+						<h:outputText id="out" value="#{login.mensagem}" />
+					</h2>
+
+				</h:form>
+				<h:form prependId="false">
+
+					<h2>Novo Registo</h2>
+
+					<table id="Registo">
+						<tr>
+							<td class="textoLogin">Nome:</td>
+							<td><h:inputText value="#{registoUser.name}" /></td>
+						</tr>
+						<tr>
+							<td class="textoLogin">Email:</td>
+							<td><h:inputText value="#{registoUser.email}" /></td>
+						</tr>
+						<tr>
+							<td class="textoLogin">Password:</td>
+							<td><h:inputSecret value="#{registoUser.password}" /></td>
+						</tr>
+						<tr>
+							<td class="textoLogin">Password:</td>
+							<td><h:inputSecret value="#{registoUser.verifyPassword}" /></td>
+						</tr>
+					</table>
+					<p>
+						<h:commandButton styleClass="buto" value="Registar"
+							action="#{registoUser.registUser()}">
+						</h:commandButton>
+					</p>
+
+
+				</h:form>
+
+				<div class="errorMessage">
+					<h:messages showSummary="true" showDetail="false"
+						errorStyle="color: #d20005" infoStyle="color: blue" />
+				</div>
+			</div>
+		</div>
+
+		<div>
+			<ui:insert name="footer">
+				<ui:include src="commonFooter.xhtml" />
+			</ui:insert>
+		</div>
+
+	</div>
+</body>
+</html>

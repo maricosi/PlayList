@@ -70,7 +70,6 @@ public class UserFachada implements IntUserFachada {
 		String mensagem="";
 		try{
 			isUserLoginWithAllData(username, password);
-			@SuppressWarnings("unchecked")
 			List<User> user= userDAO.findUsernamePass(username,password);
 			if(user.size()==0){
 				mensagem="User inexistente!!";
