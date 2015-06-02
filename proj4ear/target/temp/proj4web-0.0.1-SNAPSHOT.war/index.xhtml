@@ -52,7 +52,7 @@
 						<h:outputLabel value="Título" />
 						<h:inputText value="#{musicWeb.title}" />
 
-	
+
 						<h:outputLabel />
 						<h:commandButton value="Procurar"
 							actionListener="#{musicWeb.findByTitleArtist()}" />
@@ -61,6 +61,23 @@
 
 					<h:outputText value="#{musicWeb.mensagem}" />
 				</h:form>
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:outputLabel value="Name" />
+						<h:inputText value="#{playlistWeb.name}" />
+
+						<h:outputLabel value="Date" />
+						<h:inputText value="#{playlistWeb.date}" />
+
+						<h:outputLabel />
+						<h:commandButton value="Criar"
+							actionListener="#{playlistWeb.save}" />
+
+					</h:panelGrid>
+					<h:outputText value="#{playlistWeb.mensagem}" />
+
+				</h:form>
+
 
 				<h:dataTable value="#{musicWeb.procuraMusic}" var="music">
 					<h:column>#{music.album}</h:column>
@@ -68,6 +85,21 @@
 					<h:column>#{music.year}</h:column>
 					<h:column>#{music.user.username}</h:column>
 				</h:dataTable>
+
+
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:outputText value="Name" />
+						<h:inputText value="#{playlistWeb.name}" />
+
+						<h:commandButton value="Criar"
+							actionListener="#{playlistWeb.save}" />
+
+					</h:panelGrid>
+					<h:outputText value="#{playlistWeb.mensagem}" />
+
+				</h:form>
+
 
 			</article>
 		</ui:define>

@@ -2,7 +2,9 @@ package pt.uc.dei.aor.paj.fachada;
 
 import java.util.Date;
 import java.util.List;
+
 import javax.ejb.Local;
+
 import pt.uc.dei.aor.paj.Playlist;
 import pt.uc.dei.aor.paj.User;
 
@@ -17,5 +19,5 @@ public interface IntPlaylistFachada {
 
 	public abstract List<Playlist> findAll();
 
-	public abstract String save(String name, Date date, User user);
+	public abstract String save(String name, Date date, String username);
 }

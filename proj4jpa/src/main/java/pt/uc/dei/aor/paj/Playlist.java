@@ -79,13 +79,6 @@ public class Playlist{
 		this.name = name;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
 
 	public int getSize() {
 		return size;
@@ -111,10 +104,13 @@ public class Playlist{
 		this.user = user;
 	}
 	
-//    public String noSongs(){
-//        return ""+musics.size();
-//    }
- 
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
 	@Override
 	public int hashCode() {

@@ -2,11 +2,10 @@ package pt.uc.dei.aor.paj;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-
 import pt.uc.dei.aor.paj.fachada.IntPlaylistFachada;
 
 @Named
@@ -14,11 +13,12 @@ import pt.uc.dei.aor.paj.fachada.IntPlaylistFachada;
 public class PlaylistWeb {
 	@EJB
 	private IntPlaylistFachada playlist;
+	@Inject
+	private Login login;
 	private String name;
 	private Date date;
 	private int size;
 	private String mensagem="";
-	private User user;
 	private Music musics;
 
 
@@ -32,7 +32,7 @@ public class PlaylistWeb {
 	}
 
 	public void save(){
-		this.mensagem=playlist.save(name, date, user);
+		this.mensagem=playlist.save(name, date, login.getUsername() );
 	}
 
 	public String getMensagem() {
@@ -70,8 +70,9 @@ public class PlaylistWeb {
 		return date;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate() {
+		Date data= new Date();		
+		this.date = data;
 	}
 
 	public int getSize() {
@@ -82,13 +83,7 @@ public class PlaylistWeb {
 		this.size = size;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+	
 
 
 }
