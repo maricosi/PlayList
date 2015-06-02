@@ -4,7 +4,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import pt.uc.dei.aor.paj.Music;
-import pt.uc.dei.aor.paj.User;
+import pt.uc.dei.aor.paj.Utilizador;
 import pt.uc.dei.aor.paj.DAO.MusicDAO;
 import pt.uc.dei.aor.paj.DAO.UserDAO;
 
@@ -42,8 +42,8 @@ public class MusicFachada implements IntMusicFachada{
 	}
 
 	public String save(String title, String artist, String album, String url, int year, String username) {
-		User user=userDAO.findUsername(username).get(0);
-		Music music =new Music(artist,title,album,year,url,user);
+		Utilizador utilizador=userDAO.findUsername(username).get(0);
+		Music music =new Music(artist,title,album,year,url,utilizador);
 		try{
 			isMusicWithAllData(music);
 			musicDAO.save(music);

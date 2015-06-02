@@ -6,7 +6,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:jboss/datasources/Proj4</jta-data-source>
 		<class>pt.uc.dei.aor.paj.Music</class>
-		<class>pt.uc.dei.aor.paj.User</class>
+		<class>pt.uc.dei.aor.paj.Utilizador</class>
 		<class>pt.uc.dei.aor.paj.Playlist</class>
 
 		<properties>

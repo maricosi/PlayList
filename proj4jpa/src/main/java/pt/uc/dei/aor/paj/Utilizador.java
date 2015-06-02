@@ -13,16 +13,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Users")
+@Table
 @NamedQueries({
 	@NamedQuery(name = "User.findByUsernamePass", 
-			query = "SELECT u FROM User u WHERE u.username like :username AND u.password like :password"),
-	@NamedQuery(name = "User.findByUsername", query="SELECT u FROM User u WHERE u.username like :username"),
-	@NamedQuery(name = "User.findByEmail", query="SELECT u FROM User u WHERE u.email like :email")})
+			query = "SELECT u FROM Utilizador u WHERE u.username like :username AND u.password like :password"),
+	@NamedQuery(name = "User.findByUsername", query="SELECT u FROM Utilizador u WHERE u.username like :username"),
+	@NamedQuery(name = "User.findByEmail", query="SELECT u FROM Utilizador u WHERE u.email like :email")})
 
 
 
-public class User{
+public class Utilizador{
 	
 	public static final String FIND_BY_USERNAME_PASS = "User.findByUsernamePass";
 	public static final String FIND_BY_USERNAME = "User.findByUsername";
@@ -39,16 +39,16 @@ public class User{
 	private String email;
 	@Column(name = "password", nullable = false)
 	private String password;
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "utilizador")
 	private List<Playlist> playlist;
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "utilizador")
 	private List<Music> musics;
 
-	public User() {
+	public Utilizador() {
 		super();
 	}
 
-	public User(String name, String email, String username, String password) {
+	public Utilizador(String name, String email, String username, String password) {
 		super();
 		this.name = name;
 		this.email = email;
@@ -135,7 +135,7 @@ public class User{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Utilizador other = (Utilizador) obj;
 		if (email == null) {
 			if (other.email != null)
 				return false;

@@ -23,25 +23,27 @@ import javax.persistence.Table;
 @Table(name = "Playlist")
 @NamedQueries({
 		@NamedQuery(name = "Playlist.findAll", query="SELECT p FROM Playlist p"),
-		@NamedQuery(name = "Playlist.findByNameASC", query="SELECT p FROM Playlist p ORDER BY p.name ASC"),
-		@NamedQuery(name = "Playlist.findByNameDESC", query="SELECT p FROM Playlist p ORDER BY p.name DESC"),
-		@NamedQuery(name = "Playlist.findByDateASC", query="SELECT p FROM Playlist p ORDER BY p.date ASC"),
-		@NamedQuery(name = "Playlist.findByDateDESC", query="SELECT p FROM Playlist p ORDER BY p.date DESC"),
-		@NamedQuery(name = "Playlist.findBySizeASC", query="SELECT p FROM Playlist p ORDER BY p.date ASC"),
-		@NamedQuery(name = "Playlist.findBySizeDESC", query="SELECT p FROM Playlist p ORDER BY p.size DESC"),
-		@NamedQuery(name = "Playlist.findByNameUser", query="SELECT p FROM Playlist p  WHERE p.name like :name and p.user like :user"),
+		@NamedQuery(name = "Playlist.utilizadorOrderByNameASC", query="SELECT p FROM Playlist p WHERE p.utilizador=:utilizador ORDER BY p.name ASC"),
+		@NamedQuery(name = "Playlist.utilizadorOrderByNameDESC", query="SELECT p FROM Playlist p WHERE p.utilizador=:utilizador  ORDER BY p.name DESC"),
+		@NamedQuery(name = "Playlist.utilizadorOrderByDateASC", query="SELECT p FROM Playlist p WHERE p.utilizador=:utilizador ORDER BY p.date ASC"),
+		@NamedQuery(name = "Playlist.utilizadorOrderByDateDESC", query="SELECT p FROM Playlist p WHERE p.utilizador=:utilizador ORDER BY p.date DESC"),
+		@NamedQuery(name = "Playlist.utilizadorOrderBySizeASC", query="SELECT p FROM Playlist p WHERE p.utilizador=:utilizador ORDER BY p.date ASC"),
+		@NamedQuery(name = "Playlist.utilizadorOrderBySizeDESC", query="SELECT p FROM Playlist p WHERE p.utilizador=:utilizador ORDER BY p.size DESC"),
+		@NamedQuery(name = "Playlist.findByNameUtilizador", query="SELECT p FROM Playlist p  WHERE p.name=:name and p.utilizador=:utilizador"),
+		@NamedQuery(name = "Playlist.findByUtilizador", query="SELECT p FROM Playlist p  WHERE p.utilizador=:utilizador"),
 })
 
 public class Playlist{
 	
 	public static final String FIND_ALL = "Playlist.findAll";
-	public static final String FIND_BY_NAME_ASC = "Playlist.findByNameASC";
-	public static final String FIND_BY_NAME_DESC = "Playlist.findByNameDESC";
-	public static final String FIND_BY_DATE_ASC = "Playlist.findByDateASC";
-	public static final String FIND_BY_DATE_DESC = "Playlist.findByDateDESC";
-	public static final String FIND_BY_SIZE_ASC = "Playlist.findBySizeASC";
-	public static final String FIND_BY_SIZE_DESC = "Playlist.findBySizeDESC";
-	public static final String FIND_BY_NAME_USER = "Playlist.findByNameUser";
+	public static final String ORDER_BY_NAME_ASC = "Playlist.utilizadorOrderByNameASC";
+	public static final String ORDER_BY_NAME_DESC = "Playlist.utilizadorOrderByNameDESC";
+	public static final String ORDER_BY_DATE_ASC = "Playlist.utilizadorOrderByDateASC";
+	public static final String ORDER_BY_DATE_DESC = "Playlist.utilizadorOrderByDateDESC";
+	public static final String ORDER_BY_SIZE_ASC = "Playlist.utilizadorOrderBySizeASC";
+	public static final String ORDER_BY_SIZE_DESC = "Playlist.utilizadorOrderBySizeDESC";
+	public static final String FIND_BY_NAME_UTILIZADOR = "Playlist.findByNameUtilizador";
+	public static final String FIND_BY_UTILIZADOR = "Playlist.findByUtilizador";
 	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -52,23 +54,22 @@ public class Playlist{
 	
 	@Column (name="date", nullable=false, length=50)
 	private LocalDate date;	
-
-	@Column (name="size", nullable=false, length=10)
+	@Column (name="size", length=10)
 	private int size;	
 	@ManyToMany
 	private List<Music> musics;
 	@ManyToOne
-	private User user;
+	private Utilizador utilizador;
 	
 	public Playlist(){		
 	}
 
-	public Playlist(String name, LocalDate date, User user) {
+	public Playlist(String name, LocalDate date, Utilizador utilizador) {
 
 		super();
 		this.name = name;
 		this.date = date;
-		this.user=user;
+		this.utilizador=utilizador;
 	}
 
 	public int getId() {
@@ -92,8 +93,8 @@ public class Playlist{
 		return size;
 	}
 
-	public void setSize(int size) {
-		this.size = size;
+	public void setSize() {
+		this.size = musics.size();
 	}
 
 	public List<Music> getMusics() {
@@ -104,12 +105,12 @@ public class Playlist{
 		this.musics = musics;
 	}
 
-	public User getUser() {
-		return user;
+	public Utilizador getUtilizador() {
+		return utilizador;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUtilizador(Utilizador utilizador) {
+		this.utilizador = utilizador;
 	}
 	
 

@@ -17,12 +17,11 @@ public class PlaylistWeb {
 	@Inject
 	private Login login;
 	private String name;
-
-	//private LocalDate date;
-
 	private int size;
 	private String mensagem="";
 	private Music musics;
+	private String order="";
+	
 
 	public PlaylistWeb() {
 		super();
@@ -31,13 +30,39 @@ public class PlaylistWeb {
 	public List<Playlist> findAll(){
 		return playlist.findAll();
 	}
+	
+	public List<Playlist> findByUtilizador(){
+		return playlist.findByUtilizador(login.getUsername());
+	}
+	
+	public List<Playlist> orderByNameASC(){
+		return playlist.orderByName(login.getUsername(), String ASC);
+	}
+	public List<Playlist> orderByNameDESC(){
+		return playlist.orderByName(login.getUsername(), String DESC);
+	}
+	
+	
+	public List<Playlist> orderByDateASC(){
+		return playlist.orderByDate(login.getUsername(), String ASC);
+	}
+	public List<Playlist> orderByDateDESC(){
+		return playlist.orderByDate(login.getUsername(), String DESC);
+	}
+	
+	public List<Playlist> orderBySizeASC(){
+		return playlist.orderBySize(login.getUsername(), String ASC);
+	}
+	public List<Playlist> orderBySizeDESC(){
+		return playlist.orderBySize(login.getUsername(), String DESC);
+	}
 
 	public void save(){
 		this.mensagem=playlist.save(name, LocalDate.now(), login.getUsername() );
 	}
 	
 	public void delete(){
-		this.mensagem=playlist.delete(name,login.getUsername() );
+		this.mensagem=playlist.delete(name,login.getUsername());
 	}
 
 	public String getMensagem() {
@@ -62,7 +87,6 @@ public class PlaylistWeb {
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	public int getSize() {
 		return size;

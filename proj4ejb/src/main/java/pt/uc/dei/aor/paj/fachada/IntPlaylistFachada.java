@@ -11,7 +11,11 @@ public interface IntPlaylistFachada {
 
 	public abstract Playlist update(Playlist playlist);
 
-	public abstract Playlist find(int entityID);
+	public abstract List<Playlist> findByNameUtilizador(String name,String username );
+	public abstract List<Playlist> findByUtilizador(String username );
+	public abstract List<Playlist> orderByName(String username, String order );
+	public abstract List<Playlist> orderByDate(String username, String order);
+	public abstract List<Playlist> orderBySize(String username,  String order );
 
 	public abstract List<Playlist> findAll();
 

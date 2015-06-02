@@ -4,19 +4,19 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import pt.uc.dei.aor.paj.User;
+import pt.uc.dei.aor.paj.Utilizador;
 
 @Local
 public interface IntUserFachada {
 	public abstract String save(String name, String username, String email , String password);
 
-	public abstract User update(User user);
+	public abstract Utilizador update(Utilizador utilizador);
 
-	public abstract void delete(User user);
+	public abstract void delete(Utilizador utilizador);
 
-	public abstract User find(int entityID);
+	public abstract Utilizador find(int entityID);
 
-	public abstract List<User> findAll();
+	public abstract List<Utilizador> findAll();
 
 	public abstract String validate(String username, String password);
 	

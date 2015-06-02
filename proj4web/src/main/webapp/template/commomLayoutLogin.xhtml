@@ -11,7 +11,7 @@
 <body>
 	<div id="page">
 
-		<div >
+		<div>
 			<ui:insert name="header2">
 				<ui:include src="commonHeader.xhtml" />
 			</ui:insert>
@@ -33,15 +33,17 @@
 							<td><h:inputSecret id="password" value="#{login.password}" /></td>
 						</tr>
 					</table>
-					<p>
-						<h:commandButton styleClass="buto login" tabindex="4" value="Login"
-							actionListener="#{login.validate()}">
-						</h:commandButton>
-						<h:commandButton styleClass="buto novoRegisto" actionListener="#{registoUser.novoRegisto()}" value="NovoRegisto" />
-					</p>
 					<h2 class="out">
 						<h:outputText value="#{login.mensagem}" />
 					</h2>
+					<p>
+						<h:commandButton styleClass="buto login" tabindex="4"
+							value="Login" actionListener="#{login.validate()}">
+						</h:commandButton>
+						<h:commandButton styleClass="buto novoRegisto"
+							actionListener="#{registoUser.novoRegisto()}" value="NovoRegisto" />
+					</p>
+
 
 				</h:form>
 				<h:form prependId="false" rendered="#{registoUser.registo}">

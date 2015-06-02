@@ -3,10 +3,12 @@ package pt.uc.dei.aor.paj.fachada;
 
 import java.time.LocalDate;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+
 import pt.uc.dei.aor.paj.Playlist;
-import pt.uc.dei.aor.paj.User;
+import pt.uc.dei.aor.paj.Utilizador;
 import pt.uc.dei.aor.paj.DAO.PlaylistDAO;
 import pt.uc.dei.aor.paj.DAO.UserDAO;
 
@@ -20,12 +22,19 @@ public class PlaylistFachada implements IntPlaylistFachada{
 	private UserDAO userDAO;
 
 	public String save(String name, LocalDate date, String username) {
-		User user=userDAO.findUsername(username).get(0);
-		Playlist playlist =new Playlist(name,date,user);
+		String mensagemRegistoPlaylist="";
+		Utilizador utilizador=userDAO.findUsername(username).get(0);
+		Playlist playlist =new Playlist(name,date,utilizador);
 		try{
 			isPlaylistWithAllData(playlist);
-			playlistDAO.save(playlist);
-			return "Playlist criada com sucesso";
+			List<Playlist> playlistName= playlistDAO.findNameUtilizador(name, utilizador);
+			if(playlistName.size()==0){
+				playlistDAO.save(playlist);
+				mensagemRegistoPlaylist="Playlist criada com sucesso!!!";
+			} else if (playlistName.size()==1){
+				mensagemRegistoPlaylist="Já existe uma Playlist com esse nome!";
+			}
+			return mensagemRegistoPlaylist;
 		} catch (IllegalArgumentException e){
 			return e.getMessage();
 		}
@@ -59,20 +68,18 @@ public class PlaylistFachada implements IntPlaylistFachada{
 
 	public String delete(String name, String username) {
 		String mensagem="";
-		User user=userDAO.findUsername(name).get(0);
-		List<Playlist> playlist=playlistDAO.findNameUser(name, user);
+		Utilizador user1=userDAO.findUsername(username).get(0);
+		System.out.println("user: "+user1.getName()+" playlist: "+name );
+		List<Playlist> playlist=playlistDAO.findNameUtilizador(name, user1);
+		System.out.println(playlist.size());
 		if(playlist.size()==0){
 			mensagem= "Playlist inexistente!!!";
 		} else if (playlist.size()==1){
-			int id= playlist.get(0).getId();
-			playlistDAO.delete(id,Playlist.class);
-			mensagem="Playlist,"+playlist.get(0).getName()+ "apagada com sucesso!!!";
+			playlistDAO.delete(playlist.get(0).getId(),Playlist.class);
+			mensagem="A playlist "+playlist.get(0).getName()+ "foi apagada com sucesso!!!";
 		}
 		return mensagem;
 	}
-
-
-
 
 
 	@Override
@@ -81,29 +88,46 @@ public class PlaylistFachada implements IntPlaylistFachada{
 		return null;
 	}
 
-	//	@Override
-	//	public void delete(Playlist playlist) {
-	//		// TODO Auto-generated method stub		
-	//	}
-
-
-	@Override
-	public Playlist find(int entityID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
 	@Override
 	public List<Playlist> findAll() {
+		return playlistDAO.all();
+	}
+
+	@Override
+	public List <Playlist> findByNameUtilizador(String name, String username) {
+		Utilizador user1=userDAO.findUsername(username).get(0);
+		return playlistDAO.findNameUtilizador(name, user1);
+	}
+
+	@Override
+	public List<Playlist> findByUtilizador(String username) {
+		Utilizador user1=userDAO.findUsername(username).get(0);
+		return playlistDAO.findByUtilizador(user1);
+	}
+
+	@Override
+	public List<Playlist> orderByName(String username, String order) {
+		Utilizador user1=userDAO.findUsername(username).get(0);
+		List<Playlist> playlist1= null;
+		if (order.equals("ASC")){
+			playlist1=playlistDAO.orderByNameASC(user1);
+		}else if(order.equals("DESC")){
+			playlist1=playlistDAO.orderByNameDESC(user1);
+		}
+		return playlist1;
+	}
+
+	@Override
+	public List<Playlist> orderByDate(String username, String order) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-
-
-
-
+	@Override
+	public List<Playlist> orderBySize(String username, String order) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
 

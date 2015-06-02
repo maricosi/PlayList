@@ -6,7 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 import pt.uc.dei.aor.paj.Music;
-import pt.uc.dei.aor.paj.User;
+import pt.uc.dei.aor.paj.Utilizador;
 
 @Stateless
 public class MusicDAO extends GenericDAO<Music> {
@@ -76,16 +76,16 @@ public class MusicDAO extends GenericDAO<Music> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List <Music> findByUser(String username, String password){
-		User user1=(User) findUsernamePass(username, password);
-		Query q = em.createNamedQuery(Music.FIND_BY_USER);
-		q.setParameter("user",user1);
+	public List <Music> findByUtilizador(String username, String password){
+		Utilizador user1=(Utilizador) findUsernamePass(username, password);
+		Query q = em.createNamedQuery(Music.FIND_BY_UTILIZADOR);
+		q.setParameter("utilizador",user1);
 		return q.getResultList();	
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<User> findUsernamePass(String username, String password) {
-		Query q = em.createNamedQuery(User.FIND_BY_USERNAME_PASS);
+	public List<Utilizador> findUsernamePass(String username, String password) {
+		Query q = em.createNamedQuery(Utilizador.FIND_BY_USERNAME_PASS);
 		   q.setParameter("username", username);
 	       q.setParameter("password",password);
 		

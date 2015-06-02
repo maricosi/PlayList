@@ -1,13 +1,13 @@
 package pt.uc.dei.aor.paj.DAO;
 
-import java.util.Date;
+
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 import pt.uc.dei.aor.paj.Playlist;
-import pt.uc.dei.aor.paj.User;
+import pt.uc.dei.aor.paj.Utilizador;
 
 @Stateless
 public class PlaylistDAO extends GenericDAO<Playlist>{
@@ -32,64 +32,73 @@ public class PlaylistDAO extends GenericDAO<Playlist>{
 	}
 
 	@SuppressWarnings("unchecked")
-	public List <Playlist> findByNameASC(String name){
-		Query q = em.createNamedQuery(Playlist.FIND_BY_NAME_ASC);
-		q.setParameter("name",name);
+	public List <Playlist> orderByNameASC(Utilizador utilizador){
+		Query q = em.createNamedQuery(Playlist.ORDER_BY_NAME_ASC);
+		q.setParameter("utilizador",utilizador);
+		return q.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List <Playlist> orderByNameDESC(Utilizador utilizador){
+		Query q = em.createNamedQuery(Playlist.ORDER_BY_NAME_DESC);
+		q.setParameter("utilizador",utilizador);
+		return q.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List <Playlist> orderByDateASC(Utilizador utilizador){
+		Query q = em.createNamedQuery(Playlist.ORDER_BY_DATE_ASC);
+		q.setParameter("utilizador",utilizador);
+		return q.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List <Playlist> orderByDateDESC(Utilizador utilizador){
+		Query q = em.createNamedQuery(Playlist.ORDER_BY_DATE_DESC);
+		q.setParameter("utilizador",utilizador);
+		return q.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List <Playlist> orderBySizeASC(Utilizador utilizador){
+		Query q = em.createNamedQuery(Playlist.ORDER_BY_SIZE_ASC );
+		q.setParameter("utilizador",utilizador);
+		return q.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List <Playlist> orderBySizeDESC(Utilizador utilizador){
+		Query q = em.createNamedQuery(Playlist.ORDER_BY_SIZE_DESC );
+		q.setParameter("utilizador",utilizador);
 		return q.getResultList();	
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List <Playlist> findByNameDESC(String name){
-		Query q = em.createNamedQuery(Playlist.FIND_BY_NAME_DESC);
-		q.setParameter("name",name);
-		return q.getResultList();	
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List <Playlist> findByDateASC(Date date){
-		Query q = em.createNamedQuery(Playlist.FIND_BY_DATE_ASC);
-		q.setParameter("date",date);
-		return q.getResultList();	
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List <Playlist> findByDateDESC(Date date){
-		Query q = em.createNamedQuery(Playlist.FIND_BY_DATE_DESC);
-		q.setParameter("date",date);
-		return q.getResultList();	
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List <Playlist> findBySizeASC(int size){
-		Query q = em.createNamedQuery(Playlist.FIND_BY_SIZE_ASC );
-		q.setParameter("size",size);
-		return q.getResultList();	
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List <Playlist> findBySizeDESC(int size){
-		Query q = em.createNamedQuery(Playlist.FIND_BY_SIZE_DESC );
-		q.setParameter("size",size);
-		return q.getResultList();	
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List <User> findUsernamePass(String username, String password){
-		Query q = em.createNamedQuery(User.FIND_BY_USERNAME_PASS);
+	public List <Utilizador> findUsernamePass(String username, String password){
+		Query q = em.createNamedQuery(Utilizador.FIND_BY_USERNAME_PASS);
 		   q.setParameter("username", username);
 	       q.setParameter("password",password);
 		
 		return q.getResultList();
 	}
 
+	
 	@SuppressWarnings("unchecked")
-	public List<Playlist> findNameUser(String name, User user) {
-		Query q = em.createNamedQuery(Playlist.FIND_BY_NAME_USER);
+	public List<Playlist> findNameUtilizador(String name, Utilizador utilizador) {
+		Query q = em.createNamedQuery(Playlist.FIND_BY_NAME_UTILIZADOR);
 		   q.setParameter("name", name);
-	       q.setParameter("user",user);
-		
+	       q.setParameter("utilizador",utilizador);
 		return q.getResultList();
 	}
+
+
+	@SuppressWarnings("unchecked")
+	public List<Playlist> findByUtilizador(Utilizador utilizador) {
+		Query q = em.createNamedQuery(Playlist.FIND_BY_UTILIZADOR);
+	       q.setParameter("utilizador",utilizador);
+		return q.getResultList();
+	}
+	
 }
 
 

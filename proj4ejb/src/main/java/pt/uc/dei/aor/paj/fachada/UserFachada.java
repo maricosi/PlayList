@@ -7,7 +7,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import pt.uc.dei.aor.paj.User;
+import pt.uc.dei.aor.paj.Utilizador;
 import pt.uc.dei.aor.paj.DAO.UserDAO;
 
 
@@ -19,20 +19,20 @@ public class UserFachada implements IntUserFachada {
 
 	public String save(String name, String username, String email, String password) {
 		String mensagemRegisto="";
-		User user =new User(name,email,username,password);
+		Utilizador utilizador =new Utilizador(name,email,username,password);
 		System.out.println(name+" "+username+" "+email+" "+password);
 		try{
-			isUserWithAllData(user);
+			isUserWithAllData(utilizador);
 			String passwordEncript=(passwordEncrip(password));
-			user.setPassword(passwordEncript);
-			List<User> userUsername= userDAO.findUsername(username);
+			utilizador.setPassword(passwordEncript);
+			List<Utilizador> userUsername= userDAO.findUsername(username);
 			System.out.println(userUsername);
-			List<User> userEmail= userDAO.findEmail(email);
+			List<Utilizador> userEmail= userDAO.findEmail(email);
 			if(userUsername==null && userEmail==null ){
-				userDAO.save(user);
+				userDAO.save(utilizador);
 				mensagemRegisto="Utilizador criado com sucesso";
 			}else if(userUsername.size()==0 && userEmail.size()==0 ){
-				userDAO.save(user);
+				userDAO.save(utilizador);
 				mensagemRegisto="Utilizador criado com sucesso";
 			}else if(userUsername.size()==1 && userEmail.size()==0){
 				mensagemRegisto="Username existente!!";
@@ -47,32 +47,32 @@ public class UserFachada implements IntUserFachada {
 		}
 	}
 
-	private boolean isUserWithAllData(User user) {
+	private boolean isUserWithAllData(Utilizador utilizador) {
 		boolean hasError = false;
 		String mensagemErro="";
 
-		if(user == null){
+		if(utilizador == null){
 			hasError = true;
 			mensagemErro="Erro!!";
 		}
 		else {
 
-			if (user.getName() == null || "".equals(user.getName().trim())){
+			if (utilizador.getName() == null || "".equals(utilizador.getName().trim())){
 				hasError = true;
 				mensagemErro=mensagemErro+"Nome ";
 			}
 
-			if(user.getUsername()== null || "".equals(user.getUsername().trim())){
+			if(utilizador.getUsername()== null || "".equals(utilizador.getUsername().trim())){
 				hasError = true;
 				mensagemErro=mensagemErro+"Username ";
 			}
 
-			if(user.getPassword() == null || "".equals(user.getPassword().trim())){
+			if(utilizador.getPassword() == null || "".equals(utilizador.getPassword().trim())){
 				hasError = true;
 				mensagemErro=mensagemErro+"Password ";
 			}
 
-			if(user.getEmail()== null || "".equals(user.getEmail().trim())){
+			if(utilizador.getEmail()== null || "".equals(utilizador.getEmail().trim())){
 				hasError = true;
 				mensagemErro=mensagemErro+"Email ";
 			}
@@ -91,10 +91,10 @@ public class UserFachada implements IntUserFachada {
 		try{
 			isUserLoginWithAllData(username, password);
 			String passwordEncript=(passwordEncrip(password));
-			List<User> user= userDAO.findUsernamePass(username,passwordEncript);
-			if(user.size()==0){
-				mensagem="User inexistente!!";
-			} else if(user.size()!=0){
+			List<Utilizador> utilizador= userDAO.findUsernamePass(username,passwordEncript);
+			if(utilizador.size()==0){
+				mensagem="Autenticação inválida!!";
+			} else if(utilizador.size()!=0){
 				mensagem="User logado!!";
 			}
 			return mensagem;
@@ -106,8 +106,8 @@ public class UserFachada implements IntUserFachada {
 
 	public String nameUser(String username, String password){
 		String passwordEncript=(passwordEncrip(password));
-		List<User> users= userDAO.findUsernamePass(username,passwordEncript);
-		return users.get(0).getName();
+		List<Utilizador> utilizadors= userDAO.findUsernamePass(username,passwordEncript);
+		return utilizadors.get(0).getName();
 	}
 
 	private boolean isUserLoginWithAllData(String username, String password) {
@@ -153,25 +153,25 @@ public class UserFachada implements IntUserFachada {
 	}
 
 	@Override
-	public User update(User user) {
+	public Utilizador update(Utilizador utilizador) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void delete(User user) {
+	public void delete(Utilizador utilizador) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public User find(int entityID) {
+	public Utilizador find(int entityID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<User> findAll() {
+	public List<Utilizador> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}

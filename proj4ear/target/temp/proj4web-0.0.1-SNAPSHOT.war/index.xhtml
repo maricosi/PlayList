@@ -66,20 +66,42 @@
 					<h:column>#{music.album}</h:column>
 					<h:column>#{music.title}</h:column>
 					<h:column>#{music.year}</h:column>
-					<h:column>#{music.user.username}</h:column>
+					<h:column>#{music.utilizador.username}</h:column>
 				</h:dataTable>
 
+				<h:dataTable value="#{musicWeb.findAll()}" var="music">
+					<h:column>#{music.album}</h:column>
+					<h:column>#{music.title}</h:column>
+					<h:column>#{music.year}</h:column>
+					<h:column>#{music.utilizador.username}</h:column>
+				</h:dataTable>
 
 				<h:form>
 					<h:panelGrid columns="2">
 						<h:outputText value="Name" />
 						<h:inputText value="#{playlistWeb.name}" />
 
-						<h:commandButton value="Criar" actionListener="#{playlistWeb.save}" />
+						<h:commandButton value="Criar"
+							actionListener="#{playlistWeb.save}" />
+						<h:commandButton value="Delete"
+							actionListener="#{playlistWeb.delete}" />
 					</h:panelGrid>
 					<h:outputText value="#{playlistWeb.mensagem}" />
 
 				</h:form>
+
+				<h:dataTable value="#{playlistWeb.findAll()}" var="playlist">
+					<h:column>#{playlist.name}</h:column>
+					<h:column>#{playlist.utilizador.username}</h:column>
+				</h:dataTable>
+				
+				<h:dataTable value="#{playlistWeb.findByUtilizador()}" var="playlist">
+					<h:column>#{playlist.name}</h:column>
+				</h:dataTable>
+
+				<audio controls="controls">
+					<source src="" type="audio/mpeg" />
+				</audio>
 
 
 			</article>

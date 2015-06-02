@@ -5,27 +5,27 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 
-import pt.uc.dei.aor.paj.User;
+import pt.uc.dei.aor.paj.Utilizador;
 
 
 
 @Stateless
-public class UserDAO extends GenericDAO<User> {
+public class UserDAO extends GenericDAO<Utilizador> {
 
 	private static final long serialVersionUID = 6917832142336265801L;
 
 	public UserDAO(){
-		super(User.class);
+		super(Utilizador.class);
 
 	}
 
-	public User find (User user) {
-		return super.find(user.getId());
+	public Utilizador find (Utilizador utilizador) {
+		return super.find(utilizador.getId());
 	}
 
 	@SuppressWarnings("unchecked")
-	public List <User> findUsernamePass(String username, String password){
-		Query q = em.createNamedQuery(User.FIND_BY_USERNAME_PASS);
+	public List <Utilizador> findUsernamePass(String username, String password){
+		Query q = em.createNamedQuery(Utilizador.FIND_BY_USERNAME_PASS);
 		   q.setParameter("username", username);
 	       q.setParameter("password",password);
 		
@@ -35,22 +35,19 @@ public class UserDAO extends GenericDAO<User> {
 	
 	
 	@SuppressWarnings("unchecked")
-	public List<User> findUsername(String username){
-		Query q = em.createNamedQuery(User.FIND_BY_USERNAME);
+	public List<Utilizador> findUsername(String username){
+		Query q = em.createNamedQuery(Utilizador.FIND_BY_USERNAME);
 		   q.setParameter("username", username);		   
 			return q.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<User> findEmail(String email){
-		Query q = em.createNamedQuery(User.FIND_BY_EMAIL);
+	public List<Utilizador> findEmail(String email){
+		Query q = em.createNamedQuery(Utilizador.FIND_BY_EMAIL);
 		   q.setParameter("email", email);		   
 			return q.getResultList();
 	}
 	
-	
-
-
 }
 
 

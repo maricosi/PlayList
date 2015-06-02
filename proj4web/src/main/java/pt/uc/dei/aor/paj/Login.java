@@ -57,6 +57,7 @@ public class Login implements Serializable {
 			ec.redirect(ec.getRequestContextPath() + "/index.xhtml");
 			return "index.xhtml";
 		} else {
+			this.mensagem=mensagemFachada;
 			this.logged=false;
 			logger.debug("Alguém está a tentar aceder a conta com " + username + " e " + password);
 			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();

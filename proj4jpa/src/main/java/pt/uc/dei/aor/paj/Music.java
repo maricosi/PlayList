@@ -20,7 +20,7 @@ import javax.persistence.Table;
 	@NamedQuery(name = "Music.findByTitle", query="SELECT m FROM Music m WHERE m.title like :title"),
 	@NamedQuery(name = "Music.findByAlbum", query="SELECT m FROM Music m WHERE m.album like :album"),
 	@NamedQuery(name = "Music.findByYear", query="SELECT m FROM Music m WHERE m.year like :year"),
-	@NamedQuery(name = "Music.findByUser", query="SELECT m FROM Music m WHERE m.user like :user"),
+	@NamedQuery(name = "Music.findByUtilizador", query="SELECT m FROM Music m WHERE m.utilizador like :utilizador"),
 	@NamedQuery(name = "Music.findByTitleArtist", query="SELECT m FROM Music m WHERE m.title like :title and m.artist like :artist"),
 })
 
@@ -31,7 +31,7 @@ public class Music{
 	public static final String FIND_BY_TITLE = "Music.findByTitle";
 	public static final String FIND_BY_ALBUM = "Music.findByAlbum";
 	public static final String FIND_BY_YEAR = "Music.findByYear";
-	public static final String FIND_BY_USER = "Music.findByUser";
+	public static final String FIND_BY_UTILIZADOR = "Music.findByUtilizador";
 	public static final String FIND_BY_TITLE_ARTIST = "Music.findByTitleArtist";
 	
 	@Id 
@@ -48,20 +48,20 @@ public class Music{
 	@Column (name="url", nullable=false, length=80)
 	private String url;
 	@ManyToOne
-    private User user;
+    private Utilizador utilizador;
 	
 	public Music() {
 		super();
 	}
 	
-	public Music(String artist, String title, String album, int year, String url, User user ) {
+	public Music(String artist, String title, String album, int year, String url, Utilizador utilizador ) {
 		super();
 		this.artist = artist;
 		this.title = title;
 		this.album=album;
 		this.year = year;
 		this.url = url;
-		this.user=user;
+		this.utilizador=utilizador;
 	}
 
 	public int getId() {
@@ -112,12 +112,12 @@ public class Music{
 		this.url = url;
 	}
 
-	public User getUser() {
-		return user;
+	public Utilizador getUtilizador() {
+		return utilizador;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUtilizador(Utilizador utilizador) {
+		this.utilizador = utilizador;
 	}
 
 	@Override
