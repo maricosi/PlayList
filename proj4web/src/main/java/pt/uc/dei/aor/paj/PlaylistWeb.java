@@ -1,15 +1,11 @@
 package pt.uc.dei.aor.paj;
 
-
 import java.time.LocalDate;
-
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import pt.uc.dei.aor.paj.fachada.IntPlaylistFachada;
 
 @Named
@@ -38,6 +34,10 @@ public class PlaylistWeb {
 
 	public void save(){
 		this.mensagem=playlist.save(name, LocalDate.now(), login.getUsername() );
+	}
+	
+	public void delete(){
+		this.mensagem=playlist.delete(name,login.getUsername() );
 	}
 
 	public String getMensagem() {

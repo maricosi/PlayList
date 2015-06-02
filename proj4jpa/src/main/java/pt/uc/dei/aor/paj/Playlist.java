@@ -29,6 +29,7 @@ import javax.persistence.Table;
 		@NamedQuery(name = "Playlist.findByDateDESC", query="SELECT p FROM Playlist p ORDER BY p.date DESC"),
 		@NamedQuery(name = "Playlist.findBySizeASC", query="SELECT p FROM Playlist p ORDER BY p.date ASC"),
 		@NamedQuery(name = "Playlist.findBySizeDESC", query="SELECT p FROM Playlist p ORDER BY p.size DESC"),
+		@NamedQuery(name = "Playlist.findByNameUser", query="SELECT p FROM Playlist p  WHERE p.name like :name and p.user like :user"),
 })
 
 public class Playlist{
@@ -40,7 +41,8 @@ public class Playlist{
 	public static final String FIND_BY_DATE_DESC = "Playlist.findByDateDESC";
 	public static final String FIND_BY_SIZE_ASC = "Playlist.findBySizeASC";
 	public static final String FIND_BY_SIZE_DESC = "Playlist.findBySizeDESC";
-
+	public static final String FIND_BY_NAME_USER = "Playlist.findByNameUser";
+	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;	
@@ -60,7 +62,6 @@ public class Playlist{
 	
 	public Playlist(){		
 	}
-
 
 	public Playlist(String name, LocalDate date, User user) {
 

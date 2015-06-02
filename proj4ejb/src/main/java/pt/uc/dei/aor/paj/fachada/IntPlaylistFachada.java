@@ -11,12 +11,12 @@ public interface IntPlaylistFachada {
 
 	public abstract Playlist update(Playlist playlist);
 
-	public abstract void delete(Playlist playlist);
-
 	public abstract Playlist find(int entityID);
 
 	public abstract List<Playlist> findAll();
 
 	public abstract String save(String name, LocalDate date, String username);
+	
+	public abstract String delete(String name, String username);
 
 }

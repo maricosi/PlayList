@@ -1,7 +1,6 @@
 package pt.uc.dei.aor.paj.fachada;
 
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import pt.uc.dei.aor.paj.Music;
@@ -35,11 +34,8 @@ public class MusicFachada implements IntMusicFachada{
 	@Override
 	public void delete(Music music) {
 		// TODO Auto-generated method stub
-
 	}
-
-
-
+	
 	@Override
 	public List<Music> findAll() {	
 		return musicDAO.all();

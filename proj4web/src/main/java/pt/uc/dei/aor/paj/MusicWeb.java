@@ -27,7 +27,6 @@ public class MusicWeb {
 	private List<Music> procuraMusic;
 
 
-
 	public MusicWeb() {
 		super();
 	}

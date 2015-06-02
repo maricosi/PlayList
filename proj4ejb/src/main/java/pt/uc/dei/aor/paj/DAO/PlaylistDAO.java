@@ -87,7 +87,14 @@ public class PlaylistDAO extends GenericDAO<Playlist>{
 		return q.getResultList();
 	}
 
-
+	@SuppressWarnings("unchecked")
+	public List<Playlist> findNameUser(String name, User user) {
+		Query q = em.createNamedQuery(Playlist.FIND_BY_NAME_USER);
+		   q.setParameter("name", name);
+	       q.setParameter("user",user);
+		
+		return q.getResultList();
+	}
 }
 
 
