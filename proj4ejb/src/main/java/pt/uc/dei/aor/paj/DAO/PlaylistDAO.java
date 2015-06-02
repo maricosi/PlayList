@@ -24,11 +24,6 @@ public class PlaylistDAO extends GenericDAO<Playlist>{
 	}
 
 
-	public void deletePlaylist (Playlist playlist){
-		super.delete(playlist.getId(), Playlist.class);
-	}
-
-
 	@SuppressWarnings("unchecked")
 	public List<Playlist> all(){
 		Query query = em.createNamedQuery(Playlist.FIND_ALL);

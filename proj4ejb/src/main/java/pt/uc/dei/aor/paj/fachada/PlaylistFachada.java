@@ -64,7 +64,8 @@ public class PlaylistFachada implements IntPlaylistFachada{
 		if(playlist.size()==0){
 			mensagem= "Playlist inexistente!!!";
 		} else if (playlist.size()==1){
-			playlistDAO.deletePlaylist(playlist.get(0));
+			int id= playlist.get(0).getId();
+			playlistDAO.delete(id,Playlist.class);
 			mensagem="Playlist,"+playlist.get(0).getName()+ "apagada com sucesso!!!";
 		}
 		return mensagem;
