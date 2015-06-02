@@ -1,12 +1,11 @@
 package pt.uc.dei.aor.paj.fachada;
 
+
 import java.time.LocalDate;
 
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-
 import pt.uc.dei.aor.paj.Playlist;
 import pt.uc.dei.aor.paj.User;
 import pt.uc.dei.aor.paj.DAO.PlaylistDAO;
@@ -21,9 +20,8 @@ public class PlaylistFachada implements IntPlaylistFachada{
 	@EJB
 	private UserDAO userDAO;
 
-
-
 	public String save(String name, LocalDate date, String username) {
+
 		User user=userDAO.findUsername(username).get(0);
 		Playlist playlist =new Playlist(name,date,user);
 		try{

@@ -1,6 +1,8 @@
 package pt.uc.dei.aor.paj;
 
+
 import java.time.LocalDate;
+
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -13,17 +15,18 @@ import pt.uc.dei.aor.paj.fachada.IntPlaylistFachada;
 @Named
 @RequestScoped
 public class PlaylistWeb {
+
 	@EJB
 	private IntPlaylistFachada playlist;
 	@Inject
 	private Login login;
 	private String name;
+
 	//private LocalDate date;
+
 	private int size;
 	private String mensagem="";
 	private Music musics;
-
-
 
 	public PlaylistWeb() {
 		super();
