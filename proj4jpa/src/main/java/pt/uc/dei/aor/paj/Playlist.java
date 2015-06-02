@@ -1,8 +1,7 @@
 package pt.uc.dei.aor.paj;
 
-import java.util.Date;
-import java.util.List;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,8 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 
 @Entity
 @Table(name = "Playlist")
@@ -43,9 +41,8 @@ public class Playlist{
 	private int id;	
 	@Column (name="name", nullable=false, length=25)	
 	private String name;	
-	@Temporal(TemporalType.DATE)
 	@Column (name="date", nullable=false, length=50)
-	private Date date;	
+	private String date;	
 	@Column (name="size", nullable=false, length=10)
 	private int size;	
 	@ManyToMany
@@ -56,7 +53,7 @@ public class Playlist{
 	public Playlist(){		
 	}
 
-	public Playlist(String name, Date date, User user) {
+	public Playlist(String name, String date, User user) {
 		super();
 		this.name = name;
 		this.date = date;
@@ -104,11 +101,11 @@ public class Playlist{
 		this.user = user;
 	}
 	
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

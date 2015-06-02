@@ -1,27 +1,29 @@
 package pt.uc.dei.aor.paj;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
 import pt.uc.dei.aor.paj.fachada.IntPlaylistFachada;
 
 @Named
 @RequestScoped
 public class PlaylistWeb {
+
 	@EJB
 	private IntPlaylistFachada playlist;
 	@Inject
 	private Login login;
 	private String name;
-	private Date date;
+	private String date;
 	private int size;
 	private String mensagem="";
 	private Music musics;
-
-
 
 	public PlaylistWeb() {
 		super();
@@ -51,14 +53,6 @@ public class PlaylistWeb {
 		this.musics = musics;
 	}
 
-	public IntPlaylistFachada getPlaylist() {
-		return playlist;
-	}
-
-	public void setPlaylist(IntPlaylistFachada playlist) {
-		this.playlist = playlist;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -66,13 +60,14 @@ public class PlaylistWeb {
 		this.name = name;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
 	public void setDate() {
-		Date data= new Date();		
-		this.date = data;
+		Date hora = new Date();
+		SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
+		this.date=formatador.format(hora)+"";
 	}
 
 	public int getSize() {
