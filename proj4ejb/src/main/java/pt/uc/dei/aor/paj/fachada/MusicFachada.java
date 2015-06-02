@@ -4,15 +4,6 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-
-
-
-
-
-
-
-
-
 import pt.uc.dei.aor.paj.Music;
 import pt.uc.dei.aor.paj.User;
 import pt.uc.dei.aor.paj.DAO.MusicDAO;

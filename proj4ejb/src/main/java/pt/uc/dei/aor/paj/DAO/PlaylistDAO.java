@@ -3,12 +3,13 @@ package pt.uc.dei.aor.paj.DAO;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 import pt.uc.dei.aor.paj.Playlist;
 import pt.uc.dei.aor.paj.User;
 
-
+@Stateless
 public class PlaylistDAO extends GenericDAO<Playlist>{
 
 	/**

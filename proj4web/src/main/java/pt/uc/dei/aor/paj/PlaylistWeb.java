@@ -1,11 +1,13 @@
 package pt.uc.dei.aor.paj;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
 import pt.uc.dei.aor.paj.fachada.IntPlaylistFachada;
 
 @Named
@@ -16,7 +18,7 @@ public class PlaylistWeb {
 	@Inject
 	private Login login;
 	private String name;
-	private Date date;
+	//private LocalDate date;
 	private int size;
 	private String mensagem="";
 	private Music musics;
@@ -32,7 +34,7 @@ public class PlaylistWeb {
 	}
 
 	public void save(){
-		this.mensagem=playlist.save(name, date, login.getUsername() );
+		this.mensagem=playlist.save(name, LocalDate.now(), login.getUsername() );
 	}
 
 	public String getMensagem() {
@@ -51,14 +53,6 @@ public class PlaylistWeb {
 		this.musics = musics;
 	}
 
-	public IntPlaylistFachada getPlaylist() {
-		return playlist;
-	}
-
-	public void setPlaylist(IntPlaylistFachada playlist) {
-		this.playlist = playlist;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -66,14 +60,6 @@ public class PlaylistWeb {
 		this.name = name;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate() {
-		Date data= new Date();		
-		this.date = data;
-	}
 
 	public int getSize() {
 		return size;
