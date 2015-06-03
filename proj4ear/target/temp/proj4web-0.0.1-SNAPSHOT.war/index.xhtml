@@ -97,7 +97,17 @@
 				
 				<h:dataTable value="#{playlistWeb.findByUtilizador()}" var="playlist">
 					<h:column>#{playlist.name}</h:column>
+					<h:column>#{playlist.date}</h:column>
+					<h:column>#{playlist.size}</h:column>
 				</h:dataTable>
+				
+				
+				<h:dataTable value="#{playlistWeb.orderByNameDESC()}" var="playlist">
+					<h:column>#{playlist.name}</h:column>
+					<h:column>#{playlist.date}</h:column>
+					<h:column>#{playlist.size}</h:column>
+				</h:dataTable>		
+							
 
 				<audio controls="controls">
 					<source src="" type="audio/mpeg" />
