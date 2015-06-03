@@ -80,14 +80,7 @@ public class PlaylistFachada implements IntPlaylistFachada{
 		}
 		return mensagem;
 	}
-
-
-	@Override
-	public Playlist update(Playlist playlist) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	public List<Playlist> findAll() {
 		return playlistDAO.all();
@@ -116,17 +109,29 @@ public class PlaylistFachada implements IntPlaylistFachada{
 		}
 		return playlist1;
 	}
-
+	
 	@Override
 	public List<Playlist> orderByDate(String username, String order) {
-		// TODO Auto-generated method stub
-		return null;
+		Utilizador user1=userDAO.findUsername(username).get(0);
+		List<Playlist> playlist1= null;
+		if (order.equals("ASC")){
+			playlist1=playlistDAO.orderByDateASC(user1);
+		}else if(order.equals("DESC")){
+			playlist1=playlistDAO.orderByDateDESC(user1);
+		}
+		return playlist1;
 	}
 
 	@Override
 	public List<Playlist> orderBySize(String username, String order) {
-		// TODO Auto-generated method stub
-		return null;
+		Utilizador user1=userDAO.findUsername(username).get(0);
+		List<Playlist> playlist1= null;
+		if (order.equals("ASC")){
+			playlist1=playlistDAO.orderBySizeASC(user1);
+		}else if(order.equals("DESC")){
+			playlist1=playlistDAO.orderBySizeDESC(user1);
+		}
+		return playlist1;
 	}
 
 }

@@ -20,7 +20,6 @@ public class PlaylistWeb {
 	private int size;
 	private String mensagem="";
 	private Music musics;
-	
 
 	public PlaylistWeb() {
 		super();
@@ -40,8 +39,7 @@ public class PlaylistWeb {
 	public List<Playlist> orderByNameDESC(){
 		return playlist.orderByName(login.getUsername(),"DESC");
 	}
-	
-	
+		
 	public List<Playlist> orderByDateASC(){
 		return playlist.orderByDate(login.getUsername(), "ASC");
 	}
@@ -62,6 +60,10 @@ public class PlaylistWeb {
 	
 	public void delete(){
 		this.mensagem=playlist.delete(name,login.getUsername());
+	}
+	
+	public void update(){
+		this.mensagem=playlist.update(name,login.getUsername());
 	}
 
 	public String getMensagem() {
@@ -95,6 +97,7 @@ public class PlaylistWeb {
 		this.size = size;
 	}
 
+	
 	
 
 
