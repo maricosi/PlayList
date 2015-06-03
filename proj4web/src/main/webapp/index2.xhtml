@@ -7,24 +7,32 @@
 
 <h:head>
 	<h:outputStylesheet library="css" name="style.css" />
+	<title>File Upload</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </h:head>
 
 <body>
 	<ui:composition template="template/commonLayout.xhtml">
-		<h:form>
-			<h:panelGrid columns="2">
-				<h:outputLabel value="Name" />
-				<h:inputText value="#{playlistWeb.name}" />
+		<!-- <h:form>
+			<form method="POST" action="upload" enctype="multipart/form-data">
+				File: <input type="file" name="file" id="file" />
+				<br />
+				Destination: <input type="text" value="/tmp" name="destination" />
+				<br /> 
+				<input type="submit" value="Upload" name="upload" id="upload" />
+			</form>
 
-				<h:outputLabel />
-				<h:commandButton value="Criar" actionListener="#{playlistWeb.save}" />
+		</h:form> -->
 
-			</h:panelGrid>
-			<h:outputText value="#{playlistWeb.mensagem}" />
-
-		</h:form>
-
-
+	<!-- 	<form id="form" enctype="multipart/form-data" pretendId="false">
+			<p>
+				<input id="file" values="#{fileUploadBean.uploadFile}" />
+			</p>
+			<br/>
+			<h:commandButton id="button" action="#{fileUploadBean.upload}" value="Upload" />
+			<p id="textOutput"> Text:#{fileUploadBean.text}</p>
+			
+		</form> -->
 
 	</ui:composition>
 </body>
