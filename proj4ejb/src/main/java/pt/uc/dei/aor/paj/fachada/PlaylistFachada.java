@@ -134,6 +134,12 @@ public class PlaylistFachada implements IntPlaylistFachada{
 		return playlist1;
 	}
 
+	@Override
+	public Playlist update(Playlist playlist) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
 
 

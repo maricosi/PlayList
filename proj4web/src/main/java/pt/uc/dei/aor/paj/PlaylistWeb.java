@@ -62,9 +62,9 @@ public class PlaylistWeb {
 		this.mensagem=playlist.delete(name,login.getUsername());
 	}
 	
-	public void update(){
+	/*public void update(){
 		this.mensagem=playlist.update(name,login.getUsername());
-	}
+	}*/
 
 	public String getMensagem() {
 		return mensagem;
