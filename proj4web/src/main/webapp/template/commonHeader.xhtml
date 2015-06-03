@@ -14,6 +14,12 @@
 		<!-- Inicio do header -->
 		<header id="header2">
 			<h1>RadioK7</h1>
+			<h:panelGroup rendered="#{login.logged}">
+				<h:form>
+					<h:commandButton actionListener="#{login.logout}" value="Logout" />
+					<h:outputText value="#{login.mensagem}" />
+				</h:form>
+				</h:panelGroup>
 		</header>
 
 

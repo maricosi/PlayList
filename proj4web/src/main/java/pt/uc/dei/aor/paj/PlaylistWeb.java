@@ -2,10 +2,12 @@ package pt.uc.dei.aor.paj;
 
 import java.time.LocalDate;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
 import pt.uc.dei.aor.paj.fachada.IntPlaylistFachada;
 
 @Named
@@ -20,6 +22,8 @@ public class PlaylistWeb {
 	private int size;
 	private String mensagem="";
 	private Music musics;
+	private List<Playlist> procuraPlaylist;
+
 
 	public PlaylistWeb() {
 		super();
@@ -34,24 +38,32 @@ public class PlaylistWeb {
 	}
 	
 	public List<Playlist> orderByNameASC(){
-		return playlist.orderByName(login.getUsername(),"ASC");
+		this.procuraPlaylist=playlist.orderByName(login.getUsername(),"ASC");
+		return procuraPlaylist;
 	}
 	public List<Playlist> orderByNameDESC(){
-		return playlist.orderByName(login.getUsername(),"DESC");
+		this.procuraPlaylist=playlist.orderByName(login.getUsername(),"DESC");
+		return procuraPlaylist;
 	}
 		
 	public List<Playlist> orderByDateASC(){
-		return playlist.orderByDate(login.getUsername(), "ASC");
+		this.procuraPlaylist=playlist.orderByDate(login.getUsername(), "ASC");
+		return procuraPlaylist;
 	}
 	public List<Playlist> orderByDateDESC(){
-		return playlist.orderByDate(login.getUsername(), "DESC");
+		this.procuraPlaylist=playlist.orderByDate(login.getUsername(), "DESC");
+		return procuraPlaylist;
 	}
 	
 	public List<Playlist> orderBySizeASC(){
-		return playlist.orderBySize(login.getUsername(), "ASC");
+		this.procuraPlaylist=playlist.orderBySize(login.getUsername(), "ASC");
+		return procuraPlaylist;
+		
 	}
+				
 	public List<Playlist> orderBySizeDESC(){
-		return playlist.orderBySize(login.getUsername(), "DESC");
+		this.procuraPlaylist=playlist.orderBySize(login.getUsername(), "DESC");
+		return procuraPlaylist;
 	}
 
 	public void save(){
@@ -95,6 +107,13 @@ public class PlaylistWeb {
 
 	public void setSize(int size) {
 		this.size = size;
+	}
+	public List<Playlist> getProcuraPlaylist() {
+		return procuraPlaylist;
+	}
+
+	public void setProcuraPlaylist(List<Playlist> procuraPlaylist) {
+		this.procuraPlaylist = procuraPlaylist;
 	}
 
 	

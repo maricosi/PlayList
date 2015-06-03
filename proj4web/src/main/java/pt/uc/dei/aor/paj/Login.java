@@ -77,12 +77,12 @@ public class Login implements Serializable {
 		ec.redirect(ec.getRequestContextPath() + "/login.xhtml");
 	}
 
-	public Boolean getLoged() {
+	public Boolean getLogged() {
 		return logged;
 	}
 
-	public void setLoged(boolean loged) {
-		this.logged = loged;
+	public void setLogged(boolean logged) {
+		this.logged = logged;
 	}
 
 
