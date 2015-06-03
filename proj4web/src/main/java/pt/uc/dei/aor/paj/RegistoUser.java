@@ -4,11 +4,12 @@ package pt.uc.dei.aor.paj;
 
 
 import javax.ejb.EJB;
-
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+//import javax.validation.constraints.Pattern;
 
 import pt.uc.dei.aor.paj.fachada.IntUserFachada;
+
 import java.io.Serializable;
 
 @Named
@@ -17,13 +18,16 @@ public class RegistoUser implements Serializable {
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
+	//private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	@EJB
 	private IntUserFachada user;
 	private String name;
 	private String username;
 	private String password;
 	private String verifyPassword;
+	//@Pattern(regexp = EMAIL_PATTERN, message = "Endereço de email inválido!!!")
 	private String email;
 	private String mensagem="";
 	private boolean registo=false;

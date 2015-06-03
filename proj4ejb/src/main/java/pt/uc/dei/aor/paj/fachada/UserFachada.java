@@ -66,16 +66,17 @@ public class UserFachada implements IntUserFachada {
 				hasError = true;
 				mensagemErro=mensagemErro+"Username ";
 			}
+			if(utilizador.getEmail()== null || "".equals(utilizador.getEmail().trim())){
+				hasError = true;
+				mensagemErro=mensagemErro+"Email ";
+			}
 
 			if(utilizador.getPassword() == null || "".equals(utilizador.getPassword().trim())){
 				hasError = true;
 				mensagemErro=mensagemErro+"Password ";
 			}
 
-			if(utilizador.getEmail()== null || "".equals(utilizador.getEmail().trim())){
-				hasError = true;
-				mensagemErro=mensagemErro+"Email ";
-			}
+			
 		}
 		if (hasError){
 			throw new IllegalArgumentException("Prencha o(s) campo(s): " + mensagemErro + "!!!");
