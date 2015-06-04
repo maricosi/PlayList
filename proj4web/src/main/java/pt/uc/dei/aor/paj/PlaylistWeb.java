@@ -23,47 +23,62 @@ public class PlaylistWeb {
 	private String mensagem="";
 	private Music musics;
 	private List<Playlist> procuraPlaylist;
+	private boolean editable;
+		
+
+
 
 
 	public PlaylistWeb() {
 		super();
+		
 	}
+	
 
 	public List<Playlist> findAll(){
 		return playlist.findAll();
 	}
 	
-	public List<Playlist> findByUtilizador(){
-		return playlist.findByUtilizador(login.getUsername());
+	public List<Playlist> getProcuraPlaylist(){
+		if (procuraPlaylist==null){
+			this.procuraPlaylist=playlist.orderByName(login.getUsername(),"ASC");
+		}
+		return procuraPlaylist;	
 	}
 	
-	public List<Playlist> orderByNameASC(){
-		this.procuraPlaylist=playlist.orderByName(login.getUsername(),"ASC");
-		return procuraPlaylist;
+	public void setProcuraPlaylist(List<Playlist> procuraPlaylist) {
+		this.procuraPlaylist = procuraPlaylist;
 	}
-	public List<Playlist> orderByNameDESC(){
-		this.procuraPlaylist=playlist.orderByName(login.getUsername(),"DESC");
-		return procuraPlaylist;
+	
+	public void findByUtilizador(){
+		playlist.findByUtilizador(login.getUsername());
+	}
+	
+	public void orderByNameASC(){
+		setProcuraPlaylist(playlist.orderByName(login.getUsername(),"ASC"));
+		
+	}
+
+	public void orderByNameDESC(){
+		setProcuraPlaylist(playlist.orderByName(login.getUsername(),"DESC"));
+		
 	}
 		
-	public List<Playlist> orderByDateASC(){
-		this.procuraPlaylist=playlist.orderByDate(login.getUsername(), "ASC");
-		return procuraPlaylist;
+	public void orderByDateASC(){
+		setProcuraPlaylist(playlist.orderByDate(login.getUsername(), "ASC"));
 	}
-	public List<Playlist> orderByDateDESC(){
-		this.procuraPlaylist=playlist.orderByDate(login.getUsername(), "DESC");
-		return procuraPlaylist;
+	public void orderByDateDESC(){
+		setProcuraPlaylist(playlist.orderByDate(login.getUsername(), "DESC"));
+		
 	}
 	
-	public List<Playlist> orderBySizeASC(){
-		this.procuraPlaylist=playlist.orderBySize(login.getUsername(), "ASC");
-		return procuraPlaylist;
+	public void orderBySizeASC(){
+		setProcuraPlaylist(playlist.orderBySize(login.getUsername(), "ASC"));
 		
 	}
 				
-	public List<Playlist> orderBySizeDESC(){
-		this.procuraPlaylist=playlist.orderBySize(login.getUsername(), "DESC");
-		return procuraPlaylist;
+	public void orderBySizeDESC(){
+		setProcuraPlaylist(playlist.orderBySize(login.getUsername(), "DESC"));
 	}
 
 	public void save(){
@@ -74,9 +89,25 @@ public class PlaylistWeb {
 		this.mensagem=playlist.delete(name,login.getUsername());
 	}
 	
-	/*public void update(){
+/*	public void update(){
 		this.mensagem=playlist.update(name,login.getUsername());
 	}*/
+	
+	
+	public boolean isEditable() {
+		return editable;
+	}
+
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+	
+	public String editAction(Playlist playlist) {
+		setEditable(true);
+		return null;
+	}
+
 
 	public String getMensagem() {
 		return mensagem;
@@ -108,13 +139,7 @@ public class PlaylistWeb {
 	public void setSize(int size) {
 		this.size = size;
 	}
-	public List<Playlist> getProcuraPlaylist() {
-		return procuraPlaylist;
-	}
-
-	public void setProcuraPlaylist(List<Playlist> procuraPlaylist) {
-		this.procuraPlaylist = procuraPlaylist;
-	}
+	
 
 	
 	

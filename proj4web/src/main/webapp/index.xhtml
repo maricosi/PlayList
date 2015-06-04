@@ -7,16 +7,19 @@
 
 <h:head>
 	<title>Facelets Hello World</title>
-	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="style1.css" />
 </h:head>
 
 <h:body>
 	<ui:composition template="template/commonLayout.xhtml">
 		<ui:define name="bodyLogin">
-			<article id="bodyLogin">
-<div id="navbuttons">
-					<h:commandButton styleClass="buto login" value="Utilizador" />
-					<h:commandButton  styleClass="buto login" value="Musica" />		
+			<article id="loginRegisto">
+				<div id="navbuttons">
+					<h:form>
+						<h:commandButton styleClass="buto login" value="Utilizador" />
+						<h:commandButton styleClass="buto login" value="Musica" />
+					</h:form>
+
 				</div>
 
 				<h:form>
@@ -101,84 +104,76 @@
 						value="Atualizar" type="submit" /> -->
 				</h:form>
 
-				<h2>Playlist por nome ordenado por ordem decr.</h2>
-				<h:dataTable value="#{playlistWeb.orderByNameDESC()}" var="playlist">
-					<h:column>#{playlist.name}</h:column>
-					<h:column>#{playlist.date}</h:column>
-					<h:column>#{playlist.size}</h:column>
-				</h:dataTable>
-
-				<h2>Playlist por data ordenado por ordem decr.</h2>
-
-				<h:dataTable value="#{playlistWeb.orderByDateDESC()}" var="playlist">
-					<h:column>#{playlist.name}</h:column>
-					<h:column>#{playlist.date}</h:column>
-					<h:column>#{playlist.size}</h:column>
-				</h:dataTable>
 
 
 
 
-				<h:dataTable value="#{playlistWeb.procuraPlaylist}" var="playlist"
-					class="playlisttable">
+				<h:form>
+					<h:dataTable value="#{playlistWeb.procuraPlaylist}" var="playlist"
+						styleClass="tabela" headerClass="cabecalho" rowClasses="linha">
 
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Nome" />
-							<h:form>
-							<h:commandButton action="#{playlistWeb.orderByNameASC}" value="&#9650;" 
-									type="submit" /> 
-								<h:commandButton 
-									actionListener="#{playlistWeb.orderByNameDESC}" value="&#9660;" type="submit" />
-							</h:form>
-						</f:facet>
-						<h:outputText value="#{playlist.name}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Data" />
-							<h:form>
-								<h:commandButton actionListener="#{playlistWeb.orderByDateASC}"
-									type="submit" value="&#9650;" />
-								<h:commandButton value="&#9660;"
-									actionListener="#{playlistWeb.orderByDateDESC}" type="submit" />
-							</h:form>
-						</f:facet>
-						<h:outputText value="#{playlist.date}" />
-
-
-					</h:column>
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Tamanho" />
-							<h:form>
-								<h:commandButton action="#{playlistWeb.orderBySizeASC}"
-									type="submit" value="&#9650;" />
-								<h:commandButton action="#{playlistWeb.orderBySizeDESC}"
-									type="submit" value="&#9660;" />
-							</h:form>
-						</f:facet>
-						<h:outputText value="#{playlist.size}" />
-					</h:column>
-					<h:column>
-						<h:form>
+						<h:column>
 							<f:facet name="header">
-								<h:outputText value="Editar" />
+								<h:outputText value="Nome" />
+
+								<h:commandButton action="#{playlistWeb.orderByNameASC()}"
+									value="&#9650;" />
+								<h:commandButton action="#{playlistWeb.orderByNameDESC()}"
+									value="&#9660;" />
+
 							</f:facet>
-							<h:commandButton value="Editar playlist" class="editbutton" 
-							action="#{utilizadorGest.editarPlaylist()}"> 
-							<f:param name="id" value="#{pl.id}" />
+							<h:inputText value="#{playlist.name}"
+								 />
+							<h:outputText value="#{playlist.name}"
+								 />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Data" />
+
+								<h:commandButton value="&#9650;"
+									actionListener="#{playlistWeb.orderByDateASC()}" />
+								<h:commandButton value="&#9660;"
+									action="#{playlistWeb.orderByDateDESC()}" />
+
+
+							</f:facet>
+							<h:outputText value="#{playlist.date}" />
+
+
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Tamanho" />
+
+								<h:commandButton value="&#9650;"
+									action="#{playlistWeb.orderBySizeASC()}" />
+								<h:commandButton value="&#9660;"
+									action="#{playlistWeb.orderBySizeDESC()}" />
+
+							</f:facet>
+							<h:outputText value="#{playlist.size}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Edit</f:facet>
+							<h:commandButton action="#{guardarBean.editAction()}"
+								value="Editar" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Save</f:facet>
+							<h:commandButton value="Save Changes">
+								<f:ajax render="@form" execute="@form" />
 							</h:commandButton>
-						</h:form>
-					</h:column>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Delete</f:facet>
+							<h:commandButton action= value="Apagar">
+								<f:ajax render="@form" />
+							</h:commandButton>
+						</h:column>>
 
-				</h:dataTable>
-
-				<audio controls="controls">
-					<source src="" type="audio/mpeg" />
-				</audio>
-
-
+					</h:dataTable>
+				</h:form>
 
 
 			</article>

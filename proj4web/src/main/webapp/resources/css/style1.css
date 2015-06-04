@@ -257,3 +257,27 @@ h1 {
 	-moz-border-radius-bottomleft: 0px;
 	border-bottom-left-radius: 0px;
 }
+
+/*Tabela*/
+.tabela {
+	text-align: center;
+	padding:5px;
+}
+
+/* Definição de estilos para linha de cabeçalho da tabela*/
+.cabecalho {
+	text-align: center;
+	font: 14px Verdana;
+	font-weight: bolder;
+	color: cornsilk;
+	border-bottom: solid cornsilk;
+}
+
+/* Definição de estilos para linha */
+.linha {
+	text-align: center;
+	font: 12px Verdana;
+	font-weight: bold;
+	color: cornsilk;
+	
+}
