@@ -2,8 +2,8 @@ package pt.uc.dei.aor.paj;
 
 
 import java.time.LocalDate;
-
 import java.util.List;
+
 
 
 
@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity
@@ -60,7 +61,11 @@ public class Playlist{
 	private List<Music> musics;
 	@ManyToOne
 	private Utilizador utilizador;
+	@Transient
+	private boolean editable= false;
 	
+
+
 	public Playlist(){		
 	}
 
@@ -70,6 +75,14 @@ public class Playlist{
 		this.name = name;
 		this.date = date;
 		this.utilizador=utilizador;
+	}
+	
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
 	}
 
 	public int getId() {

@@ -9,27 +9,50 @@
 	<title>Playlist</title>
 </h:head>
 <h:body>
-	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputLabel value="Artista" />
-			<h:inputText value=#{musicBean.newMusic.artist} />
+	<!-- <h:form>
+		<h:dataTable value="#{playlistWeb.procuraPlaylist}" var="playlist">
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:inputText value="#{playlist.name}" rendered="#{employee.canEdit}" />
+				<h:outputText value="#{playlist.name}"
+					rendered="#{not employee.canEdit}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Department</f:facet>
+				<h:inputText value="#{employee.department}" size="20"
+					rendered="#{employee.canEdit}" />
+				<h:outputText value="#{employee.department}"
+					rendered="#{not employee.canEdit}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Age</f:facet>
+				<h:inputText value="#{employee.age}" size="5"
+					rendered="#{employee.canEdit}" />
+				<h:outputText value="#{employee.age}"
+					rendered="#{not employee.canEdit}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Salary</f:facet>
+				<h:inputText value="#{employee.salary}" size="5"
+					rendered="#{employee.canEdit}" />
+				<h:outputText value="#{employee.salary}"
+					rendered="#{not employee.canEdit}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Edit</f:facet>
+				<h:commandButton value="Edit" action="#{userData.editEmployee}"
+					rendered="#{not employee.canEdit}">
+					<f:setPropertyActionListener target="#{userData.employee}"
+						value="#{employee}" />
+				</h:commandButton>
+			</h:column>
+		</h:dataTable>
+		<br />
+		<h:commandButton value="Save Employees"
+			action="#{userData.saveEmployees}" />
+	</h:form> -->
 
-			<h:outputLabel value="Título" />
-			<h:inputText value=#{musicBean.newMusic.title} />
 
-			<h:outputLabel value="Ano" />
-			<h:inputText value=#{musicBean.newMusic.year} />
-
-			<h:outputLabel value="File Path" />
-			<h:inputText value=#{musicBean.newMusic.path} />
-
-			<h:outputLabel />
-			<h:commandButton value="Adicionar" actionListener="#{musicBean.addMusic}" />
-
-		</h:panelGrid>
-	</h:form>
-
-	
 
 </h:body>
 </html>
