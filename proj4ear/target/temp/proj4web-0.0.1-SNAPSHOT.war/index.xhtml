@@ -12,176 +12,123 @@
 
 <h:body>
 	<ui:composition template="template/commonLayout.xhtml">
-		<ui:define name="bodyLogin">
-			<article id="bodyLogin">
-<div id="navbuttons">
-					<h:commandButton styleClass="buto login" value="Utilizador" />
-					<h:commandButton  styleClass="buto login" value="Musica" />		
-				</div>
+		<ui:define name="bodyLogin" styleClass="">
+			<div id="bodyLogin">
 
-				<h:form>
-					<h:panelGrid columns="2">
-						<h:outputLabel value="Artista" />
-						<h:inputText value="#{musicWeb.artist}" />
-
-						<h:outputLabel value="Título" />
-						<h:inputText value="#{musicWeb.title}" />
-
-						<h:outputLabel value="Album" />
-						<h:inputText value="#{musicWeb.album}" />
-
-						<h:outputLabel value="Ano" />
-						<h:inputText value="#{musicWeb.year}" />
-
-						<h:outputLabel value="URL" />
-						<h:inputText value="#{musicWeb.url}" />
-
-						<h:outputLabel />
-						<h:commandButton value="Adicionar"
-							actionListener="#{musicWeb.save()}" />
-
-					</h:panelGrid>
-
-					<h:outputText value="#{musicWeb.mensagem}" />
-				</h:form>
-
-				<h:form>
-					<h:panelGrid columns="2">
-						<h:outputLabel value="Artista" />
-						<h:inputText value="#{musicWeb.artist}" />
-
-						<h:outputLabel value="Título" />
-						<h:inputText value="#{musicWeb.title}" />
-
-
-						<h:outputLabel />
-						<h:commandButton value="Procurar"
-							actionListener="#{musicWeb.findByTitleArtist()}" />
-
-					</h:panelGrid>
-
-					<h:outputText value="#{musicWeb.mensagem}" />
-				</h:form>
-
-				<h:dataTable value="#{musicWeb.procuraMusic}" var="music">
-					<h:column>#{music.album}</h:column>
-					<h:column>#{music.title}</h:column>
-					<h:column>#{music.year}</h:column>
-					<h:column>#{music.utilizador.username}</h:column>
-				</h:dataTable>
-
-				<h:form>
-					<h:panelGrid columns="2">
-						<h:outputText value="Name" />
-						<h:inputText value="#{playlistWeb.name}" />
-
-						<h:commandButton value="Criar"
-							actionListener="#{playlistWeb.save}" />
-						<h:commandButton value="Delete"
-							actionListener="#{playlistWeb.delete}" />
-					</h:panelGrid>
-					<h:outputText value="#{playlistWeb.mensagem}" />
-
-				</h:form>
-
-				<h:form>
-					<h3>**Editar música**</h3>
-					<h:outputLabel>Título</h:outputLabel>
-					<h:inputText value="#{musicWeb.title}" />
-					<h:outputLabel>Artista</h:outputLabel>
-					<h:inputText value="#{musicWeb.artist}" />
-					<h:outputLabel>Album</h:outputLabel>
-					<h:inputText value="#{musicWeb.album}" />
-					<h:outputLabel>Ano</h:outputLabel>
-					<h:inputText value="#{musicWeb.year}">
-						<f:validateLongRange minimum="1900" maximum="2100" />
-					</h:inputText>
-
-					<!-- <h:commandButton action="#{musicaGest.editarMusica()}"
-						value="Atualizar" type="submit" /> -->
-				</h:form>
-
-				<h2>Playlist por nome ordenado por ordem decr.</h2>
-				<h:dataTable value="#{playlistWeb.orderByNameDESC()}" var="playlist">
-					<h:column>#{playlist.name}</h:column>
-					<h:column>#{playlist.date}</h:column>
-					<h:column>#{playlist.size}</h:column>
-				</h:dataTable>
-
-				<h2>Playlist por data ordenado por ordem decr.</h2>
-
-				<h:dataTable value="#{playlistWeb.orderByDateDESC()}" var="playlist">
-					<h:column>#{playlist.name}</h:column>
-					<h:column>#{playlist.date}</h:column>
-					<h:column>#{playlist.size}</h:column>
-				</h:dataTable>
-
-
-
-
-				<h:dataTable value="#{playlistWeb.procuraPlaylist}" var="playlist"
-					class="playlisttable">
-
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Nome" />
-							<h:form>
-							<h:commandButton action="#{playlistWeb.orderByNameASC}" value="&#9650;" 
-									type="submit" /> 
-								<h:commandButton 
-									actionListener="#{playlistWeb.orderByNameDESC}" value="&#9660;" type="submit" />
-							</h:form>
-						</f:facet>
-						<h:outputText value="#{playlist.name}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Data" />
-							<h:form>
-								<h:commandButton actionListener="#{playlistWeb.orderByDateASC}"
-									type="submit" value="&#9650;" />
-								<h:commandButton value="&#9660;"
-									actionListener="#{playlistWeb.orderByDateDESC}" type="submit" />
-							</h:form>
-						</f:facet>
-						<h:outputText value="#{playlist.date}" />
-
-
-					</h:column>
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Tamanho" />
-							<h:form>
-								<h:commandButton action="#{playlistWeb.orderBySizeASC}"
-									type="submit" value="&#9650;" />
-								<h:commandButton action="#{playlistWeb.orderBySizeDESC}"
-									type="submit" value="&#9660;" />
-							</h:form>
-						</f:facet>
-						<h:outputText value="#{playlist.size}" />
-					</h:column>
-					<h:column>
+				<div class="ui-grid-b">
+					<div class="ui-block-a">
 						<h:form>
-							<f:facet name="header">
-								<h:outputText value="Editar" />
-							</f:facet>
-							<h:commandButton value="Editar playlist" class="editbutton" 
-							action="#{utilizadorGest.editarPlaylist()}"> 
-							<f:param name="id" value="#{pl.id}" />
-							</h:commandButton>
+							<table>
+								<tr>
+									<td><h:commandButton styleClass="butopg"
+											value="Utilizador"
+											actionListener="#{registoUser.novoRegisto()}" /></td>
+								</tr>
+								<tr>
+									<td><h:commandButton styleClass="butopg" value="Playlist"
+											actionListener="#{playlistWeb.showTable()}" /></td>
+								</tr>
+								<tr>
+									<td><h:commandButton styleClass="butopg" value="Musica"
+											actionListener="#{musicWeb.showTable()}" /></td>
+								</tr>
+							</table>
 						</h:form>
-					</h:column>
+						<br></br>
+						<audio controls="controls">
+							<source src="" type="audio/mpeg" />
+						</audio>
+					</div>
 
-				</h:dataTable>
+					<div class="ui-block-b">
+						<div id="loginRegisto1">
+							<h:form prependId="false" rendered="#{musicWeb.table}">
+								<h2>CRIAR MUSICA</h2>
+								<h:panelGrid columns="2">
+									<h:outputLabel value="Artista" />
+									<h:inputText value="#{musicWeb.artist}" />
 
-				<audio controls="controls">
-					<source src="" type="audio/mpeg" />
-				</audio>
+									<h:outputLabel value="Título" />
+									<h:inputText value="#{musicWeb.title}" />
+
+									<h:outputLabel value="Album" />
+									<h:inputText value="#{musicWeb.album}" />
+
+									<h:outputLabel value="Ano" />
+									<h:inputText value="#{musicWeb.year}" />
+
+									<h:outputLabel value="URL" />
+									<h:inputText value="#{musicWeb.url}" />
+
+									<h:outputLabel />
+									<h:commandButton value="Adicionar"
+										actionListener="#{musicWeb.save()}" />
+
+								</h:panelGrid>
+
+								<h:outputText value="#{musicWeb.mensagem}" />
+							</h:form>
+
+							<h:form prependId="false" rendered="#{musicWeb.table}">
+								<h2>PROCURAR MÚSICA</h2>
+								<h:panelGrid columns="2">
+									<h:outputLabel value="Artista" />
+									<h:inputText value="#{musicWeb.artist}" />
+
+									<h:outputLabel value="Título" />
+									<h:inputText value="#{musicWeb.title}" />
 
 
+									<h:outputLabel />
+									<h:commandButton value="Procurar"
+										actionListener="#{musicWeb.findByTitleArtist()}" />
+
+								</h:panelGrid>
+
+								
+							</h:form>
+
+							<h:dataTable value="#{musicWeb.procuraMusic}" var="music">
+								<h:column>#{music.album}</h:column>
+								<h:column>#{music.title}</h:column>
+								<h:column>#{music.year}</h:column>
+								<h:column>#{music.utilizador.username}</h:column>
+							</h:dataTable>
+							<h:form prependId="false" rendered="#{musicWeb.table}">
+								<h3>EDITAR MUSICA</h3>
+								<h:outputLabel>Título</h:outputLabel>
+								<h:inputText value="#{musicWeb.title}" />
+								<h:outputLabel>Artista</h:outputLabel>
+								<h:inputText value="#{musicWeb.artist}" />
+								<h:outputLabel>Album</h:outputLabel>
+								<h:inputText value="#{musicWeb.album}" />
+								<h:outputLabel>Ano</h:outputLabel>
+								<h:inputText value="#{musicWeb.year}">
+									<f:validateLongRange minimum="1900" maximum="2100" />
+								</h:inputText>
+							</h:form>
+							<h:form prependId="false" rendered="#{playlistWeb.table}">
+								<h:panelGrid columns="2">
+									<h:outputText value="Name" />
+									<h:inputText value="#{playlistWeb.name}" />
+
+									<h:commandButton value="Criar"
+										actionListener="#{playlistWeb.save}" />
+									<h:commandButton value="Delete"
+										actionListener="#{playlistWeb.delete}" />
+								</h:panelGrid>
+								<h:outputText value="#{playlistWeb.mensagem}" />
+
+							</h:form>
 
 
-			</article>
+						</div>
+					</div>
+					<div class="ui-block-c"></div>
+				</div>
+			</div>
+
+
 		</ui:define>
 	</ui:composition>
 </h:body>
