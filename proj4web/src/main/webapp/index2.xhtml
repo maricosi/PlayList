@@ -1,39 +1,187 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html >
-<html xmlns="http://www.w3.org/1999/xhtml"
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
-	<h:outputStylesheet library="css" name="style.css" />
-	<title>File Upload</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Facelets Hello World</title>
+	<h:outputStylesheet library="css" name="style1.css" />
 </h:head>
 
-<body>
+<h:body>
 	<ui:composition template="template/commonLayout.xhtml">
-		<!-- <h:form>
-			<form method="POST" action="upload" enctype="multipart/form-data">
-				File: <input type="file" name="file" id="file" />
-				<br />
-				Destination: <input type="text" value="/tmp" name="destination" />
-				<br /> 
-				<input type="submit" value="Upload" name="upload" id="upload" />
-			</form>
+		<ui:define name="bodyLogin">
+			<article id="bodyLogin">
+				<div id="navbuttons">
+					<h:form>
+						<h:commandButton styleClass="buto login" value="Utilizador" />
+						<h:commandButton styleClass="buto login" value="Musica" />
+					</h:form>
 
-		</h:form> -->
+				</div>
 
-	<!-- 	<form id="form" enctype="multipart/form-data" pretendId="false">
-			<p>
-				<input id="file" values="#{fileUploadBean.uploadFile}" />
-			</p>
-			<br/>
-			<h:commandButton id="button" action="#{fileUploadBean.upload}" value="Upload" />
-			<p id="textOutput"> Text:#{fileUploadBean.text}</p>
-			
-		</form> -->
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:outputLabel value="Artista" />
+						<h:inputText value="#{musicWeb.artist}" />
 
+						<h:outputLabel value="Título" />
+						<h:inputText value="#{musicWeb.title}" />
+
+						<h:outputLabel value="Album" />
+						<h:inputText value="#{musicWeb.album}" />
+
+						<h:outputLabel value="Ano" />
+						<h:inputText value="#{musicWeb.year}" />
+
+						<h:outputLabel value="URL" />
+						<h:inputText value="#{musicWeb.url}" />
+
+						<h:outputLabel />
+						<h:commandButton value="Adicionar"
+							actionListener="#{musicWeb.save()}" />
+
+					</h:panelGrid>
+
+					<h:outputText value="#{musicWeb.mensagem}" />
+				</h:form>
+
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:outputLabel value="Artista" />
+						<h:inputText value="#{musicWeb.artist}" />
+
+						<h:outputLabel value="Título" />
+						<h:inputText value="#{musicWeb.title}" />
+
+
+						<h:outputLabel />
+						<h:commandButton value="Procurar"
+							actionListener="#{musicWeb.findByTitleArtist()}" />
+
+					</h:panelGrid>
+
+					<h:outputText value="#{musicWeb.mensagem}" />
+				</h:form>
+
+				<h:dataTable value="#{musicWeb.procuraMusic}" var="music">
+					<h:column>#{music.album}</h:column>
+					<h:column>#{music.title}</h:column>
+					<h:column>#{music.year}</h:column>
+					<h:column>#{music.utilizador.username}</h:column>
+				</h:dataTable>
+
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:outputText value="Name" />
+						<h:inputText value="#{playlistWeb.name}" />
+
+						<h:commandButton value="Criar"
+							actionListener="#{playlistWeb.save}" />
+						<h:commandButton value="Delete"
+							actionListener="#{playlistWeb.delete}" />
+					</h:panelGrid>
+					<h:outputText value="#{playlistWeb.mensagem}" />
+
+				</h:form>
+
+				<h:form>
+					<h3>**Editar música**</h3>
+					<h:outputLabel>Título</h:outputLabel>
+					<h:inputText value="#{musicWeb.title}" />
+					<h:outputLabel>Artista</h:outputLabel>
+					<h:inputText value="#{musicWeb.artist}" />
+					<h:outputLabel>Album</h:outputLabel>
+					<h:inputText value="#{musicWeb.album}" />
+					<h:outputLabel>Ano</h:outputLabel>
+					<h:inputText value="#{musicWeb.year}">
+						<f:validateLongRange minimum="1900" maximum="2100" />
+					</h:inputText>
+
+					<!-- <h:commandButton action="#{musicaGest.editarMusica()}"
+						value="Atualizar" type="submit" /> -->
+				</h:form>
+
+
+
+
+
+				<h:form>
+					<h:dataTable value="#{playlistWeb.procuraPlaylist}" var="playlist"
+						styleClass="tabela" headerClass="cabecalho" rowClasses="linha">
+
+						<h:column>
+
+							<f:facet name="header">
+								<h:outputText value="Nome" />
+
+								<h:commandButton action="#{playlistWeb.orderByNameASC()}"
+									value="&#9650;" />
+								<h:commandButton action="#{playlistWeb.orderByNameDESC()}"
+									value="&#9660;" />
+
+							</f:facet>
+							<h:inputText value="#{playlist.name}"
+								rendered="#{playlist.editable}" />
+							<h:outputText value="#{playlist.name}"
+								rendered="#{!playlist.editable}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Data" />
+
+								<h:commandButton value="&#9650;"
+									actionListener="#{playlistWeb.orderByDateASC()}" />
+								<h:commandButton value="&#9660;"
+									action="#{playlistWeb.orderByDateDESC()}" />
+
+
+							</f:facet>
+							<h:outputText value="#{playlist.date}" />
+
+
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Tamanho" />
+
+								<h:commandButton value="&#9650;"
+									action="#{playlistWeb.orderBySizeASC()}" />
+								<h:commandButton value="&#9660;"
+									action="#{playlistWeb.orderBySizeDESC()}" />
+
+							</f:facet>
+							<h:outputText value="#{playlist.size}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Edit</f:facet>
+							<h:commandButton action="#{playlistWeb.editAction(playlist)}"
+								rendered="#{!playlist.editable}" value="Editar">
+								<f:ajax render="@form" />
+							</h:commandButton>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Save</f:facet>
+							<h:commandButton value="Save Changes"
+								action="#{playlistWeb.update(playlist)}">
+								<f:ajax render="@form" execute="@form" />
+							</h:commandButton>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Delete</f:facet>
+							<h:commandButton action="#{playlistWeb.delete(playlist)}"
+								value="Apagar">
+								<f:ajax render="@form" />
+							</h:commandButton>
+						</h:column>
+					</h:dataTable>
+				</h:form>
+
+
+			</article>
+		</ui:define>
 	</ui:composition>
-</body>
+</h:body>
 </html>

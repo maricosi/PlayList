@@ -1,19 +1,28 @@
 package pt.uc.dei.aor.paj;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import pt.uc.dei.aor.paj.fachada.IntPlaylistFachada;
 
-@Named
-@RequestScoped
-public class PlaylistWeb {
 
+@Named
+@ViewScoped
+public class PlaylistWeb implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@EJB
 	private IntPlaylistFachada playlist;
 	@Inject
@@ -23,11 +32,8 @@ public class PlaylistWeb {
 	private String mensagem="";
 	private Music musics;
 	private List<Playlist> procuraPlaylist;
-	private boolean editable;
-		
-
-
-
+	private static final Logger logger = LoggerFactory.getLogger(PlaylistWeb.class);
+	private boolean table = false;
 
 	public PlaylistWeb() {
 		super();
@@ -89,23 +95,15 @@ public class PlaylistWeb {
 		this.mensagem=playlist.delete(name,login.getUsername());
 	}
 	
-/*	public void update(){
-		this.mensagem=playlist.update(name,login.getUsername());
-	}*/
-	
-	
-	public boolean isEditable() {
-		return editable;
-	}
-
-
-	public void setEditable(boolean editable) {
-		this.editable = editable;
+	public void delete(Playlist p){
+		this.mensagem=playlist.delete(p.getName(),login.getUsername());
+		this.procuraPlaylist=playlist.orderByName(login.getUsername(),"ASC");
 	}
 	
-	public String editAction(Playlist playlist) {
-		setEditable(true);
-		return null;
+
+	
+	public void editAction(Playlist playlist) {
+		playlist.setEditable(true);
 	}
 
 
@@ -141,9 +139,24 @@ public class PlaylistWeb {
 	}
 	
 
+	public void update(Playlist p) {
+		logger.info("antes"+p.getName());
+		playlist.update(p);
+		logger.info("depois"+p.getName());
+		this.procuraPlaylist=playlist.orderByName(login.getUsername(),"ASC");
+	}
 	
-	
+	public boolean isTable() {
+		return table;
+	}
 
+	public void setTable(boolean table) {
+		this.table = table;
+	}
+
+	public void showTable(){
+		this.table=true;
+	}
 
 }
 

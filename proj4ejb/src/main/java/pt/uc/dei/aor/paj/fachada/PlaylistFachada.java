@@ -137,7 +137,8 @@ public class PlaylistFachada implements IntPlaylistFachada{
 	@Override
 	public Playlist update(Playlist playlist) {
 		// TODO Auto-generated method stub
-		return null;
+		playlistDAO.update(playlist);
+		return playlist;
 	}
 
 }

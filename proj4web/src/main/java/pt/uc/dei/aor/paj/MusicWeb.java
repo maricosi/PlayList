@@ -13,7 +13,7 @@ import pt.uc.dei.aor.paj.fachada.IntMusicFachada;
 @Named
 @RequestScoped
 public class MusicWeb {
-	
+
 	@EJB
 	private IntMusicFachada music;
 	@Inject
@@ -25,6 +25,7 @@ public class MusicWeb {
 	private String url;
 	private String mensagem="";
 	private List<Music> procuraMusic;
+	private  boolean table = false;
 
 
 	public MusicWeb() {
@@ -98,6 +99,17 @@ public class MusicWeb {
 		this.url = url;
 	}
 
+	public boolean isTable() {
+		return table;
+	}
+
+	public void setTable(boolean table) {
+		this.table = table;
+	}
+
+	public void showTable(){
+		this.table=true;
+	}
 
 
 
