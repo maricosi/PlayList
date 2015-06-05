@@ -2,6 +2,7 @@ package pt.uc.dei.aor.paj;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,7 +40,7 @@ public class Utilizador{
 	private String email;
 	@Column(name = "password", nullable = false)
 	private String password;
-	@OneToMany(mappedBy = "utilizador")
+	@OneToMany(mappedBy = "utilizador", cascade=CascadeType.REMOVE)
 	private List<Playlist> playlist;
 	@OneToMany(mappedBy = "utilizador")
 	private List<Music> musics;
