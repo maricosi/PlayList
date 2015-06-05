@@ -111,6 +111,11 @@ public class MusicFachada implements IntMusicFachada{
 		return null;
 	}
 
+	@Override
+	public List<Music> findAllByUtilizador(String username, String password) {
+		return musicDAO.findByUtilizador(username, password);
+	}
+
 
 
 

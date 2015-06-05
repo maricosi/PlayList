@@ -47,6 +47,10 @@ public class MusicWeb {
 		}
 	}
 	
+	public List<Music> findAllByUtilizador(){
+		return music.findAllByUtilizador(login.getUsername(), login.getPassword());
+	}
+	
 	public List<Music> getProcuraMusic() {
 		return procuraMusic;
 	}
