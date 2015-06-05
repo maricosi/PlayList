@@ -7,7 +7,7 @@
 
 <h:head>
 	<title>Facelets Hello World</title>
-	<h:outputStylesheet library="css" name="style1.css" />
+	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 
 <h:body>
@@ -58,61 +58,13 @@
 
 									<h:outputLabel value="URL" />
 									<h:inputText value="#{musicWeb.url}" />
-
-									<h:outputLabel />
+																		
 									<h:commandButton value="Adicionar"
-										actionListener="#{musicWeb.save()}" />
-
-
-								</h:panelGrid>
-
-								<h:outputText value="#{musicWeb.mensagem}" />
-							</h:form>
-
-							<h:form prependId="false" rendered="#{musicWeb.table}">
-								<h2>PROCURAR MÚSICA</h2>
-								<h:panelGrid columns="2">
-									<h:outputLabel value="Artista" />
-									<h:inputText value="#{musicWeb.artist}" />
-
-
-									<h:outputLabel value="Título" />
-									<h:inputText value="#{musicWeb.title}" />
-
-				<h:form>
-					<h:dataTable value="#{playlistWeb.procuraPlaylist}" var="playlist"
-						styleClass="tabela" headerClass="cabecalho" rowClasses="linha">
-
-
-									<h:outputLabel />
-									<h:commandButton value="Procurar"
-										actionListener="#{musicWeb.findByTitleArtist()}" />
-
-								</h:panelGrid>
-
-								
-							</h:form>
-
-							<h:dataTable value="#{musicWeb.procuraMusic}" var="music">
-								<h:column>#{music.album}</h:column>
-								<h:column>#{music.title}</h:column>
-								<h:column>#{music.year}</h:column>
-								<h:column>#{music.utilizador.username}</h:column>
-							</h:dataTable>
-							<h:form prependId="false" rendered="#{musicWeb.table}">
-								<h3>EDITAR MUSICA</h3>
-								<h:outputLabel>Título</h:outputLabel>
-								<h:inputText value="#{musicWeb.title}" />
-								<h:outputLabel>Artista</h:outputLabel>
-								<h:inputText value="#{musicWeb.artist}" />
-								<h:outputLabel>Album</h:outputLabel>
-								<h:inputText value="#{musicWeb.album}" />
-								<h:outputLabel>Ano</h:outputLabel>
-								<h:inputText value="#{musicWeb.year}">
-									<f:validateLongRange minimum="1900" maximum="2100" />
-								</h:inputText>
-							</h:form>
-							<h:form prependId="false" rendered="#{playlistWeb.table}">
+										actionListener="#{musicWeb.save()}" styleClass="butopg" />															
+									</h:panelGrid>
+									<h:outputText value="#{musicWeb.mensagem}" />	
+					</h:form>
+					<h:form prependId="false" rendered="#{playlistWeb.table}">
 								<h:panelGrid columns="2">
 									<h:outputText value="Name" />
 									<h:inputText value="#{playlistWeb.name}" />
@@ -125,39 +77,11 @@
 								<h:outputText value="#{playlistWeb.mensagem}" />
 
 							</h:form>
-
-
-
-							</f:facet>
-							<h:outputText value="#{playlist.size}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Edit</f:facet>
-							<h:commandButton action="#{guardarBean.editAction()}"
-								value="Editar" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Save</f:facet>
-							<h:commandButton value="Save Changes">
-								<f:ajax render="@form" execute="@form" />
-							</h:commandButton>
-						</h:column>
-						<h:column>
-							<f:facet name="header">Delete</f:facet>
-							<h:commandButton action= value="Apagar">
-								<f:ajax render="@form" />
-							</h:commandButton>
-						</h:column>>
-
-
 						</div>
 					</div>
 					<div class="ui-block-c"></div>
 				</div>
 			</div>
-
-
-
 		</ui:define>
 	</ui:composition>
 </h:body>
