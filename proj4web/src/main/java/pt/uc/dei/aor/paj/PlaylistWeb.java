@@ -101,7 +101,6 @@ public class PlaylistWeb implements Serializable {
 	}
 	
 
-	
 	public void editAction(Playlist playlist) {
 		playlist.setEditable(true);
 	}

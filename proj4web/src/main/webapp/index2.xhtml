@@ -73,22 +73,10 @@
 					<h:column>#{music.utilizador.username}</h:column>
 				</h:dataTable>
 
+
+				<h1>**Editar música**</h1>
 				<h:form>
-					<h:panelGrid columns="2">
-						<h:outputText value="Name" />
-						<h:inputText value="#{playlistWeb.name}" />
-
-						<h:commandButton value="Criar"
-							actionListener="#{playlistWeb.save}" />
-						<h:commandButton value="Delete"
-							actionListener="#{playlistWeb.delete}" />
-					</h:panelGrid>
-					<h:outputText value="#{playlistWeb.mensagem}" />
-
-				</h:form>
-
-				<h:form>
-					<h3>**Editar música**</h3>
+					
 					<h:outputLabel>Título</h:outputLabel>
 					<h:inputText value="#{musicWeb.title}" />
 					<h:outputLabel>Artista</h:outputLabel>
@@ -106,6 +94,21 @@
 
 
 
+
+				<h1>Playlist Criar e tabela com Editar e apagar</h1>
+
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:outputText value="Name" />
+						<h:inputText value="#{playlistWeb.name}" />
+
+						<h:commandButton value="Criar"
+							actionListener="#{playlistWeb.save}" />
+
+					</h:panelGrid>
+					<h:outputText value="#{playlistWeb.mensagem}" />
+
+				</h:form>
 
 
 				<h:form>
@@ -177,6 +180,57 @@
 							</h:commandButton>
 						</h:column>
 					</h:dataTable>
+				</h:form>
+
+
+				<h1>Utilizador Editar</h1>
+				<h:form>
+					<h:dataTable value="#{login.u}" var="u" styleClass="tabela"
+						headerClass="cabecalho" rowClasses="linha">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Nome" />
+							</f:facet>
+							<h:inputText value="#{u.name}" />
+
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Username" />
+
+							</f:facet>
+							<h:inputText value="#{u.username}" />
+
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Email" />
+							</f:facet>
+							<h:inputText value="#{u.email}" />
+
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Password" />
+							</f:facet>
+							<h:inputSecret value="#{u.password}" />
+
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Save</f:facet>
+							<h:commandButton value="Save Changes" action="#{login.update(u)}">
+								<f:ajax render="@form" execute="@form" />
+							</h:commandButton>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Delete</f:facet>
+							<h:commandButton action="#{login.delete(u)}" value="Apagar">
+								<f:ajax render="@form" />
+							</h:commandButton>
+						</h:column>
+					</h:dataTable>
+					<h:outputText value="#{login.mensagemUpadate}" />
 				</h:form>
 
 

@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 
+
 @Named
 @SessionScoped
 public class Login implements Serializable {
@@ -29,8 +30,11 @@ public class Login implements Serializable {
 	private String nome;
 	private String username;
 	private String password;
+	private String email;
 	private String mensagem="";
+	private String mensagemUpadate="";
 	private boolean logged=false;
+	private Utilizador u;
 
 	private static final Logger logger = LoggerFactory.getLogger(Login.class);
 
@@ -42,6 +46,7 @@ public class Login implements Serializable {
 		super();
 		this.username = username;
 		this.password = password;
+		
 	}
 	
 
@@ -55,6 +60,8 @@ public class Login implements Serializable {
 			HttpSession sessao= (HttpSession) ec.getSession(true);
 			sessao.setAttribute("loggedin", true);
 			ec.redirect(ec.getRequestContextPath() + "/index.xhtml");
+			this.email=user.emailUser(username, password);
+			this.nome=user.nameUser(username, password);
 			return "index.xhtml";
 		} else {
 			this.mensagem=mensagemFachada;
@@ -76,6 +83,20 @@ public class Login implements Serializable {
 		this.password="";
 		ec.redirect(ec.getRequestContextPath() + "/login.xhtml");
 	}
+	
+	public void update(Utilizador u) {
+		System.out.println("Username antiga: "+username + "------username novo: " + u.getUsername() );
+		System.out.println("Email antiga: "+email + "------email novo: " + u.getEmail());
+		this.setMensagemUpadate(user.update(u , username, email));
+	}
+	
+	
+	public String delete(Utilizador u){
+		this.mensagem=user.delete(u);
+		return mensagem;
+	}
+	
+	
 
 	public Boolean getLogged() {
 		return logged;
@@ -118,6 +139,33 @@ public class Login implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Utilizador getU() {
+		if (u==null){
+			this.u=user.find(username,password);
+		}
+		return u;
+	}
+
+	public void setU(Utilizador u) {
+		this.u = u;
+	}
+
+	public String getMensagemUpadate() {
+		return mensagemUpadate;
+	}
+
+	public void setMensagemUpadate(String mensagemUpadate) {
+		this.mensagemUpadate = mensagemUpadate;
 	}
 
 	

@@ -20,7 +20,6 @@ public class UserFachada implements IntUserFachada {
 	public String save(String name, String username, String email, String password) {
 		String mensagemRegisto="";
 		Utilizador utilizador =new Utilizador(name,email,username,password);
-		System.out.println(name+" "+username+" "+email+" "+password);
 		try{
 			isUserWithAllData(utilizador);
 			String passwordEncript=(passwordEncrip(password));
@@ -76,7 +75,7 @@ public class UserFachada implements IntUserFachada {
 				mensagemErro=mensagemErro+"Password ";
 			}
 
-			
+
 		}
 		if (hasError){
 			throw new IllegalArgumentException("Prencha o(s) campo(s): " + mensagemErro + "!!!");
@@ -109,6 +108,12 @@ public class UserFachada implements IntUserFachada {
 		String passwordEncript=(passwordEncrip(password));
 		List<Utilizador> utilizadors= userDAO.findUsernamePass(username,passwordEncript);
 		return utilizadors.get(0).getName();
+	}
+
+	public String emailUser(String username, String password){
+		String passwordEncript=(passwordEncrip(password));
+		List<Utilizador> utilizadors= userDAO.findUsernamePass(username,passwordEncript);
+		return utilizadors.get(0).getEmail();
 	}
 
 	private boolean isUserLoginWithAllData(String username, String password) {
@@ -154,21 +159,57 @@ public class UserFachada implements IntUserFachada {
 	}
 
 	@Override
-	public Utilizador update(Utilizador utilizador) {
-		// TODO Auto-generated method stub
+	public String update(Utilizador utilizador, String usernameVelho, String emailVelho) {
+		String mensagemRegisto="";
+		int sizeUsername=-1;
+		int sizeEmail=-1;
+		try{
+			isUserWithAllData(utilizador);
+			String passwordEncript=(passwordEncrip(utilizador.getPassword()));
+			utilizador.setPassword(passwordEncript);
+			if(utilizador.getUsername().equals(usernameVelho)){
+				sizeUsername=0;
+			} else if (!utilizador.getUsername().equals(usernameVelho)){
+				List<Utilizador> userUsername= userDAO.findUsername(utilizador.getUsername());
+				sizeUsername=userUsername.size();
+			}
+
+			if(utilizador.getEmail().equals(emailVelho)){
+				sizeEmail=0;
+			} else if (!utilizador.getEmail().equals(emailVelho)){
+				List<Utilizador> userEmail= userDAO.findEmail(utilizador.getEmail());
+				sizeEmail=userEmail.size();
+			}
+
+			if(sizeUsername==0 && sizeEmail==0 ){
+				userDAO.update(utilizador);
+				mensagemRegisto="Alteração realizada com sucesso!!";
+			}else if(sizeUsername==1 && sizeEmail==0){
+				mensagemRegisto="Escolha outro Username!!";
+			}else if(sizeUsername==0 && sizeEmail==1){
+				mensagemRegisto="Email encontra-se registado!!";
+			}else if(sizeUsername==1 && sizeEmail==1){
+				mensagemRegisto="Escolha outro Username e Email registado!!";
+			}
+			return mensagemRegisto;
+		} catch (IllegalArgumentException e){
+			return e.getMessage();
+		}
+
+	}
+
+	@Override
+	public String delete(Utilizador utilizador) {
+		String mensagem="";
+
 		return null;
 	}
 
 	@Override
-	public void delete(Utilizador utilizador) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Utilizador find(int entityID) {
-		// TODO Auto-generated method stub
-		return null;
+	public Utilizador find(String username, String password) {
+		String passwordEncript=(passwordEncrip(password));
+		List<Utilizador> utilizadors= userDAO.findUsernamePass(username,passwordEncript);
+		return utilizadors.get(0);
 	}
 
 	@Override
