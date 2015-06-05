@@ -33,6 +33,7 @@ public class Login implements Serializable {
 	private String email;
 	private String mensagem="";
 	private String mensagemUpadate="";
+	private String mensagem2="";
 	private boolean logged=false;
 	private Utilizador u;
 
@@ -91,11 +92,15 @@ public class Login implements Serializable {
 	}
 	
 	
-	public String delete(Utilizador u){
-		this.mensagem=user.delete(u);
-		return mensagem;
+	public void delete(Utilizador u){
+		this.setMensagem2(user.delete(u));
+		try {
+			logout();
+		} catch (IOException e) {
+			return;
+		}
+		
 	}
-	
 	
 
 	public Boolean getLogged() {
@@ -166,6 +171,14 @@ public class Login implements Serializable {
 
 	public void setMensagemUpadate(String mensagemUpadate) {
 		this.mensagemUpadate = mensagemUpadate;
+	}
+
+	public String getMensagem2() {
+		return mensagem2;
+	}
+
+	public void setMensagem2(String mensagem2) {
+		this.mensagem2 = mensagem2;
 	}
 
 	

@@ -22,6 +22,12 @@ public class PlaylistDAO extends GenericDAO<Playlist>{
 		super(Playlist.class);
 		// TODO Auto-generated constructor stub
 	}
+	
+	@Override
+	public List<Utilizador> findUsername(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 	@SuppressWarnings("unchecked")

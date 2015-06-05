@@ -69,7 +69,6 @@ public class PlaylistFachada implements IntPlaylistFachada{
 	public String delete(String name, String username) {
 		String mensagem="";
 		Utilizador user1=userDAO.findUsername(username).get(0);
-		System.out.println("user: "+user1.getName()+" playlist: "+name );
 		List<Playlist> playlist=playlistDAO.findNameUtilizador(name, user1);
 		System.out.println(playlist.size());
 		if(playlist.size()==0){
@@ -139,6 +138,15 @@ public class PlaylistFachada implements IntPlaylistFachada{
 		// TODO Auto-generated method stub
 		playlistDAO.update(playlist);
 		return playlist;
+	}
+
+	@Override
+	public void deleteListUti(Utilizador utilizador) {
+		List<Playlist> playlist=findByUtilizador(utilizador.getUsername());
+		for (Playlist p:playlist){
+			playlistDAO.delete(p.getId(), Playlist.class);
+		}
+		
 	}
 
 }

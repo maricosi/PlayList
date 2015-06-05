@@ -68,16 +68,20 @@ public class MusicDAO extends GenericDAO<Music> {
 		return q.getResultList();	
 	}
 
-	@SuppressWarnings("unchecked")
+/*	@SuppressWarnings("unchecked")
 	public List <Music> findByUser(int year){
 		Query q = em.createNamedQuery(Music.FIND_BY_YEAR);
 		q.setParameter("year",year);
 		return q.getResultList();	
-	}
+	}*/
 
 	@SuppressWarnings("unchecked")
-	public List <Music> findByUtilizador(String username, String password){
-		Utilizador user1=(Utilizador) findUsernamePass(username, password);
+	public List <Music> findByUtilizador(String username){
+		System.out.println("Estou no music dao");
+		List<Utilizador> lista = findUsername(username);
+		System.out.println("USERS ENCONTRADOS: " + lista);
+		Utilizador user1= lista.get(0);
+		System.out.println("Utilizador"+user1);
 		Query q = em.createNamedQuery(Music.FIND_BY_UTILIZADOR);
 		q.setParameter("utilizador",user1);
 		return q.getResultList();	
@@ -90,6 +94,21 @@ public class MusicDAO extends GenericDAO<Music> {
 	       q.setParameter("password",password);
 		
 		return q.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Utilizador> findUsername(String username) {
+		Query q = em.createNamedQuery(Utilizador.FIND_BY_USERNAME);
+		   q.setParameter("username", username);
+
+		return q.getResultList();
+	}
+	
+	public void idMusicaUtilizadorZero(List<Music> musica){
+		for (Music m:musica){
+			m.setUtilizador(null);
+			update(m);
+		}
 	}
 	
 }

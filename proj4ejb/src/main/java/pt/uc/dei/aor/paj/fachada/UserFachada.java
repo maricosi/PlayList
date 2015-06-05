@@ -16,6 +16,10 @@ public class UserFachada implements IntUserFachada {
 
 	@EJB
 	private UserDAO userDAO;
+	@EJB
+	private IntMusicFachada musicFachada;
+	@EJB
+	private IntPlaylistFachada playlistFachada;
 
 	public String save(String name, String username, String email, String password) {
 		String mensagemRegisto="";
@@ -200,9 +204,12 @@ public class UserFachada implements IntUserFachada {
 
 	@Override
 	public String delete(Utilizador utilizador) {
-		String mensagem="";
+		musicFachada.idMusicaUtilizadorZero(utilizador);
+		playlistFachada.deleteListUti(utilizador);
+		
+		userDAO.delete(utilizador.getId(), Utilizador.class);
 
-		return null;
+		return "Utilizador apagador !!!";
 	}
 
 	@Override

@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity
@@ -20,7 +21,7 @@ import javax.persistence.Table;
 	@NamedQuery(name = "Music.findByTitle", query="SELECT m FROM Music m WHERE m.title like :title"),
 	@NamedQuery(name = "Music.findByAlbum", query="SELECT m FROM Music m WHERE m.album like :album"),
 	@NamedQuery(name = "Music.findByYear", query="SELECT m FROM Music m WHERE m.year like :year"),
-	@NamedQuery(name = "Music.findByUtilizador", query="SELECT m FROM Music m WHERE m.utilizador like :utilizador"),
+	@NamedQuery(name = "Music.findByUtilizador", query="SELECT m FROM Music m WHERE m.utilizador=:utilizador"),
 	@NamedQuery(name = "Music.findByTitleArtist", query="SELECT m FROM Music m WHERE m.title like :title and m.artist like :artist"),
 })
 
@@ -49,6 +50,11 @@ public class Music{
 	private String url;
 	@ManyToOne
     private Utilizador utilizador;
+	@Transient
+	private boolean editable= false;
+	@Transient
+	private boolean check= false;
+	
 	
 	public Music() {
 		super();
@@ -63,6 +69,23 @@ public class Music{
 		this.url = url;
 		this.utilizador=utilizador;
 	}
+	
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
+	public boolean isCheck() {
+		return check;
+	}
+
+	public void setCheck(boolean check) {
+		this.check = check;
+	}
+
 
 	public int getId() {
 		return id;

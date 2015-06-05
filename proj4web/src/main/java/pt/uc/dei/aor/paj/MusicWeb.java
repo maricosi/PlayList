@@ -25,6 +25,7 @@ public class MusicWeb {
 	private String url;
 	private String mensagem="";
 	private List<Music> procuraMusic;
+	private Playlist playlist;
 	private  boolean table = false;
 
 
@@ -36,6 +37,14 @@ public class MusicWeb {
 		return music.findAll();
 	}
 	
+	public Playlist getPlaylist() {
+		return playlist;
+	}
+
+	public void setPlaylist(Playlist playlist) {
+		this.playlist = playlist;
+	}
+
 	public void save(){
 		this.mensagem=music.save(title, artist, album, url, year, login.getUsername());
 	}
@@ -48,7 +57,7 @@ public class MusicWeb {
 	}
 	
 	public List<Music> findAllByUtilizador(){
-		return music.findAllByUtilizador(login.getUsername(), login.getPassword());
+		return music.findAllByUtilizador(login.getUsername());
 	}
 	
 	public List<Music> getProcuraMusic() {

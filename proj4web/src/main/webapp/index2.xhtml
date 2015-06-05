@@ -66,17 +66,49 @@
 					<h:outputText value="#{musicWeb.mensagem}" />
 				</h:form>
 
-				<h:dataTable value="#{musicWeb.procuraMusic}" var="music">
-					<h:column>#{music.album}</h:column>
-					<h:column>#{music.title}</h:column>
-					<h:column>#{music.year}</h:column>
-					<h:column>#{music.utilizador.username}</h:column>
-				</h:dataTable>
+				<h:form>
+					<h:dataTable value="#{musicWeb.procuraMusic}" var="music">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Artista" />
+							</f:facet>
+							<h:outputText value="#{music.artist}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Album" />
+							</f:facet>
+							<h:outputText value="#{music.album}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Titulo" />
+							</f:facet>
+							<h:outputText value="#{music.title}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Ano" />
+							</f:facet>
+							<h:outputText value="#{music.year}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Selecionar" />
+							</f:facet>
+							<h:selectBooleanCheckbox value="#{music.check}" />
+						</h:column>
 
+					</h:dataTable>
+
+					<h:selectOneMenu value="#{musicWeb.playlist}">
+						<f:selectItems value="#{playlistWeb.procuraPlaylist}"/>
+					</h:selectOneMenu>
+				</h:form>
 
 				<h1>**Editar música**</h1>
 				<h:form>
-					
+
 					<h:outputLabel>Título</h:outputLabel>
 					<h:inputText value="#{musicWeb.title}" />
 					<h:outputLabel>Artista</h:outputLabel>
@@ -92,7 +124,45 @@
 						value="Atualizar" type="submit" /> -->
 				</h:form>
 
+				<h1>**Listagem de música utilizador**</h1>
 
+				<h:form>
+					<h:dataTable value="#{musicWeb.findAllByUtilizador()}" var="music"
+						styleClass="tabela" headerClass="cabecalho" rowClasses="linha">
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Titulo" />
+							</f:facet>
+							<h:outputText value="#{music.title}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Album" />
+							</f:facet>
+							<h:outputText value="#{music.album}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Artista" />
+							</f:facet>
+							<h:outputText value="#{music.artist}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Ano" />
+							</f:facet>
+							<h:outputText value="#{music.year}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Utilizador" />
+							</f:facet>
+							<h:outputText value="#{music.utilizador.username}" />
+						</h:column>
+
+					</h:dataTable>
+				</h:form>
 
 
 				<h1>Playlist Criar e tabela com Editar e apagar</h1>

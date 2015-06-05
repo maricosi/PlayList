@@ -37,6 +37,6 @@ public abstract class GenericDAO<T> implements Serializable{
     }
     
     public abstract List <Utilizador> findUsernamePass(String username, String password);
-
+    public abstract List <Utilizador> findUsername(String username);
 	
 }
