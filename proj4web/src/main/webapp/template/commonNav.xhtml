@@ -13,38 +13,29 @@
 <body>
 	<ui:composition>
 		<aside id="nav">
-			<h:form rendered="#{!login.loged}">
-				<h1>Login</h1>
-				<h:inputText id="username" title="Nome: " value="#{login.username}"
-					required="true" requiredMessage="Erro: Escreva o seu username."
-					maxlength="25" />
-				<p></p>
-				<h:commandButton id="Validar" value="Validar" action="/index" />
-				<h:commandButton id="apagar" value="Apagar" type="reset" />
-			</h:form>
-
-
-			<div class="messagecolor">
-				<h:messages showSummary="true" showDetail="false"
-					errorStyle="color: #d20005" infoStyle="color: blue" />
-			</div>
-			<h1>
-				<h:outputText value="Benvindo #{login.username}!!"
-					rendered="#{login.loged}" />
-			</h1>
-			<h:form rendered="#{login.loged}">
-
-				<h:commandButton id="Logout" value="Logout" action="#{login.logout}" />
-				<p></p>
-			</h:form>
-			<a
-				href="${facesContext.externalContext.requestContextPath}/pages/proximotorneio.xhtml"><img
-				src="${facesContext.externalContext.requestContextPath}/resources/images/torneiosueca.jpg"/>
-			</a>
-			<a
-				href="${facesContext.externalContext.requestContextPath}/pages/danca.xhtml"><img
-				src="${facesContext.externalContext.requestContextPath}/resources/images/logo_festival_danca.jpg"/>
-				</a>
+			<div class="ui-block-a">
+						<h:form>
+							<table>
+								<tr>
+									<td><h:commandButton styleClass="butopg"
+											value="Utilizador"
+											action="../pages/Playlist.xhtml?faces-redirect=true" /></td>
+								</tr>
+								<tr>
+									<td><h:commandButton styleClass="butopg" value="Playlist"
+											actionListener="#{playlistWeb.showTable()}" /></td>
+								</tr>
+								<tr>
+									<td><h:commandButton styleClass="butopg" value="Musica"
+											actionListener="#{musicWeb.showTable()}" /></td>
+								</tr>
+							</table>
+						</h:form>
+						<br></br>
+						<audio controls="controls">
+							<source src="" type="audio/mpeg" />
+						</audio>
+					</div>
 		</aside>
 	</ui:composition>
 </body>

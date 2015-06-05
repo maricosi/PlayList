@@ -6,10 +6,10 @@ body {
 	height: 100%;
 }
 
-article, aside, details, figcaption, figure, footer, header, hgroup,
+/* article, aside, details, figcaption, figure, footer, header, hgroup,
 	main, nav, section, summary {
 	display: block;
-}
+} */
 
 #page {
 	/* 	background-image: url("../resources/images/radio_by_TiViD.jpg");
@@ -180,12 +180,12 @@ h1 {
 }
 
 /* Formatação Navegação*/
-/* #aside {    
+#aside {    
     float: left;
     min-height: 500px;
     margin:50px;
 }
-  */
+
 .navbutton {
 	font: bold 18px Tahoma, Geneva, sans-serif;
 	font-style: normal;

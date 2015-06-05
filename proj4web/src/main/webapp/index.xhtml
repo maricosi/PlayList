@@ -1,90 +1,16 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
-	<title>Facelets Hello World</title>
+	<title>Calculadora Login</title>
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
-
-<h:body>
-	<ui:composition template="template/commonLayout.xhtml">
-		<ui:define name="bodyLogin" styleClass="">
-			<div id="bodyLogin">
-				<div class="ui-grid-b">
-					<div class="ui-block-a">
-						<h:form>
-							<table>
-								<tr>
-									<td><h:commandButton styleClass="butopg"
-											value="Utilizador"
-											actionListener="#{registoUser.novoRegisto()}" /></td>
-								</tr>
-								<tr>
-									<td><h:commandButton styleClass="butopg" value="Playlist"
-											actionListener="#{playlistWeb.showTable()}" /></td>
-								</tr>
-								<tr>
-									<td><h:commandButton styleClass="butopg" value="Musica"
-											actionListener="#{musicWeb.showTable()}" /></td>
-								</tr>
-							</table>
-						</h:form>
-						<br></br>
-						<audio controls="controls">
-							<source src="" type="audio/mpeg" />
-						</audio>
-					</div>
-
-					<div class="ui-block-b">
-						<div id="loginRegisto1">
-							<h:form prependId="false" rendered="#{musicWeb.table}">
-								<h2>CRIAR MUSICA</h2>
-								<h:panelGrid columns="2">
-									<h:outputLabel value="Artista" />
-									<h:inputText value="#{musicWeb.artist}" />
-
-									<h:outputLabel value="Título" />
-									<h:inputText value="#{musicWeb.title}" />
-
-									<h:outputLabel value="Album" />
-									<h:inputText value="#{musicWeb.album}" />
-
-									<h:outputLabel value="Ano" />
-									<h:inputText value="#{musicWeb.year}" />
-
-									<h:outputLabel value="URL" />
-									<h:inputText value="#{musicWeb.url}" />
-																		
-									<h:commandButton value="Adicionar"
-										actionListener="#{musicWeb.save()}" styleClass="butopg" />															
-									</h:panelGrid>
-									<h:outputText value="#{musicWeb.mensagem}" />	
-					</h:form>
-					<h:form prependId="false" rendered="#{playlistWeb.table}">
-								<h:panelGrid columns="2">
-									<h:outputText value="Name" />
-									<h:inputText value="#{playlistWeb.name}" />
-
-									<h:commandButton value="Criar"
-										actionListener="#{playlistWeb.save}" />
-									<h:commandButton value="Delete"
-										actionListener="#{playlistWeb.delete}" />
-								</h:panelGrid>
-								<h:outputText value="#{playlistWeb.mensagem}" />
-
-							</h:form>
-						</div>
-					</div>
-					<div class="ui-block-c"></div>
-				</div>
-			</div>
-		</ui:define>
+<body>
+	<ui:composition template="../template/commomLayout.xhtml">
 	</ui:composition>
-</h:body>
+
+</body>
 </html>
-
-

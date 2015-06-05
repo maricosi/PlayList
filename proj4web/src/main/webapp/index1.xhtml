@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core">
 <!-- xmlns:p="http://primefaces.org/ui" -->
 
@@ -9,50 +10,7 @@
 	<title>Playlist</title>
 </h:head>
 <h:body>
-	<!-- <h:form>
-		<h:dataTable value="#{playlistWeb.procuraPlaylist}" var="playlist">
-			<h:column>
-				<f:facet name="header">Nome</f:facet>
-				<h:inputText value="#{playlist.name}" rendered="#{employee.canEdit}" />
-				<h:outputText value="#{playlist.name}"
-					rendered="#{not employee.canEdit}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Department</f:facet>
-				<h:inputText value="#{employee.department}" size="20"
-					rendered="#{employee.canEdit}" />
-				<h:outputText value="#{employee.department}"
-					rendered="#{not employee.canEdit}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Age</f:facet>
-				<h:inputText value="#{employee.age}" size="5"
-					rendered="#{employee.canEdit}" />
-				<h:outputText value="#{employee.age}"
-					rendered="#{not employee.canEdit}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Salary</f:facet>
-				<h:inputText value="#{employee.salary}" size="5"
-					rendered="#{employee.canEdit}" />
-				<h:outputText value="#{employee.salary}"
-					rendered="#{not employee.canEdit}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Edit</f:facet>
-				<h:commandButton value="Edit" action="#{userData.editEmployee}"
-					rendered="#{not employee.canEdit}">
-					<f:setPropertyActionListener target="#{userData.employee}"
-						value="#{employee}" />
-				</h:commandButton>
-			</h:column>
-		</h:dataTable>
-		<br />
-		<h:commandButton value="Save Employees"
-			action="#{userData.saveEmployees}" />
-	</h:form> -->
-
-
-
+	<ui:composition template="/template/commomLayoutLogin.xhtml">
+	</ui:composition>
 </h:body>
 </html>
