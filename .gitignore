@@ -5,3 +5,7 @@ target/
 .idea/
 *.iml
 atlassian-ide-plugin.xml
+*.properties
+*.jar
+*.lst
+*.jar
