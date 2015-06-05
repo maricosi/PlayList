@@ -13,7 +13,7 @@
 <body>
 	<ui:composition>
 		<aside id="nav">
-			<div class="ui-block-a">
+
 						<h:form>
 							<table>
 								<tr>
@@ -29,13 +29,18 @@
 									<td><h:commandButton styleClass="butopg" value="Musica"
 											actionListener="#{musicWeb.showTable()}" /></td>
 								</tr>
+								<tr>
+									<td><h:commandButton styleClass="buto login" tabindex="4" value="Logout"
+					actionListener="#{login.logout()}" />
+									</td>
+								</tr>
 							</table>
 						</h:form>
 						<br></br>
 						<audio controls="controls">
 							<source src="" type="audio/mpeg" />
 						</audio>
-					</div>
+	
 		</aside>
 	</ui:composition>
 </body>

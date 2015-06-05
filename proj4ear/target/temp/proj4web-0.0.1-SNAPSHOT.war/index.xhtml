@@ -1,16 +1,65 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
-	<title>Calculadora Login</title>
+	<title>Facelets Hello World</title>
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
-<body>
-	<ui:composition template="../template/commomLayoutLogin.xhtml">
-	</ui:composition>
 
-</body>
+<h:body>
+	<ui:composition template="template/commonLayout.xhtml">
+		<ui:define name="content" styleClass="">
+			<article id="content">
+
+			<div id="loginRegisto1">
+											<h:form prependId="false" id="criarMusica">
+								<h2>CRIAR MUSICA</h2>
+								<h:panelGrid columns="2">
+									<h:outputLabel value="Artista" />
+									<h:inputText value="#{musicWeb.artist}" />
+
+									<h:outputLabel value="Título" />
+									<h:inputText value="#{musicWeb.title}" />
+
+									<h:outputLabel value="Album" />
+									<h:inputText value="#{musicWeb.album}" />
+
+									<h:outputLabel value="Ano" />
+									<h:inputText value="#{musicWeb.year}" />
+
+									<h:outputLabel value="URL" />
+									<h:inputText value="#{musicWeb.url}" />
+																		
+									<h:commandButton value="Adicionar"
+										actionListener="#{musicWeb.save()}" styleClass="butopg" />															
+									</h:panelGrid>
+									<h:outputText value="#{musicWeb.mensagem}" />	
+					</h:form> 
+					<h:form prependId="false" rendered="#{playlistWeb.table}">
+								<h:panelGrid columns="2">
+									<h:outputText value="Name" />
+									<h:inputText value="#{playlistWeb.name}" />
+
+									<h:commandButton value="Criar"
+										actionListener="#{playlistWeb.save}" />
+									<h:commandButton value="Delete"
+										actionListener="#{playlistWeb.delete}" />
+								</h:panelGrid>
+								<h:outputText value="#{playlistWeb.mensagem}" />
+
+							</h:form>
+						</div>
+				
+			
+		
+			</article>
+		</ui:define>
+	</ui:composition>
+</h:body>
 </html>
+
+

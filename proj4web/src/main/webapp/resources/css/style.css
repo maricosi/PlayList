@@ -10,7 +10,6 @@ body {
 	main, nav, section, summary {
 	display: block;
 } */
-
 #page {
 	/* 	background-image: url("../resources/images/radio_by_TiViD.jpg");
 	background-repeat: no-repeat;
@@ -30,17 +29,17 @@ body {
 }
 
 #header2 {
+	position: relative;
 	margin-bottom: -3px;
-	position: fixe;
-	display: block;
 	color: Cornsilk;
+	/* display: inline-table; */
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #400000;
-	height: 70px;
+	height: auto;
 	text-align: center;
 	/* 	padding-left: 42px;
-	padding-right: 42px; */
+	padding-right: 42px; */ */
 	vertical-align: middle;
 	border: solid white;
 	border-bottom-style: none;
@@ -54,28 +53,26 @@ body {
 }
 
 #radioK7 {
-	text-align: center;
 	position: relative;
-	/* 	display: inline-block; */
+	text-align: center;
+	display: -webkit-inline-box;
+	display: -moz-inline-box;
+	display: inline-block;
+	/* 	position: relative;
+	 */
 	padding: 10px;
+	vertical-align: middle;
+	text-align: center;
 }
 
 .headerbtn {
+	display: -webkit-inline-box; display : -moz-inline-box; display :
+	inline-block;
 	text-align: right;
-	float: right;
-	display: inline-block;
-	display: -webkit-inline-box;
-	display: -moz-inline-box;
-	display: -webkit-inline-box; */
-	/* vertical-align: middle; */
-	margin-bottom: auto;
-	margin-top: 10px;
-	float: right;
-	text-align: center;
-	margin-right: 15px;
+	padding-left: 75%;
 }
 
-#bodyLogin {
+#bodyLogin, #content {
 	background-image:
 		url("../resources/images/music_by_miggi4deviant-d30x239.jpg");
 	background-size: 100% 100%;
@@ -180,12 +177,17 @@ h1 {
 }
 
 /* Formatação Navegação*/
-#aside {    
+#nav {
+	float: left;
+	padding-top: 20px;
+	padding-left: 20px;
+}
+
+/* #aside {    
     float: left;
     min-height: 500px;
     margin:50px;
-}
-
+} */
 .navbutton {
 	font: bold 18px Tahoma, Geneva, sans-serif;
 	font-style: normal;

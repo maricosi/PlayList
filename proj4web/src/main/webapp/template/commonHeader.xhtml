@@ -14,14 +14,12 @@
 		<!-- Inicio do header -->
 		<header id="header2">
 			<h1 id="radioK7">RadioK7</h1>
+			
 			<h:form id="headerbtn" styleClass="headerbtn"
 				rendered="#{login.logged}">
-				<h:panelGrid columns="1">
-					<h:commandButton styleClass="buto login" tabindex="4"
-						value="Logout" actionListener="#{login.logout()}" />
+				<h:outputText value="#{login.mensagem}" />
+				
 
-					<h:outputText value="#{login.mensagem}" />
-				</h:panelGrid>
 			</h:form>
 		</header>
 	</ui:composition>
