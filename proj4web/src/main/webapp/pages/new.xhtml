@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+	<link rel="stylesheet" type="text/css"
+		href="../resources/css/slick.css" />
+	<link rel="stylesheet" type="text/css"
+		href="../resources/css/slick-theme.css" />
+</h:head>
+<body>
+	<ui:composition template="../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<article id="content">
+
+				<div id="loginRegisto1">
+					<h:form>
+						<h:panelGrid columns="2">
+							<h:outputLabel value="Artista" />
+							<h:inputText value="#{musicWeb.artist}" />
+
+							<h:outputLabel value="Título" />
+							<h:inputText value="#{musicWeb.title}" />
+
+							<h:outputLabel value="Album" />
+							<h:inputText value="#{musicWeb.album}" />
+
+							<h:outputLabel value="Ano" />
+							<h:inputText value="#{musicWeb.year}" />
+
+							<h:outputLabel value="URL" />
+							<h:inputText value="#{musicWeb.url}" />
+
+							<h:outputLabel />
+							<h:commandButton value="Adicionar"
+								actionListener="#{musicWeb.save()}" />
+
+						</h:panelGrid>
+
+						<h:outputText value="#{musicWeb.mensagem}" />
+					</h:form>
+
+
+
+				</div>
+			</article>
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

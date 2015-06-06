@@ -31,6 +31,7 @@ public class RegistoUser implements Serializable {
 	private String email;
 	private String mensagem="";
 	private boolean registo=false;
+	private String reload;
 	
 	
 	public RegistoUser() {
@@ -128,5 +129,8 @@ public class RegistoUser implements Serializable {
 		this.verifyPassword = verifyPassword;
 	}
 	
+	public String reload(){
+		return "addPlaylist?-faces-redirect=true";
+	}
 	
 }

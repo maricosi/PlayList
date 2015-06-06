@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+	<link rel="stylesheet" type="text/css"
+		href="../resources/css/slick.css" />
+	<link rel="stylesheet" type="text/css"
+		href="../resources/css/slick-theme.css" />
+</h:head>
+<body>
+	<ui:composition template="../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<article id="content">
+
+				<div id="loginRegisto1">
+							<h:form id="editMusic">
+
+					<h:outputLabel>Título</h:outputLabel>
+					<h:inputText value="#{musicWeb.title}" />
+					<h:outputLabel>Artista</h:outputLabel>
+					<h:inputText value="#{musicWeb.artist}" />
+					<h:outputLabel>Album</h:outputLabel>
+					<h:inputText value="#{musicWeb.album}" />
+					<h:outputLabel>Ano</h:outputLabel>
+					<h:inputText value="#{musicWeb.year}">
+						<f:validateLongRange minimum="1900" maximum="2100" />
+					</h:inputText>
+
+					<!-- <h:commandButton action="#{musicaGest.editarMusica()}"
+						value="Atualizar" type="submit" /> -->
+				</h:form>
+
+
+
+				</div>
+			</article>
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

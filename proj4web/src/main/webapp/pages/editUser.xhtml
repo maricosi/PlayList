@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+	<link rel="stylesheet" type="text/css"
+		href="../resources/css/slick.css" />
+	<link rel="stylesheet" type="text/css"
+		href="../resources/css/slick-theme.css" />
+</h:head>
+<body>
+	<ui:composition template="../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<article id="content">
+
+				<div id="loginRegisto1">
+					<h1>Utilizador Editar</h1>
+					<h:form>
+						<h:dataTable value="#{login.u}" var="u" styleClass="tabela"
+							headerClass="cabecalho" rowClasses="linha">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Nome" />
+								</f:facet>
+								<h:inputText value="#{u.name}" />
+
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Username" />
+
+								</f:facet>
+								<h:inputText value="#{u.username}" />
+
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Email" />
+								</f:facet>
+								<h:inputText value="#{u.email}" />
+
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Password" />
+								</f:facet>
+								<h:inputSecret value="#{u.password}" />
+
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">Save</f:facet>
+								<h:commandButton value="Save Changes"
+									action="#{login.update(u)}">
+									<f:ajax render="@form" execute="@form" />
+								</h:commandButton>
+							</h:column>
+							<h:column>
+								<f:facet name="header">Delete</f:facet>
+								<h:commandButton action="#{login.delete(u)}" value="Apagar">
+									<f:ajax render="@form" />
+								</h:commandButton>
+							</h:column>
+						</h:dataTable>
+						<h:outputText value="#{login.mensagemUpadate}" />
+					</h:form>
+
+
+
+				</div>
+			</article>
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

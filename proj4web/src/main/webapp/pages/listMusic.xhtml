@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+	<link rel="stylesheet" type="text/css"
+		href="../resources/css/slick.css" />
+	<link rel="stylesheet" type="text/css"
+		href="../resources/css/slick-theme.css" />
+</h:head>
+<body>
+	<ui:composition template="../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<article id="content">
+
+				<div id="loginRegisto1">
+							<h:form>
+					<h:dataTable value="#{musicWeb.findAllByUtilizador()}" var="music"
+						styleClass="tabela" headerClass="cabecalho" rowClasses="linha">
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Titulo" />
+							</f:facet>
+							<h:outputText value="#{music.title}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Album" />
+							</f:facet>
+							<h:outputText value="#{music.album}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Artista" />
+							</f:facet>
+							<h:outputText value="#{music.artist}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Ano" />
+							</f:facet>
+							<h:outputText value="#{music.year}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Utilizador" />
+							</f:facet>
+							<h:outputText value="#{music.utilizador.username}" />
+						</h:column>
+
+					</h:dataTable>
+				</h:form>
+
+
+				</div>
+			</article>
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

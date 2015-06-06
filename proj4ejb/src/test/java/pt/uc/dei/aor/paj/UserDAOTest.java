@@ -1,7 +1,6 @@
 package pt.uc.dei.aor.paj;
 
 
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
