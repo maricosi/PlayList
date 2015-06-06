@@ -19,15 +19,15 @@
 								<tr>
 									<td><h:commandButton styleClass="butopg"
 											value="Utilizador"
-											action="#{registoUser.reload}" /></td>
+											action="pages/editUser?faces-redirect=true" /> </td>
 								</tr>
 								<tr>
-									<td><h:commandButton styleClass="butopg" value="Playlist"
-											actionListener="#{playlistWeb.showTable()}" /></td>
+									<td><h:commandButton styleClass="butopg" value="Playlist" action="editUser?-faces-redirect=true"
+											 /></td>
 								</tr>
 								<tr>
 									<td><h:commandButton styleClass="butopg" value="Musica"
-											actionListener="#{musicWeb.showTable()}" /></td>
+											action="pages/editMusica" /></td>
 								</tr>
 								<tr>
 									<td><h:commandButton styleClass="butopg" tabindex="4" value="Logout"

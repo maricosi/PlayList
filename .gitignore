@@ -9,3 +9,7 @@ atlassian-ide-plugin.xml
 *.jar
 *.lst
 *.jar
+*.MF
+*.properties
+*.MF
+proj4jpa/target/maven-archiver/pom.properties
