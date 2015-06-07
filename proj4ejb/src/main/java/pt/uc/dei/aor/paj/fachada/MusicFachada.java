@@ -23,46 +23,47 @@ public class MusicFachada implements IntMusicFachada{
 	private UserDAO userDAO;
 	private static final Logger logger = LoggerFactory.getLogger(MusicFachada.class);
 
-	
+
 	@Override
 	public Music find(int entityID) {
-		// TODO Auto-generated method stub
-		return null;
+		return musicDAO.find(entityID);
 	}
 
 	@Override
-	public void delete(Music music) {
-		musicDAO.delete(music.getId(), Music.class);
-	}
-	
-	
-
-	@Override
-	public String update(Music music) {
-	
-		
+	public String delete(Music music) {
 		try{
-		musicDAO.update(music);
-		return "Musica alterada com sucesso!!!";
+			musicDAO.delete(music.getId(), Music.class);
+			return "Musica apagada com sucesso!!";
 		}catch (IllegalArgumentException e){
 			logger.error( e.getMessage());
 			return "Ocorreu um erro no sistema!!!";
 		}
 	}
 
+	@Override
+	public String update(Music music) {
+		try{
+			musicDAO.update(music);
+			return "Musica alterada com sucesso!!!";
+		}catch (IllegalArgumentException e){
+			logger.error( e.getMessage());
+			return "Ocorreu um erro no sistema!!!";
+		}
+	}
 
 	@Override
 	public List<Music> findAll() {	
 		return musicDAO.all();
 	}
 
+	@Override
 	public String save(String title, String artist, String album, String url, int year, String username) {
 		Utilizador utilizador=userDAO.findUsername(username).get(0);
 		Music music =new Music(artist,title,album,year,url,utilizador);
 		try{
 			isMusicWithAllData(music);
 			musicDAO.save(music);
-			return "Musica criada com sucesso";
+			return "Musica criada com sucesso!!!";
 		}catch (IllegalArgumentException e){
 			logger.error( e.getMessage());
 			return "Ocorreu um erro no sistema!!!";
@@ -116,37 +117,33 @@ public class MusicFachada implements IntMusicFachada{
 	}
 
 
-	
+	@Override
 	public List<Music> findAllByUtilizador(String username) {
 		return musicDAO.findByUtilizador(username);
 	}
-	
+
+	@Override
 	public String idMusicsUtilizadorNull(Utilizador utilizador) {
 		try{
-		List<Music> musicUtilizador=findAllByUtilizador(utilizador.getUsername());
-		musicDAO.idMusicsUtilizadorNull(musicUtilizador);
-		return "As musicas já não lhe pertencem!!!";
+			List<Music> musicUtilizador=findAllByUtilizador(utilizador.getUsername());
+			musicDAO.idMusicsUtilizadorNull(musicUtilizador);
+			return "As musicas já não lhe pertencem!!!";
 		}catch (IllegalArgumentException e){
 			logger.error( e.getMessage());
 			return "Ocorreu um erro no sistema!!!";
 		}
 	}
 
+	@Override
 	public String idMusicUtilizadorNull( Music m) {
-		
 		try{
-		musicDAO.idMusicUtilizadorNull(m);
-		return "A musica com titulo, "+m.getTitle()+", já não lhe pertence!!!";
+			musicDAO.idMusicUtilizadorNull(m);
+			return "A musica com titulo, "+m.getTitle()+", já não lhe pertence!!!";
 		}catch (IllegalArgumentException e){
 			logger.error( e.getMessage());
 			return "Ocorreu um erro no sistema!!!";
 		}
 	}
-
-
-
-
-
 
 }
 

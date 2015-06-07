@@ -11,7 +11,7 @@ import pt.uc.dei.aor.paj.Utilizador;
 public interface IntMusicFachada {
 	public abstract String save(String title, String artist, String album, String path, int year, String username);
 	public abstract String update(Music music);
-	public abstract void delete(Music music);
+	public abstract String delete(Music music);
 	public abstract Music find(int entityID);
 	public abstract List<Music> findAll();
 	public abstract List<Music> findAllByUtilizador(String username);
