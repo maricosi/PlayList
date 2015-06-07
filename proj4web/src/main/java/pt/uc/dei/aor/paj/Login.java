@@ -60,10 +60,10 @@ public class Login implements Serializable {
 			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 			HttpSession sessao= (HttpSession) ec.getSession(true);
 			sessao.setAttribute("loggedin", true);
-			ec.redirect(ec.getRequestContextPath() + "/index.xhtml");
+			ec.redirect(ec.getRequestContextPath() + "/pages/createPlaylist.xhtml");
 			this.email=user.emailUser(username, password);
 			this.nome=user.nameUser(username, password);
-			return "index.xhtml";
+			return "/pages/createPlaylist.xhtml";
 		} else {
 			this.mensagem=mensagemFachada;
 			this.logged=false;
