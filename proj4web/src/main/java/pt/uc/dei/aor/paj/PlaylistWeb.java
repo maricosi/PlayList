@@ -100,9 +100,6 @@ public class PlaylistWeb implements Serializable {
 		this.mensagem=playlist.delete(p.getName(),login.getUsername());
 		this.procuraPlaylist=playlist.orderByName(login.getUsername(),"ASC");
 	}
-	
-
-	
 
 	public void editAction(Playlist playlist) {
 		playlist.setEditable(true);
@@ -172,7 +169,6 @@ public class PlaylistWeb implements Serializable {
 		if (musicPlaylist!=null){
 			logger.info(musicPlaylist.get(0).toString());
 		}
-		
 		return musicPlaylist;
 	}
 

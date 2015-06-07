@@ -7,6 +7,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import pt.uc.dei.aor.paj.Music;
 import pt.uc.dei.aor.paj.Playlist;
 import pt.uc.dei.aor.paj.Utilizador;
@@ -21,6 +24,7 @@ public class PlaylistFachada implements IntPlaylistFachada{
 	private PlaylistDAO playlistDAO;
 	@EJB
 	private UserDAO userDAO;
+	private static final Logger logger = LoggerFactory.getLogger(PlaylistFachada.class);
 
 	public String save(String name, LocalDate date, String username) {
 		String mensagemRegistoPlaylist="";
@@ -36,8 +40,9 @@ public class PlaylistFachada implements IntPlaylistFachada{
 				mensagemRegistoPlaylist="Já existe uma Playlist com esse nome!";
 			}
 			return mensagemRegistoPlaylist;
-		} catch (IllegalArgumentException e){
-			return e.getMessage();
+		}catch (IllegalArgumentException e){
+			logger.error( e.getMessage());
+			return "Ocorreu um erro no sistema!!!";
 		}
 	}
 
@@ -69,16 +74,22 @@ public class PlaylistFachada implements IntPlaylistFachada{
 
 	public String delete(String name, String username) {
 		String mensagem="";
-		Utilizador user1=userDAO.findUsername(username).get(0);
-		List<Playlist> playlist=playlistDAO.findNameUtilizador(name, user1);
-		System.out.println(playlist.size());
-		if(playlist.size()==0){
-			mensagem= "Playlist inexistente!!!";
-		} else if (playlist.size()==1){
-			playlistDAO.delete(playlist.get(0).getId(),Playlist.class);
-			mensagem="A playlist "+playlist.get(0).getName()+ "foi apagada com sucesso!!!";
+		try{
+			Utilizador user1=userDAO.findUsername(username).get(0);
+			List<Playlist> playlist=playlistDAO.findNameUtilizador(name, user1);
+
+			if(playlist.size()==0){
+				mensagem= "Playlist inexistente!!!";
+			} else if (playlist.size()==1){
+				playlistDAO.delete(playlist.get(0).getId(),Playlist.class);
+				mensagem="A playlist "+playlist.get(0).getName()+ "foi apagada com sucesso!!!";
+			}
+			return mensagem;
+
+		}catch (IllegalArgumentException e){
+			logger.error( e.getMessage());
+			return "Ocorreu um erro no sistema!!!";
 		}
-		return mensagem;
 	}
 
 	@Override
@@ -167,8 +178,9 @@ public class PlaylistFachada implements IntPlaylistFachada{
 			}
 			return mensagemMusicPlaylist;
 
-		} catch (IllegalArgumentException e){
-			return e.getMessage();
+		}catch (IllegalArgumentException e){
+			logger.error( e.getMessage());
+			return "Ocorreu um erro no sistema!!!";
 		}
 
 	}

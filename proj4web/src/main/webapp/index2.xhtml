@@ -145,50 +145,94 @@
 					<!-- <h:commandButton action="#{musicaGest.editarMusica()}"
 						value="Atualizar" type="submit" /> -->
 				</h:form>
-
-				<h1>**Listagem de música utilizador**</h1>
+				
+				
+				
+				
+				
+				
+				
+				<h1>Cria tabela das minha musicas,  com botao Editar e apagar</h1>
 
 				<h:form>
-					<h:dataTable value="#{musicWeb.findAllByUtilizador()}" var="music"
+					<h:dataTable value="#{musicWeb.minhaMusic}" var="music"
 						styleClass="tabela" headerClass="cabecalho" rowClasses="linha">
-
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Titulo" />
+
+								<!-- <h:commandButton action="#{playlistWeb.orderByNameASC()}"
+									value="&#9650;" />
+								<h:commandButton action="#{playlistWeb.orderByNameDESC()}"
+									value="&#9660;" /> -->
+
 							</f:facet>
-							<h:outputText value="#{music.title}" />
+							<h:inputText value="#{music.title}" rendered="#{music.editable}" />
+							<h:outputText value="#{music.title}"
+								rendered="#{!music.editable}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Album" />
+
+								<!-- <h:commandButton action="#{playlistWeb.orderByNameASC()}"
+									value="&#9650;" />
+								<h:commandButton action="#{playlistWeb.orderByNameDESC()}"
+									value="&#9660;" /> -->
+
 							</f:facet>
-							<h:outputText value="#{music.album}" />
+							<h:inputText value="#{music.album}" rendered="#{music.editable}" />
+							<h:outputText value="#{music.album}"
+								rendered="#{!music.editable}" />
 						</h:column>
+
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Artista" />
+
+								<!-- <h:commandButton action="#{playlistWeb.orderByNameASC()}"
+									value="&#9650;" />
+								<h:commandButton action="#{playlistWeb.orderByNameDESC()}"
+									value="&#9660;" /> -->
+
 							</f:facet>
-							<h:outputText value="#{music.artist}" />
+							<h:inputText value="#{music.artist}" rendered="#{music.editable}" />
+							<h:outputText value="#{music.artist}"
+								rendered="#{!music.editable}" />
 						</h:column>
 						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Ano" />
-							</f:facet>
-							<h:outputText value="#{music.year}" />
+							<f:facet name="header">Edit</f:facet>
+							<h:commandButton action="#{musicWeb.editAction(music)}"
+								rendered="#{!music.editable}" value="Editar">
+								<f:ajax render="@form" />
+							</h:commandButton>
 						</h:column>
 						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Utilizador" />
-							</f:facet>
-							<h:outputText value="#{music.utilizador.username}" />
+							<f:facet name="header">Save</f:facet>
+							<h:commandButton value="Save Changes"
+								action="#{musicWeb.update(music)}">
+								<f:ajax render="@form" execute="@form" />
+							</h:commandButton>
 						</h:column>
-
-
+						<h:column>
+							<f:facet name="header">Delete</f:facet>
+							<h:commandButton action="#{musicWeb.idMusicUtilizadorNull(music)}"
+								value="Apagar">
+								<f:ajax render="@form" execute="@form" />
+							</h:commandButton>
+						</h:column>
 					</h:dataTable>
 				</h:form>
 
 
-				<h1>Playlist Criar e tabela com Editar e apagar</h1>
+
+
+
+
+			
+
+
+				<h1>c</h1>
 
 				<h:form>
 					<h:panelGrid columns="2">

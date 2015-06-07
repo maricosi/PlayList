@@ -86,8 +86,8 @@ public class Login implements Serializable {
 	}
 	
 	public void update(Utilizador u) {
-		System.out.println("Username antiga: "+username + "------username novo: " + u.getUsername() );
-		System.out.println("Email antiga: "+email + "------email novo: " + u.getEmail());
+		logger.debug("Username antiga: "+username + "------username novo: " + u.getUsername() );
+		logger.debug("Email antiga: "+email + "------email novo: " + u.getEmail());
 		this.setMensagemUpadate(user.update(u , username, email));
 	}
 	

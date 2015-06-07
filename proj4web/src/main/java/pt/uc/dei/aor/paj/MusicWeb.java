@@ -1,30 +1,22 @@
 package pt.uc.dei.aor.paj;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Part;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import pt.uc.dei.aor.paj.fachada.IntMusicFachada;
 import pt.uc.dei.aor.paj.fachada.IntPlaylistFachada;
-
 
 @Named
 @ViewScoped
 public class MusicWeb implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@EJB
 	private IntMusicFachada music;
@@ -37,7 +29,6 @@ public class MusicWeb implements Serializable{
 	@Inject
 	private UploadFile upload;
 	private String currentURL;
-
 	private String artist;
 	private String title;
 	private String album;
@@ -47,6 +38,7 @@ public class MusicWeb implements Serializable{
 	private String mensagem2="";
 	private List<Music> procuraMusic;
 	private ArrayList<Music> musicaTrue=new ArrayList<Music>();
+	private List<Music>minhaMusic;
 	private String nameplaylist;
 	private List<Playlist> playlist;
 	private  boolean table = false;
@@ -56,7 +48,7 @@ public class MusicWeb implements Serializable{
 	public MusicWeb() {
 		super();
 	}
-	
+
 	public Part getFile() {
 		return upload.getFile();
 	}
@@ -91,10 +83,7 @@ public class MusicWeb implements Serializable{
 			}
 		}
 		musicaTrue.clear();
-
-
 	}
-
 
 	public List<Playlist> getPlaylist() {
 		if(playlist==null){
@@ -123,9 +112,33 @@ public class MusicWeb implements Serializable{
 		}
 	}
 
+
+
+
 	public List<Music> findAllByUtilizador(){
-		return music.findAllByUtilizador(login.getUsername());
+		this.minhaMusic=music.findAllByUtilizador(login.getUsername());
+		return minhaMusic;
 	}
+
+	public void editAction(Music music) {
+		music.setEditable(true);
+	}
+
+	public void update(Music m) {
+		logger.info("antes"+m.getTitle());
+		music.update(m);
+		logger.info("depois"+m.getTitle());
+		findAllByUtilizador();
+	}
+
+	public void idMusicUtilizadorNull (Music m){
+		music.idMusicUtilizadorNull(m);
+		findAllByUtilizador();
+		this.mensagem2="";
+	}
+
+
+	
 
 	public List<Music> getProcuraMusic() {
 		return procuraMusic;
@@ -211,63 +224,14 @@ public class MusicWeb implements Serializable{
 		this.currentURL=music.getUrl();
 	}
 
-
-
-
-
-
-
-
-	/*//Upload
-	private Part file;
-
-	private String path;
-
-	public Part getFile() {
-		return file;
-	}
-
-	public void setFile(Part file) {
-		this.file = file;
-	}
-
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
-
-	//Cuidado com as excepções
-	public void upload() {
-		Properties props = System.getProperties();
-
-		Random r=new Random();
-
-		String name=getFilename(this.file);
-
-		this.path="/music/"+name;
-
-		try {
-			file.write(props.getProperty("user.dir")+"\\music\\"+name);
-		} catch (IOException e) {
-			e.printStackTrace();
+	public List<Music> getMinhaMusic() {
+		if (minhaMusic==null){
+			this.minhaMusic=findAllByUtilizador();
 		}
-
-		this.file=null;
-
-//		return this.path;
+		return minhaMusic;
 	}
 
-	private static String getFilename(Part part) {  
-		for (String cd : part.getHeader("content-disposition").split(";")) {  
-			if (cd.trim().startsWith("filename")) {  
-				String filename = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");  
-				return filename.substring(filename.lastIndexOf('/') + 1).substring(filename.lastIndexOf('\\') + 1); // MSIE fix.  
-			}
-		}
-		return null;  
-	}*/
-
+	public void setMinhaMusic(List<Music> minhaMusic) {
+		this.minhaMusic = minhaMusic;
+	}
 }

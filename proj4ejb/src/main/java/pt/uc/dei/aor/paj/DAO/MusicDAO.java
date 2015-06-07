@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.Query;
-
 import pt.uc.dei.aor.paj.Music;
 import pt.uc.dei.aor.paj.Utilizador;
 
@@ -12,7 +11,7 @@ import pt.uc.dei.aor.paj.Utilizador;
 public class MusicDAO extends GenericDAO<Music> {
 
 	private static final long serialVersionUID = -5948663054664365492L;
-
+	
 
 
 	public MusicDAO(){
@@ -104,11 +103,15 @@ public class MusicDAO extends GenericDAO<Music> {
 		return q.getResultList();
 	}
 	
-	public void idMusicaUtilizadorZero(List<Music> musica){
+	public void idMusicsUtilizadorNull(List<Music> musica){
 		for (Music m:musica){
-			m.setUtilizador(null);
-			update(m);
+			idMusicUtilizadorNull(m);
 		}
+	}
+	
+	public void  idMusicUtilizadorNull(Music musica){
+			musica.setUtilizador(null);
+			update(musica);
 	}
 	
 }

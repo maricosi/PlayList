@@ -7,6 +7,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import pt.uc.dei.aor.paj.Utilizador;
 import pt.uc.dei.aor.paj.DAO.UserDAO;
 
@@ -20,6 +23,7 @@ public class UserFachada implements IntUserFachada {
 	private IntMusicFachada musicFachada;
 	@EJB
 	private IntPlaylistFachada playlistFachada;
+	private static final Logger logger = LoggerFactory.getLogger(UserFachada.class);
 
 	public String save(String name, String username, String email, String password) {
 		String mensagemRegisto="";
@@ -45,8 +49,9 @@ public class UserFachada implements IntUserFachada {
 				mensagemRegisto="Username e Email existente!!";
 			}
 			return mensagemRegisto;
-		} catch (IllegalArgumentException e){
-			return e.getMessage();
+		}catch (IllegalArgumentException e){
+			logger.error( e.getMessage());
+			return "Ocorreu um erro no sistema!!!";
 		}
 	}
 
@@ -102,8 +107,9 @@ public class UserFachada implements IntUserFachada {
 				mensagem="User logado!!";
 			}
 			return mensagem;
-		} catch (IllegalArgumentException e){
-			return e.getMessage();
+		}catch (IllegalArgumentException e){
+			logger.error( e.getMessage());
+			return "Ocorreu um erro no sistema!!!";
 		}
 
 	}
@@ -156,9 +162,9 @@ public class UserFachada implements IntUserFachada {
 			generatedPassword = sb.toString();
 			return generatedPassword;
 		}
-		catch (NoSuchAlgorithmException e)
-		{
-			return e.getMessage();
+		catch (NoSuchAlgorithmException e){
+			logger.error( e.getMessage());
+			return "Ocorreu um erro no sistema!!!";
 		}
 	}
 
@@ -196,17 +202,18 @@ public class UserFachada implements IntUserFachada {
 				mensagemRegisto="Escolha outro Username e Email registado!!";
 			}
 			return mensagemRegisto;
-		} catch (IllegalArgumentException e){
-			return e.getMessage();
+		}catch (IllegalArgumentException e){
+			logger.error( e.getMessage());
+			return "Ocorreu um erro no sistema!!!";
 		}
 
 	}
 
 	@Override
 	public String delete(Utilizador utilizador) {
-		musicFachada.idMusicaUtilizadorZero(utilizador);
+		musicFachada.idMusicsUtilizadorNull(utilizador);
 		playlistFachada.deleteListUti(utilizador);
-		
+
 		userDAO.delete(utilizador.getId(), Utilizador.class);
 
 		return "Utilizador apagador !!!";
@@ -219,10 +226,5 @@ public class UserFachada implements IntUserFachada {
 		return utilizadors.get(0);
 	}
 
-	@Override
-	public List<Utilizador> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
