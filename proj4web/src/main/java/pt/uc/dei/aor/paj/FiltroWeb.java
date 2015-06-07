@@ -33,7 +33,7 @@ public class FiltroWeb  implements Filter{
 		if (req.getSession().getAttribute("loggedin")!=null){
 			boolean a=(boolean) req.getSession().getAttribute("loggedin");
 			if(!a){
-				req.getRequestDispatcher("index.xhtml").forward(request,response);
+				req.getRequestDispatcher("pages/createPlaylist.xhtml").forward(request,response);
 				return;
 			}
 		}

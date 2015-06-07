@@ -17,41 +17,34 @@
 			<h:form>
 				<table>
 					<tr>
-						<td><h:commandButton styleClass="butopg" value="Utilizador"
-								action="pages/musicUser?faces-redirect=true" /></td>
+						<td><h:commandButton styleClass="butopg" value="Musics &#9834;"
+								action="createMusic?faces-redirect=true" /></td>
+					</tr>
+						<tr>
+						<td><h:commandButton styleClass="butopg"
+								value="Find Music &#128269;"
+								action="searchMusic?faces-redirect=true" /></td>
 					</tr>
 					<tr>
-						<td><h:commandButton styleClass="butopg" value="Playlist"
-								action="pages/editUser?faces-redirect=true" /></td>
+						<td><h:commandButton styleClass="butopg" value="Playlist &#8882;"
+								action="createPlaylist?faces-redirect=true" /></td>
 					</tr>
 					<tr>
 						<td><h:commandButton styleClass="butopg"
-								value="Editar Musica"
-								action="pages/editMusic?faces-redirect=true" /></td>
+								value="User &#9998;"
+								action="editUser?faces-redirect=true" /></td>
 					</tr>
+					
 					<tr>
-						<td><h:commandButton styleClass="butopg" value="Lista Musica"
-								action="pages/listMusic?faces-redirect=true" /></td>
-					</tr>
-					<tr>
-						<td><h:commandButton styleClass="butopg" value="Lista Musica"
-								action="pages/musicUser?faces-redirect=true" /></td>
-					</tr>
-					<tr>
-						<td><h:commandButton styleClass="butopg" value="Musica"
-								action="pages/procuraMusic?faces-redirect=true" /></td>
-					</tr>
-
-					<tr>
-						<td><h:commandButton styleClass="butopg" tabindex="4"
+						<td><h:commandButton styleClass="butopglp"
 								value="Logout" actionListener="#{login.logout()}" /></td>
 					</tr>
+
 				</table>
 			</h:form>
 			<br></br>
-			<h:form id="form" enctype="multipart/form-data">
 
-				
+			<h:form id="form" enctype="multipart/form-data">
 				<audio controls="controls" autoplay="autoplay">
 					<source src="#{musicWeb.currentURL}" type="audio/mpeg" />
 				</audio>

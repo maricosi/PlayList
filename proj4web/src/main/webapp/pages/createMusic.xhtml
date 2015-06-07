@@ -8,10 +8,10 @@
 <h:head>
 	<h:outputStylesheet library="css" name="style.css" />
 	<h:outputStylesheet library="css" name="tableStyle.css" />
-	<link rel="stylesheet" type="text/css"
+<!-- 	<link rel="stylesheet" type="text/css"
 		href="../resources/css/slick.css" />
 	<link rel="stylesheet" type="text/css"
-		href="../resources/css/slick-theme.css" />
+		href="../resources/css/slick-theme.css" /> -->
 </h:head>
 <body>
 	<ui:composition template="../template/commonLayout.xhtml">
@@ -19,32 +19,106 @@
 			<article id="content">
 
 				<div id="loginRegisto1">
-				<h2>CRIAR MUSICA</h2>
-								<h:panelGrid columns="2">
-									<h:outputLabel value="Artista" style="text-align:right"/>
-									<h:inputText value="#{musicWeb.artist}" styleClass="textBox" style="text-align:left"/>
+					<h1>CRIAR MUSICA</h1>
+<br></br>
+					<h:form enctype="multipart/form-data">
+						<h:panelGrid columns="2">
+							<h:outputLabel value="Artista" />
+							<h:inputText value="#{musicWeb.artist}" styleClass="textBox" />
 
-									<h:outputLabel value="Título" />
-									<h:inputText value="#{musicWeb.title}" styleClass="textBox"/>
+							<h:outputLabel value="Título" />
+							<h:inputText value="#{musicWeb.title}" styleClass="textBox" />
 
-									<h:outputLabel value="Album" />
-									<h:inputText value="#{musicWeb.album}" styleClass="textBox"/>
+							<h:outputLabel value="Album" />
+							<h:inputText value="#{musicWeb.album}" styleClass="textBox" />
 
-									<h:outputLabel value="Ano" />
-									<h:inputText value="#{musicWeb.year}" styleClass="textBox"/>
+							<h:outputLabel value="Ano" />
+							<h:inputText value="#{musicWeb.year}" styleClass="textBox" />
 
-									<h:outputLabel value="URL" />
-									<h:inputText value="#{musicWeb.url}" styleClass="textBox"/>
-																		
-									<h:commandButton value="Adicionar"
-										actionListener="#{musicWeb.save()}" styleClass="butopg" />
-																								
-									</h:panelGrid>
-									<h:outputText value="#{musicWeb.mensagem}" />	
-					</h:form> 
+							<h:outputLabel value="URL" />
+							<h:inputFile value="#{musicWeb.file}" required="true"
+								styleClass="textBox" />
 
+							<h:outputLabel />
+							<br></br>
+							<h:commandButton value="Adicionar"
+								actionListener="#{musicWeb.save()}" styleClass="butopg1" style="text-align:center"/>
 
+						</h:panelGrid>
 
+						<h:outputText value="#{musicWeb.mensagem}" />
+					</h:form>
+					<br></br>
+				<h:form>
+					<h:dataTable value="#{musicWeb.minhaMusic}" var="music"
+						styleClass="tabela" headerClass="cabecalho" rowClasses="linha">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Titulo" />
+
+								<!-- <h:commandButton action="#{playlistWeb.orderByNameASC()}"
+									value="&#9650;" />
+								<h:commandButton action="#{playlistWeb.orderByNameDESC()}"
+									value="&#9660;" /> -->
+
+							</f:facet>
+							<h:inputText value="#{music.title}" rendered="#{music.editable}" />
+							<h:outputText value="#{music.title}"
+								rendered="#{!music.editable}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Album" />
+
+								<!-- <h:commandButton action="#{playlistWeb.orderByNameASC()}"
+									value="&#9650;" />
+								<h:commandButton action="#{playlistWeb.orderByNameDESC()}"
+									value="&#9660;" /> -->
+
+							</f:facet>
+							<h:inputText value="#{music.album}" rendered="#{music.editable}" />
+							<h:outputText value="#{music.album}"
+								rendered="#{!music.editable}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Artista" />
+
+								<!-- <h:commandButton action="#{playlistWeb.orderByNameASC()}"
+									value="&#9650;" />
+								<h:commandButton action="#{playlistWeb.orderByNameDESC()}"
+									value="&#9660;" /> -->
+
+							</f:facet>
+							<h:inputText value="#{music.artist}" rendered="#{music.editable}" />
+							<h:outputText value="#{music.artist}"
+								rendered="#{!music.editable}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Edit</f:facet>
+							<h:commandButton action="#{musicWeb.editAction(music)}"
+								rendered="#{!music.editable}" value="Editar">
+								<f:ajax render="@form" />
+							</h:commandButton>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Save</f:facet>
+							<h:commandButton value="Save Changes"
+								action="#{musicWeb.update(music)}">
+								<f:ajax render="@form" execute="@form" />
+							</h:commandButton>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Delete</f:facet>
+							<h:commandButton action="#{musicWeb.idMusicUtilizadorNull(music)}"
+								value="Apagar">
+								<f:ajax render="@form" execute="@form" />
+							</h:commandButton>
+						</h:column>
+					</h:dataTable>
+					<h:outputText value="#{musicWeb.mensagem2}"> </h:outputText>
+				</h:form>
 				</div>
 			</article>
 		</ui:define>
