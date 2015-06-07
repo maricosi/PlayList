@@ -18,73 +18,76 @@
 				<div id="loginRegisto1">
 					<h1>PROCURA MUSICA</h1>
 					<br></br>
-				<h:form>
-					<h:panelGrid columns="3">
-						<h:outputLabel value="Artista" />
-						<h:inputText value="#{musicWeb.artist}" styleClass="textBox"/>
+					<h:form>
+						<h:panelGrid columns="2">
+							<h:outputLabel value="Artista" />
+							<h:inputText value="#{musicWeb.artist}" styleClass="textBox" />
 
-						<h:outputLabel value="Título" />
-						<h:inputText value="#{musicWeb.title}" styleClass="textBox"/>
-						
-						<h:outputLabel />
+							<h:outputLabel value="Título" />
+							<h:inputText value="#{musicWeb.title}" styleClass="textBox" />
+
+						</h:panelGrid>
 						<br></br>
 						<h:commandButton value="Procurar"
-							actionListener="#{musicWeb.findByTitleArtist()}" styleClass="butopglg" style="text-align:center"/>
+							actionListener="#{musicWeb.findByTitleArtist()}"
+							styleClass="butopglg" style="text-align:center" />
 
-					</h:panelGrid>
-					<h:outputText value="#{musicWeb.mensagem}" />
-				</h:form>
-				<br></br>
 
-				<h:form>
-					<h:dataTable value="#{musicWeb.procuraMusic}" var="music">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Artista" />
-							</f:facet>
-							<h:outputText value="#{music.artist}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Album" />
-							</f:facet>
-							<h:outputText value="#{music.album}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Titulo" />
-							</f:facet>
-							<h:outputText value="#{music.title}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Ano" />
-							</f:facet>
-							<h:outputText value="#{music.year}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Selecionar" />
-							</f:facet>
-							<h:selectBooleanCheckbox value="#{music.check}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Play</f:facet>
-							<h:commandButton action="#{musicWeb.playMusic(music)}"
-								value="&#8882;" styleClass="butopg1"/>
-						</h:column>
-					</h:dataTable>
-
-					<h:selectOneMenu value="#{musicWeb.nameplaylist}" styleClass="textBox">
-						<f:selectItems value="#{musicWeb.playlist}" />
-					</h:selectOneMenu>
+						<h:outputText value="#{musicWeb.mensagem}" />
+					</h:form>
 					<br></br>
-								<br></br>
-					<h:commandButton action="#{musicWeb.adicionarMusica()}"
-						value="Adicionar" type="submit" styleClass="butopglg" style="text-align:center"/>
-					<h:outputText value="#{musicWeb.mensagem2}" />
 
-				</h:form>
+					<h:form>
+						<h:dataTable value="#{musicWeb.procuraMusic}" var="music">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Artista" />
+								</f:facet>
+								<h:outputText value="#{music.artist}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Album" />
+								</f:facet>
+								<h:outputText value="#{music.album}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Titulo" />
+								</f:facet>
+								<h:outputText value="#{music.title}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Ano" />
+								</f:facet>
+								<h:outputText value="#{music.year}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Selecionar" />
+								</f:facet>
+								<h:selectBooleanCheckbox value="#{music.check}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Play</f:facet>
+								<h:commandButton action="#{musicWeb.playMusic(music)}"
+									value="&#8882;" styleClass="butopg1" />
+							</h:column>
+						</h:dataTable>
+
+						<h:selectOneMenu value="#{musicWeb.nameplaylist}"
+							styleClass="textBox">
+							<f:selectItems value="#{musicWeb.playlist}" />
+						</h:selectOneMenu>
+						<br></br>
+						<br></br>
+						<h:commandButton action="#{musicWeb.adicionarMusica()}"
+							value="Adicionar" type="submit" styleClass="butopglg"
+							style="text-align:center" />
+						<h:outputText value="#{musicWeb.mensagem2}" />
+
+					</h:form>
 				</div>
 			</article>
 		</ui:define>
