@@ -16,34 +16,34 @@
 			<article id="content">
 
 			<div id="loginRegisto1">
-											<h:form prependId="false" id="criarMusica">
+											<h:form>
 								<h2>CRIAR MUSICA</h2>
 								<h:panelGrid columns="2">
-									<h:outputLabel value="Artista" />
-									<h:inputText value="#{musicWeb.artist}" />
+									<h:outputLabel value="Artista" style="text-align:right"/>
+									<h:inputText value="#{musicWeb.artist}" styleClass="textBox" style="text-align:left"/>
 
 									<h:outputLabel value="Título" />
-									<h:inputText value="#{musicWeb.title}" />
+									<h:inputText value="#{musicWeb.title}" styleClass="textBox"/>
 
 									<h:outputLabel value="Album" />
-									<h:inputText value="#{musicWeb.album}" />
+									<h:inputText value="#{musicWeb.album}" styleClass="textBox"/>
 
 									<h:outputLabel value="Ano" />
-									<h:inputText value="#{musicWeb.year}" />
+									<h:inputText value="#{musicWeb.year}" styleClass="textBox"/>
 
 									<h:outputLabel value="URL" />
-									<h:inputText value="#{musicWeb.url}" />
+									<h:inputText value="#{musicWeb.url}" styleClass="textBox"/>
 																		
 									<h:commandButton value="Adicionar"
-										actionListener="#{musicWeb.save()}" styleClass="butopg" />															
+										actionListener="#{musicWeb.save()}" styleClass="butopg" />
+										<h:outputText value="#{musicWeb.mensagem}" />																
 									</h:panelGrid>
 									<h:outputText value="#{musicWeb.mensagem}" />	
 					</h:form> 
 					<h:form prependId="false" rendered="#{playlistWeb.table}">
 								<h:panelGrid columns="2">
 									<h:outputText value="Name" />
-									<h:inputText value="#{playlistWeb.name}" />
-
+									<h:inputText value="#{playlistWeb.name}" styleClass="textBox"/>
 									<h:commandButton value="Criar"
 										actionListener="#{playlistWeb.save}" />
 									<h:commandButton value="Delete"
