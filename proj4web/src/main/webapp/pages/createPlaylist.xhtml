@@ -19,25 +19,26 @@
 
 				<div id="loginRegisto1">
 
-					<h1>Playlist Criar e tabela com Editar e apagar</h1>
+					<h1>CRIAR PLAYLIST</h1>
 
 					<h:form>
-						<h:panelGrid columns="2">
-							<h:outputText value="Name" />
-							<h:inputText value="#{playlistWeb.name}" />
+						<h:panelGrid columns="3" layout="grid">
+							<h:outputText value="Nome" />
+							<h:inputText value="#{playlistWeb.name}" styleClass="textBox"/>
 
-							<h:commandButton value="Criar"
+							<h:commandButton value="Criar" styleClass="butopg"
 								actionListener="#{playlistWeb.save}" />
 
 						</h:panelGrid>
+							<br></br>
 						<h:outputText value="#{playlistWeb.mensagem}" />
 
 					</h:form>
-
+<br></br>
 
 					<h:form>
-						<h:dataTable value="#{playlistWeb.procuraPlaylist}" var="playlist"
-							styleClass="tabela" headerClass="cabecalho" rowClasses="linha">
+				
+						<h:dataTable value="#{playlistWeb.procuraPlaylist}" var="playlist">
 
 							<h:column>
 

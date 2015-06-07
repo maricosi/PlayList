@@ -7,6 +7,7 @@
 
 <h:head>
 	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="tableStyle.css" />
 	<link rel="stylesheet" type="text/css"
 		href="../resources/css/slick.css" />
 	<link rel="stylesheet" type="text/css"
@@ -18,22 +19,25 @@
 			<article id="content">
 
 				<div id="loginRegisto1">
-							<h:form id="editMusic">
+					<h1>EDITAR MUSICA</h1>
+					
+					<h:form id="editMusic">
+						<h:panelGrid class="panelGrid" columns="2">
+							<h:outputLabel>Título</h:outputLabel>
+							<h:inputText value="#{musicWeb.title}" styleClass="textBox"/>
+							<h:outputLabel>Artista</h:outputLabel>
+							<h:inputText value="#{musicWeb.artist}" styleClass="textBox"/>
+							<h:outputLabel>Album</h:outputLabel>
+							<h:inputText value="#{musicWeb.album}" styleClass="textBox"/>
+							<h:outputLabel>Ano</h:outputLabel>
+							<h:inputText value="#{musicWeb.year}">
+								<f:validateLongRange minimum="1900" maximum="2100" />
+							</h:inputText>
 
-					<h:outputLabel>Título</h:outputLabel>
-					<h:inputText value="#{musicWeb.title}" />
-					<h:outputLabel>Artista</h:outputLabel>
-					<h:inputText value="#{musicWeb.artist}" />
-					<h:outputLabel>Album</h:outputLabel>
-					<h:inputText value="#{musicWeb.album}" />
-					<h:outputLabel>Ano</h:outputLabel>
-					<h:inputText value="#{musicWeb.year}">
-						<f:validateLongRange minimum="1900" maximum="2100" />
-					</h:inputText>
-
-					<!-- <h:commandButton action="#{musicaGest.editarMusica()}"
+							<!-- <h:commandButton action="#{musicaGest.editarMusica()}"
 						value="Atualizar" type="submit" /> -->
-				</h:form>
+						</h:panelGrid>
+					</h:form>
 
 
 

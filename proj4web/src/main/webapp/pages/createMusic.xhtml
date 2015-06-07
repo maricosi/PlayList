@@ -1,23 +1,25 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
-	<title>Facelets Hello World</title>
 	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="tableStyle.css" />
+	<link rel="stylesheet" type="text/css"
+		href="../resources/css/slick.css" />
+	<link rel="stylesheet" type="text/css"
+		href="../resources/css/slick-theme.css" />
 </h:head>
-
-<h:body>
-	<ui:composition template="template/commonLayout.xhtml">
-		<ui:define name="content" styleClass="">
+<body>
+	<ui:composition template="../template/commonLayout.xhtml">
+		<ui:define name="content">
 			<article id="content">
 
-			<div id="loginRegisto1">
-											<h:form>
-								<h2>CRIAR MUSICA</h2>
+				<div id="loginRegisto1">
+				<h2>CRIAR MUSICA</h2>
 								<h:panelGrid columns="2">
 									<h:outputLabel value="Artista" style="text-align:right"/>
 									<h:inputText value="#{musicWeb.artist}" styleClass="textBox" style="text-align:left"/>
@@ -36,30 +38,17 @@
 																		
 									<h:commandButton value="Adicionar"
 										actionListener="#{musicWeb.save()}" styleClass="butopg" />
-										<h:outputText value="#{musicWeb.mensagem}" />																
+																								
 									</h:panelGrid>
 									<h:outputText value="#{musicWeb.mensagem}" />	
 					</h:form> 
-					<h:form prependId="false" rendered="#{playlistWeb.table}">
-								<h:panelGrid columns="2">
-									<h:outputText value="Name" />
-									<h:inputText value="#{playlistWeb.name}" styleClass="textBox"/>
-									<h:commandButton value="Criar"
-										actionListener="#{playlistWeb.save}" />
-									<h:commandButton value="Delete"
-										actionListener="#{playlistWeb.delete}" />
-								</h:panelGrid>
-								<h:outputText value="#{playlistWeb.mensagem}" />
 
-							</h:form>
-						</div>
-				
-			
-		
+
+
+				</div>
 			</article>
 		</ui:define>
+
 	</ui:composition>
-</h:body>
+</body>
 </html>
-
-

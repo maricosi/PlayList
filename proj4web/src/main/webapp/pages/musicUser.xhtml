@@ -7,6 +7,7 @@
 
 <h:head>
 	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="tableStyle.css" />
 	<link rel="stylesheet" type="text/css"
 		href="../resources/css/slick.css" />
 	<link rel="stylesheet" type="text/css"
@@ -18,39 +19,38 @@
 			<article id="content">
 
 				<div id="loginRegisto1">
-
+					<h1>LISTA MUSICAS</h1>
 
 					<h:form>
-						<h:dataTable value="#{musicWeb.findAllByUtilizador()}" var="music"
-							styleClass="tabela" headerClass="cabecalho" rowClasses="linha">
+						<h:dataTable value="#{musicWeb.findAllByUtilizador()}" var="music">
 
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="Titulo" />
+									<h:outputText value="TITULO" />
 								</f:facet>
 								<h:outputText value="#{music.title}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="Album" />
+									<h:outputText value="ALBUM" />
 								</f:facet>
 								<h:outputText value="#{music.album}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="Artista" />
+									<h:outputText value="ARTISTA" />
 								</f:facet>
 								<h:outputText value="#{music.artist}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="Ano" />
+									<h:outputText value="ANO" />
 								</f:facet>
 								<h:outputText value="#{music.year}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="Utilizador" />
+									<h:outputText value="UTILIZADOR" />
 								</f:facet>
 								<h:outputText value="#{music.utilizador.username}" />
 							</h:column>

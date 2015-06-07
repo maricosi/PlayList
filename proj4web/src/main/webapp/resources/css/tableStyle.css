@@ -1,0 +1,60 @@
+table {
+	/*  border: 0px solid black; */
+	border-spacing: 0px;
+	width: 100%;
+}
+
+table thead tr {
+	font-family: Verdana, monospace;
+	font-size: 14px;
+}
+
+header {
+	background: red;
+	padding: 15px 10px;
+	color: #fff;
+	text-align: left;
+	font-weight: normal;
+}
+
+table thead tr th {
+	background-color: #f9f9f9;
+	height:30px;
+	color: #666666;
+}
+
+table body tr {
+	background: blue;
+}
+
+table tr {
+	font-family: Verdana, monospace;
+	color: Cornsilk;
+	font-size: 16px;
+	/*  background-color: white; */
+}
+
+table tr.odd {
+	background-color: #AAAAAA;
+}
+
+table tr td, th {
+	
+	/*   border-bottom: 1px solid black; */
+	
+}
+
+a:link {
+	font-family: Verdana, monospace;
+	text-decoration: none;
+	color: teal;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:visited {
+	color: black;
+	text-decoration: none;
+}
