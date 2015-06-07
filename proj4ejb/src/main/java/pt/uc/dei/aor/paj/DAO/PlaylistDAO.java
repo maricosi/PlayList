@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 
+import pt.uc.dei.aor.paj.Music;
 import pt.uc.dei.aor.paj.Playlist;
 import pt.uc.dei.aor.paj.Utilizador;
 
@@ -102,6 +103,13 @@ public class PlaylistDAO extends GenericDAO<Playlist>{
 	public List<Playlist> findByUtilizador(Utilizador utilizador) {
 		Query q = em.createNamedQuery(Playlist.FIND_BY_UTILIZADOR);
 	       q.setParameter("utilizador",utilizador);
+		return q.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Music> findMusicsByPlaylist(int id) {
+		Query q = em.createNamedQuery(Playlist.FIND_MUSICS_BY_PLAYLIST);
+	       q.setParameter("id",id);
 		return q.getResultList();
 	}
 	

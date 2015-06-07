@@ -22,7 +22,7 @@
 
 				</div>
 
-				<h:form>
+				<h:form enctype="multipart/form-data">
 					<h:panelGrid columns="2">
 						<h:outputLabel value="Artista" />
 						<h:inputText value="#{musicWeb.artist}" />
@@ -37,7 +37,7 @@
 						<h:inputText value="#{musicWeb.year}" />
 
 						<h:outputLabel value="URL" />
-						<h:inputText value="#{musicWeb.url}" />
+						<h:inputFile value="#{musicWeb.file}" required="true" />
 
 						<h:outputLabel />
 						<h:commandButton value="Adicionar"
@@ -47,6 +47,15 @@
 
 					<h:outputText value="#{musicWeb.mensagem}" />
 				</h:form>
+
+				<audio controls="controls" autoplay="autoplay">
+					<source src="#{musicWeb.currentURL}" type="audio/mpeg" />
+				</audio>
+
+
+
+
+
 				//foi para a pagina procura musica//
 				<h1>***Procura Musica****</h1>
 				<h:form>
@@ -66,7 +75,8 @@
 
 					<h:outputText value="#{musicWeb.mensagem}" />
 				</h:form>
-				<h1>***depois da proura da Musica devolve atabela em baixo que se selciona a musica e se adiciona a +laylist****</h1>
+				<h1>***depois da proura da Musica devolve atabela em baixo que
+					se selciona a musica e se adiciona a +laylist****</h1>
 				<h:form>
 					<h:dataTable value="#{musicWeb.procuraMusic}" var="music">
 						<h:column>
@@ -99,12 +109,23 @@
 							</f:facet>
 							<h:selectBooleanCheckbox value="#{music.check}" />
 						</h:column>
+						<h:column>
+							<f:facet name="header">Play</f:facet>
+							<h:commandButton action="#{musicWeb.playMusic(music)}"
+								value="Play" />
+						</h:column>
+
 
 					</h:dataTable>
 
-					<h:selectOneMenu value="#{musicWeb.playlist}">
-						<f:selectItems value="#{playlistWeb.procuraPlaylist}"/>
+					<h:selectOneMenu value="#{musicWeb.nameplaylist}">
+						<f:selectItems value="#{musicWeb.playlist}" />
 					</h:selectOneMenu>
+					<h:commandButton action="#{musicWeb.adicionarMusica()}"
+						value="Adicionar" type="submit" />
+					<h:outputText value="#{musicWeb.mensagem2}" />
+
+
 				</h:form>
 
 				<h1>**Editar música**</h1>
@@ -162,6 +183,7 @@
 							<h:outputText value="#{music.utilizador.username}" />
 						</h:column>
 
+
 					</h:dataTable>
 				</h:form>
 
@@ -182,7 +204,7 @@
 				</h:form>
 
 
-				<h:form>
+				<h:form id="false">
 					<h:dataTable value="#{playlistWeb.procuraPlaylist}" var="playlist"
 						styleClass="tabela" headerClass="cabecalho" rowClasses="linha">
 
@@ -244,13 +266,62 @@
 							</h:commandButton>
 						</h:column>
 						<h:column>
+							<f:facet name="header">Consultar</f:facet>
+							<h:commandButton
+								action="#{playlistWeb.musicsByPlaylist(playlist.id)}"
+								value="Consultar">
+								<f:ajax execute="@form" render=":false:musicas" />
+							</h:commandButton>
+						</h:column>
+						<h:column>
 							<f:facet name="header">Delete</f:facet>
 							<h:commandButton action="#{playlistWeb.delete(playlist)}"
 								value="Apagar">
-								<f:ajax render="@form" />
+								<f:ajax render="@form" execute="@form" />
 							</h:commandButton>
 						</h:column>
+
 					</h:dataTable>
+
+
+					<h:panelGroup id="musicas">
+						<h:dataTable value="#{playlistWeb.musicPlaylist}" var="music"
+							rendered="#{playlistWeb.table}" styleClass="tabela"
+							headerClass="cabecalho" rowClasses="linha">
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Titulo" />
+								</f:facet>
+								<h:outputText value="#{music.title}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Album" />
+								</f:facet>
+								<h:outputText value="#{music.album}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Artista" />
+								</f:facet>
+								<h:outputText value="#{music.artist}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Ano" />
+								</f:facet>
+								<h:outputText value="#{music.year}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Play</f:facet>
+								<h:commandButton action="#{musicWeb.playMusic(music)}"
+									value="Play" />
+							</h:column>
+
+						</h:dataTable>
+					</h:panelGroup>
+
 				</h:form>
 
 

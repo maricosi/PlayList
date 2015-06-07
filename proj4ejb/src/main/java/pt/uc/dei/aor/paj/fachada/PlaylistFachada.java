@@ -7,6 +7,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import pt.uc.dei.aor.paj.Music;
 import pt.uc.dei.aor.paj.Playlist;
 import pt.uc.dei.aor.paj.Utilizador;
 import pt.uc.dei.aor.paj.DAO.PlaylistDAO;
@@ -79,7 +80,7 @@ public class PlaylistFachada implements IntPlaylistFachada{
 		}
 		return mensagem;
 	}
-	
+
 	@Override
 	public List<Playlist> findAll() {
 		return playlistDAO.all();
@@ -108,7 +109,7 @@ public class PlaylistFachada implements IntPlaylistFachada{
 		}
 		return playlist1;
 	}
-	
+
 	@Override
 	public List<Playlist> orderByDate(String username, String order) {
 		Utilizador user1=userDAO.findUsername(username).get(0);
@@ -135,7 +136,6 @@ public class PlaylistFachada implements IntPlaylistFachada{
 
 	@Override
 	public Playlist update(Playlist playlist) {
-		// TODO Auto-generated method stub
 		playlistDAO.update(playlist);
 		return playlist;
 	}
@@ -146,8 +146,37 @@ public class PlaylistFachada implements IntPlaylistFachada{
 		for (Playlist p:playlist){
 			playlistDAO.delete(p.getId(), Playlist.class);
 		}
-		
+
 	}
+
+	public String adicionarMusic(List<Music> musicPlay, Playlist playlist){
+		String mensagemMusicPlaylist="";
+		try{
+			int numeroMusic=0;
+			if(musicPlay==null){
+				mensagemMusicPlaylist="Selecione as musicas!!";
+			} else if(musicPlay!=null){
+				for(Music m:musicPlay){
+					if(m.isCheck()==true){
+						playlist.getMusics().add(m);
+						numeroMusic++;
+					}
+				}
+				playlistDAO.update(playlist);
+				mensagemMusicPlaylist=numeroMusic+" musica(s) adicionada(s) com sucesso há "+playlist.getName()+ "!!";
+			}
+			return mensagemMusicPlaylist;
+
+		} catch (IllegalArgumentException e){
+			return e.getMessage();
+		}
+
+	}
+
+	public List<Music> findMusicByPlaylist(int id){
+		return playlistDAO.findMusicsByPlaylist(id);
+	}
+
 
 }
 

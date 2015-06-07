@@ -1,22 +1,14 @@
 package pt.uc.dei.aor.paj;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.Properties;
-import java.util.Random;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.servlet.http.Part;
 
 @ManagedBean
 @ApplicationScoped
-public class UploadFile implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5537671907313363474L;
+public class UploadFile {
 
 	private Part file;
 
@@ -41,20 +33,19 @@ public class UploadFile implements Serializable {
 	//Cuidado com as excepções
 	public void upload() {
 		Properties props = System.getProperties();
+		String name=getFilename(this.file);
 
-		Random r=new Random();
-
-		String name="my_music"+r.nextInt(1000);
-
-		this.path="/music/"+name+".mp3";
+		this.path="/music/"+name;
 
 		try {
-			file.write(props.getProperty("user.dir")+"\\music\\"+name+".mp3");
+			file.write(props.getProperty("user.dir")+"\\music\\"+name);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
 		this.file=null;
+
+		//		return this.path;
 	}
 
 	private static String getFilename(Part part) {  

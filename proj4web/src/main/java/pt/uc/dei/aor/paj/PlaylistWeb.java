@@ -27,11 +27,13 @@ public class PlaylistWeb implements Serializable {
 	private IntPlaylistFachada playlist;
 	@Inject
 	private Login login;
+	private int id;
 	private String name;
 	private int size;
 	private String mensagem="";
 	private Music musics;
 	private List<Playlist> procuraPlaylist;
+	private List<Music> musicPlaylist;
 	private static final Logger logger = LoggerFactory.getLogger(PlaylistWeb.class);
 	private boolean table = false;
 
@@ -40,7 +42,6 @@ public class PlaylistWeb implements Serializable {
 		
 	}
 	
-
 	public List<Playlist> findAll(){
 		return playlist.findAll();
 	}
@@ -101,6 +102,8 @@ public class PlaylistWeb implements Serializable {
 	}
 	
 
+	
+
 	public void editAction(Playlist playlist) {
 		playlist.setEditable(true);
 	}
@@ -155,6 +158,34 @@ public class PlaylistWeb implements Serializable {
 
 	public void showTable(){
 		this.table=true;
+	}
+	
+	public void musicsByPlaylist(int id){
+		logger.info("tamanho do array antes:" );
+		this.musicPlaylist=playlist.findMusicByPlaylist(id);
+		logger.info("tamanho do array depois:" + musicPlaylist.size());
+		showTable();
+	}
+
+	public List<Music> getMusicPlaylist() {
+		logger.info("estou no get music");
+		if (musicPlaylist!=null){
+			logger.info(musicPlaylist.get(0).toString());
+		}
+		
+		return musicPlaylist;
+	}
+
+	public void setMusicPlaylist(List<Music> musicPlaylist) {
+		this.musicPlaylist = musicPlaylist;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

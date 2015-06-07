@@ -7,8 +7,11 @@ import java.util.List;
 
 
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,6 +35,9 @@ import javax.persistence.Transient;
 		@NamedQuery(name = "Playlist.utilizadorOrderBySizeDESC", query="SELECT p FROM Playlist p WHERE p.utilizador=:utilizador ORDER BY p.size DESC"),
 		@NamedQuery(name = "Playlist.findByNameUtilizador", query="SELECT p FROM Playlist p  WHERE p.name=:name and p.utilizador=:utilizador"),
 		@NamedQuery(name = "Playlist.findByUtilizador", query="SELECT p FROM Playlist p  WHERE p.utilizador=:utilizador"),
+		@NamedQuery(name = "Playlist.findMusicsByPlaylist", query="SELECT m FROM Playlist p  join p.musics m where p.id=:id"),
+
+		
 })
 
 public class Playlist{
@@ -45,6 +51,8 @@ public class Playlist{
 	public static final String ORDER_BY_SIZE_DESC = "Playlist.utilizadorOrderBySizeDESC";
 	public static final String FIND_BY_NAME_UTILIZADOR = "Playlist.findByNameUtilizador";
 	public static final String FIND_BY_UTILIZADOR = "Playlist.findByUtilizador";
+	public static final String FIND_MUSICS_BY_PLAYLIST = "Playlist.findMusicsByPlaylist";
+	
 	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -57,13 +65,12 @@ public class Playlist{
 	private LocalDate date;	
 	@Column (name="size", length=10)
 	private int size;	
-	@ManyToMany
+	@ManyToMany (fetch=FetchType.EAGER)
 	private List<Music> musics;
 	@ManyToOne
 	private Utilizador utilizador;
 	@Transient
 	private boolean editable= false;
-	
 
 
 	public Playlist(){		
@@ -141,7 +148,11 @@ public class Playlist{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((musics == null) ? 0 : musics.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + size;
+		result = prime * result
+				+ ((utilizador == null) ? 0 : utilizador.hashCode());
 		return result;
 	}
 
@@ -159,10 +170,22 @@ public class Playlist{
 				return false;
 		} else if (!date.equals(other.date))
 			return false;
+		if (musics == null) {
+			if (other.musics != null)
+				return false;
+		} else if (!musics.equals(other.musics))
+			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
+			return false;
+		if (size != other.size)
+			return false;
+		if (utilizador == null) {
+			if (other.utilizador != null)
+				return false;
+		} else if (!utilizador.equals(other.utilizador))
 			return false;
 		return true;
 	}
