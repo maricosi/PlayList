@@ -7,11 +7,7 @@
 
 <h:head>
 	<h:outputStylesheet library="css" name="style.css" />
-<h:outputStylesheet library="css" name="tableStyle.css" />
-	<link rel="stylesheet" type="text/css"
-		href="../resources/css/slick.css" />
-	<link rel="stylesheet" type="text/css"
-		href="../resources/css/slick-theme.css" />
+	<h:outputStylesheet library="css" name="tableStyle.css" />
 </h:head>
 <body>
 	<ui:composition template="../template/commonLayout.xhtml">
@@ -22,48 +18,49 @@
 					<h1>UTILIZADOR</h1>
 					<br></br>
 					<h:form>
-						<h:dataTable  value="#{login.u}" var="u" 
-							headerClass="cabecalho" rowClasses="linha" columns="2">
+						<h:dataTable value="#{login.u}" var="u" headerClass="cabecalho"
+							rowClasses="linha" columns="2">
 							<h:column>
 								<f:facet name="header">
 									<h:outputText value="Nome" />
 								</f:facet>
-								<h:inputText value="#{u.name}" styleClass="textBox"/>
+								<h:inputText value="#{u.name}" styleClass="textBox" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">
 									<h:outputText value="Username" />
 
 								</f:facet>
-								<h:inputText value="#{u.username}" styleClass="textBox"/>
+								<h:inputText value="#{u.username}" styleClass="textBox" />
 							</h:column>
-							
+
 							<h:column>
 								<f:facet name="header">
 									<h:outputText value="Email" />
 								</f:facet>
-								<h:inputText value="#{u.email}" styleClass="textBox"/>
+								<h:inputText value="#{u.email}" styleClass="textBox" />
 
 							</h:column>
 							<h:column>
 								<f:facet name="header">
 									<h:outputText value="Password" />
 								</f:facet>
-								<h:inputSecret value="#{u.password}" styleClass="textBox"/>
+								<h:inputSecret value="#{u.password}" styleClass="textBox" />
 
 							</h:column>
 
 							<h:column>
-						
-								<h:commandButton value="&#10004;"
-									action="#{login.update(u)}" styleClass="butopg1">
+
+								<h:commandButton value="&#10004;" action="#{login.update(u)}"
+									styleClass="butopg1">
 									<f:ajax render="@form" execute="@form" />
 								</h:commandButton>
 							</h:column>
-							
+
 							<h:column>
-							
-								<h:commandButton action="#{login.delete(u)}" value="&#10006;" styleClass="butopg1">
+
+								<h:commandButton action="#{login.delete(u)}" value="&#10006;"
+									styleClass="butopg1">
 									<f:ajax render="@form" />
 								</h:commandButton>
 							</h:column>

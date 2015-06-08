@@ -34,10 +34,10 @@
 
 
 						<h:outputText value="#{musicWeb.mensagem}" />
-					</h:form>
-					<br></br>
 
-					<h:form>
+						<br></br>
+
+						<h1>Listagem da Procura</h1>
 						<h:dataTable value="#{musicWeb.procuraMusic}" var="music">
 							<h:column>
 								<f:facet name="header">
@@ -84,7 +84,9 @@
 						<br></br>
 						<h:commandButton action="#{musicWeb.adicionarMusica()}"
 							value="Adicionar" type="submit" styleClass="butopglg"
-							style="text-align:center" />
+							style="text-align:center">
+							<f:ajax render="@form" execute="@form" />
+						</h:commandButton>
 						<h:outputText value="#{musicWeb.mensagem2}" />
 
 					</h:form>

@@ -39,51 +39,51 @@ public class PlaylistWeb implements Serializable {
 
 	public PlaylistWeb() {
 		super();
-		
+
 	}
-	
+
 	public List<Playlist> findAll(){
 		return playlist.findAll();
 	}
-	
+
 	public List<Playlist> getProcuraPlaylist(){
 		if (procuraPlaylist==null){
 			this.procuraPlaylist=playlist.orderByName(login.getUsername(),"ASC");
 		}
 		return procuraPlaylist;	
 	}
-	
+
 	public void setProcuraPlaylist(List<Playlist> procuraPlaylist) {
 		this.procuraPlaylist = procuraPlaylist;
 	}
-	
+
 	public void findByUtilizador(){
 		playlist.findByUtilizador(login.getUsername());
 	}
-	
+
 	public void orderByNameASC(){
 		setProcuraPlaylist(playlist.orderByName(login.getUsername(),"ASC"));
-		
+
 	}
 
 	public void orderByNameDESC(){
 		setProcuraPlaylist(playlist.orderByName(login.getUsername(),"DESC"));
-		
+
 	}
-		
+
 	public void orderByDateASC(){
 		setProcuraPlaylist(playlist.orderByDate(login.getUsername(), "ASC"));
 	}
 	public void orderByDateDESC(){
 		setProcuraPlaylist(playlist.orderByDate(login.getUsername(), "DESC"));
-		
+
 	}
-	
+
 	public void orderBySizeASC(){
 		setProcuraPlaylist(playlist.orderBySize(login.getUsername(), "ASC"));
-		
+
 	}
-				
+
 	public void orderBySizeDESC(){
 		setProcuraPlaylist(playlist.orderBySize(login.getUsername(), "DESC"));
 	}
@@ -91,15 +91,17 @@ public class PlaylistWeb implements Serializable {
 	public void save(){
 		this.mensagem=playlist.save(name, LocalDate.now(), login.getUsername() );
 	}
-	
+
 	public void delete(){
 		this.mensagem=playlist.delete(name,login.getUsername());
 	}
-	
+
 	public void delete(Playlist p){
 		this.mensagem=playlist.delete(p.getName(),login.getUsername());
 		this.procuraPlaylist=playlist.orderByName(login.getUsername(),"ASC");
 	}
+
+
 
 	public void editAction(Playlist playlist) {
 		playlist.setEditable(true);
@@ -136,7 +138,7 @@ public class PlaylistWeb implements Serializable {
 	public void setSize(int size) {
 		this.size = size;
 	}
-	
+
 
 	public void update(Playlist p) {
 		logger.info("antes"+p.getName());
@@ -144,7 +146,9 @@ public class PlaylistWeb implements Serializable {
 		logger.info("depois"+p.getName());
 		this.procuraPlaylist=playlist.orderByName(login.getUsername(),"ASC");
 	}
-	
+
+
+
 	public boolean isTable() {
 		return table;
 	}
@@ -156,12 +160,17 @@ public class PlaylistWeb implements Serializable {
 	public void showTable(){
 		this.table=true;
 	}
-	
-	public void musicsByPlaylist(int id){
-		logger.info("tamanho do array antes:" );
-		this.musicPlaylist=playlist.findMusicByPlaylist(id);
-		logger.info("tamanho do array depois:" + musicPlaylist.size());
-		showTable();
+
+	public void musicsByPlaylist(Playlist p){
+		if(p.getMusics().size()==0){
+			mensagem="A Playlist, "+p.getName()+", ainda não tem musicas associadas!!";
+		} else if(p.getMusics().size()!=0){
+			logger.info("tamanho do array antes:" );
+			this.musicPlaylist=playlist.findMusicByPlaylist(p.getId());
+			logger.info("tamanho do array depois:" + musicPlaylist.size());
+			showTable();
+		}
+
 	}
 
 	public List<Music> getMusicPlaylist() {

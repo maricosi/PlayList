@@ -46,7 +46,7 @@ public class Music{
 	private String album;
 	@Column (name="year", nullable=false, length=10)
 	private int year;	
-	@Column (name="url", nullable=false, length=80)
+	@Column (name="url", nullable=false, length=100)
 	private String url;
 	@ManyToOne
     private Utilizador utilizador;

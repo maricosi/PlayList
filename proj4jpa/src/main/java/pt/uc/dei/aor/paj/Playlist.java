@@ -113,7 +113,7 @@ public class Playlist{
 		return size;
 	}
 
-	public void setSize() {
+	public void setSize(int size) {
 		this.size = musics.size();
 	}
 

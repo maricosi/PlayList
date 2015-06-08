@@ -7,11 +7,12 @@
 
 <h:head>
 	<h:outputStylesheet library="css" name="style.css" />
+	
 </h:head>
 <body>
 	<div id="page">
 
-		<div >
+		<div>
 			<ui:insert name="header2">
 				<ui:include src="commonHeader.xhtml" />
 			</ui:insert>
@@ -33,16 +34,19 @@
 						</tr>
 					</table>
 					<h2 class="out">
-						<h:outputText value="#{login.mensagem}" />
-						<h:outputText value="#{login.mensagem2}" />
+						<h:outputText id="out" value="#{login.mensagem}" />
+						<h:outputText  id="out2" value="#{login.mensagem2}" />
 					</h2>
 					<p>
 						<h:commandButton styleClass="buto login" tabindex="4"
 							value="Login" actionListener="#{login.validate()}">
 						</h:commandButton>
 						<h:commandButton styleClass="buto novoRegisto"
-							actionListener="#{registoUser.novoRegisto()}" value="NovoRegisto" />
+							actionListener="#{registoUser.novoRegisto()}" value="NovoRegisto">
+						</h:commandButton>
 					</p>
+				
+			
 
 
 				</h:form>
@@ -63,7 +67,7 @@
 							<td class="textoLogin">Email:</td>
 							<td><h:inputText id="email" value="#{registoUser.email}" /></td>
 						</tr>
-						
+
 						<tr>
 							<td class="textoLogin">Password:</td>
 							<td><h:inputSecret value="#{registoUser.password}" /></td>
@@ -76,10 +80,11 @@
 					<p>
 						<h:commandButton styleClass="buto registar" value="Registar"
 							actionListener="#{registoUser.registUser()}">
+							<f:ajax render=":mensagemRegisto" execute="@form" />
 						</h:commandButton>
 					</p>
 					<h2 class="out">
-						<h:outputText value="#{registoUser.mensagem}" />
+						<h:outputText id="mensagemRegisto" value="#{registoUser.mensagem}" />
 					</h2>
 
 

@@ -42,7 +42,7 @@ public class PlaylistFachada implements IntPlaylistFachada{
 			return mensagemRegistoPlaylist;
 		}catch (IllegalArgumentException e){
 			logger.error( e.getMessage());
-			return "Ocorreu um erro no sistema!!!";
+			return e.getMessage();
 		}
 	}
 
@@ -88,7 +88,7 @@ public class PlaylistFachada implements IntPlaylistFachada{
 
 		}catch (IllegalArgumentException e){
 			logger.error( e.getMessage());
-			return "Ocorreu um erro no sistema!!!";
+			return e.getMessage();
 		}
 	}
 
@@ -174,16 +174,46 @@ public class PlaylistFachada implements IntPlaylistFachada{
 					}
 				}
 				playlistDAO.update(playlist);
-				mensagemMusicPlaylist=numeroMusic+" musica(s) adicionada(s) com sucesso há "+playlist.getName()+ "!!";
+				playlist.setSize(numeroMusic);
+				playlistDAO.update(playlist);
+				mensagemMusicPlaylist=numeroMusic+" musica(s) adicionada(s) com sucesso à playlist "+playlist.getName()+ "!!";
 			}
 			return mensagemMusicPlaylist;
 
 		}catch (IllegalArgumentException e){
 			logger.error( e.getMessage());
-			return "Ocorreu um erro no sistema!!!";
+			return e.getMessage();
 		}
 
 	}
+	
+	public String retirarMusic(List<Music> musicPlay, Playlist playlist){
+		String mensagemMusicPlaylist="";
+		try{
+			int numeroMusic=0;
+			if(musicPlay==null){
+				mensagemMusicPlaylist="Selecione as musicas!!";
+			} else if(musicPlay!=null){
+				for(Music m:musicPlay){
+					if(m.isCheck()==true){
+						playlist.getMusics().add(m);
+						numeroMusic++;
+					}
+				}
+				playlistDAO.update(playlist);
+				mensagemMusicPlaylist=numeroMusic+" musica(s) adicionada(s) com sucesso à playlist "+playlist.getName()+ "!!";
+			}
+			return mensagemMusicPlaylist;
+
+		}catch (IllegalArgumentException e){
+			logger.error( e.getMessage());
+			return e.getMessage();
+		}
+
+	}
+	
+	
+	
 
 	public List<Music> findMusicByPlaylist(int id){
 		return playlistDAO.findMusicsByPlaylist(id);

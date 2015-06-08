@@ -7,37 +7,49 @@
 
 <h:head>
 	<h:outputStylesheet library="css" name="style.css" />
-	<script type="text/javascript" src="../resources/JS/soupt.js" />
+	
 
 </h:head>
 <body>
 	<ui:composition>
 		<aside id="nav">
 
-			<h:form>
+			<h:form >
 				<table>
 					<tr>
-						<td><h:commandButton styleClass="butopg" value="Musics &#9834;"
-								action="createMusic?faces-redirect=true" /></td>
-					</tr>
-						<tr>
 						<td><h:commandButton styleClass="butopg"
-								value="Find Music &#128269;"
-								action="searchMusic?faces-redirect=true" /></td>
-					</tr>
-					<tr>
-						<td><h:commandButton styleClass="butopg" value="Playlist &#8882;"
-								action="createPlaylist?faces-redirect=true" /></td>
+								value="Musics &#9998; + &#10006; &#9834;"
+								action="createMusic?faces-redirect=true">
+								<f:ajax render="@form" execute="@form" />
+							</h:commandButton></td>
 					</tr>
 					<tr>
 						<td><h:commandButton styleClass="butopg"
-								value="User &#9998;"
-								action="editUser?faces-redirect=true" /></td>
+								value="Find Music &#128269; &#9834;"
+								action="searchMusic?faces-redirect=true">
+								<f:ajax render="@form" execute="@form" />
+							</h:commandButton></td>
 					</tr>
-					
 					<tr>
-						<td><h:commandButton styleClass="butopglg"
-								value="Logout" actionListener="#{login.logout()}" /></td>
+						<td><h:commandButton styleClass="butopg"
+								value="Playlist &#9998; + &#10006; &#8882;"
+								action="createPlaylist?faces-redirect=true">
+								<f:ajax render="@form" execute="@form" />
+							</h:commandButton></td>
+					</tr>
+					<tr>
+						<td><h:commandButton styleClass="butopg"
+								value="User &#9998; &#10006;"
+								action="editUser?faces-redirect=true">
+								<f:ajax render="@form" execute="@form" />
+							</h:commandButton></td>
+					</tr>
+
+					<tr>
+						<td><h:commandButton styleClass="butopglg" value="Logout"
+								actionListener="#{login.logout()}">
+								<f:ajax render="@form" execute="@form" />
+							</h:commandButton></td>
 					</tr>
 
 				</table>

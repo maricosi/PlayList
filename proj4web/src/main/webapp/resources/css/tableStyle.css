@@ -9,14 +9,6 @@ table thead tr {
 	font-size: 14px;
 }
 
-header {
-	background: red;
-	padding: 15px 10px;
-	color: #fff;
-	text-align: left;
-	font-weight: normal;
-}
-
 table thead tr th {
 	background-color: #f9f9f9;
 	height:30px;

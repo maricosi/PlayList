@@ -51,7 +51,7 @@ public class UserFachada implements IntUserFachada {
 			return mensagemRegisto;
 		}catch (IllegalArgumentException e){
 			logger.error( e.getMessage());
-			return "Ocorreu um erro no sistema!!!";
+			return e.getMessage();
 		}
 	}
 
@@ -109,7 +109,7 @@ public class UserFachada implements IntUserFachada {
 			return mensagem;
 		}catch (IllegalArgumentException e){
 			logger.error( e.getMessage());
-			return "Ocorreu um erro no sistema!!!";
+			return e.getMessage();
 		}
 
 	}
@@ -164,7 +164,7 @@ public class UserFachada implements IntUserFachada {
 		}
 		catch (NoSuchAlgorithmException e){
 			logger.error( e.getMessage());
-			return "Ocorreu um erro no sistema!!!";
+			return e.getMessage();
 		}
 	}
 
@@ -204,7 +204,7 @@ public class UserFachada implements IntUserFachada {
 			return mensagemRegisto;
 		}catch (IllegalArgumentException e){
 			logger.error( e.getMessage());
-			return "Ocorreu um erro no sistema!!!";
+			return e.getMessage();
 		}
 
 	}

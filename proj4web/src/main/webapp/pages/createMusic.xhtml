@@ -8,10 +8,6 @@
 <h:head>
 	<h:outputStylesheet library="css" name="style.css" />
 	<h:outputStylesheet library="css" name="tableStyle.css" />
-<!-- 	<link rel="stylesheet" type="text/css"
-		href="../resources/css/slick.css" />
-	<link rel="stylesheet" type="text/css"
-		href="../resources/css/slick-theme.css" /> -->
 </h:head>
 <body>
 	<ui:composition template="../template/commonLayout.xhtml">
@@ -20,7 +16,7 @@
 
 				<div id="loginRegisto1">
 					<h1>CRIAR MUSICA</h1>
-<br></br>
+					<br></br>
 					<h:form enctype="multipart/form-data">
 						<h:panelGrid columns="2">
 							<h:outputLabel value="Artista" />
@@ -39,86 +35,80 @@
 							<h:inputFile value="#{musicWeb.file}" required="true"
 								styleClass="textBox" />
 
-							
+
 							<br></br>
-							<h:commandButton value="Adicionar"
-								actionListener="#{musicWeb.save()}" styleClass="butopglg" style="text-align:center"/>
+							<h:commandButton value="Adicionar" action="#{musicWeb.save()}"
+								styleClass="butopglg" style="text-align:center">
+							</h:commandButton>
 
 						</h:panelGrid>
-
 						<h:outputText value="#{musicWeb.mensagem}" />
+
+
+						<br></br>
+
+						<h1>AS MINHAS MUSICAS</h1>
+						<h:dataTable value="#{musicWeb.minhaMusic}" var="music"
+							styleClass="tabela" headerClass="cabecalho" rowClasses="linha">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Titulo" />
+								</f:facet>
+								<h:inputText value="#{music.title}" rendered="#{music.editable}" />
+								<h:outputText value="#{music.title}"
+									rendered="#{!music.editable}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Album" />
+								</f:facet>
+								<h:inputText value="#{music.album}" rendered="#{music.editable}" />
+								<h:outputText value="#{music.album}"
+									rendered="#{!music.editable}" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Artista" />
+								</f:facet>
+								<h:inputText value="#{music.artist}"
+									rendered="#{music.editable}" />
+								<h:outputText value="#{music.artist}"
+									rendered="#{!music.editable}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Edit</f:facet>
+								<h:commandButton action="#{musicWeb.editAction(music)}"
+									rendered="#{!music.editable}" value="&#9998;"
+									styleClass="butopg1">
+									<f:ajax render="@form" />
+								</h:commandButton>
+							</h:column>
+							<h:column>
+								<f:facet name="header">Save</f:facet>
+								<h:commandButton value="&#10004;"
+									action="#{musicWeb.update(music)}" styleClass="butopg1">
+									<f:ajax render="@form" />
+								</h:commandButton>
+							</h:column>
+							<h:column>
+								<f:facet name="header">Delete</f:facet>
+								<h:commandButton
+									action="#{musicWeb.idMusicUtilizadorNull(music)}"
+									value="&#10006;" styleClass="butopg1">
+									<f:ajax render="@form" />
+								</h:commandButton>
+							</h:column>
+							<h:column>
+								<f:facet name="header">Play</f:facet>
+								<h:commandButton action="#{musicWeb.playMusic(music)}"
+									value="&#8882;" styleClass="butopg1">
+								</h:commandButton>
+							</h:column>
+						</h:dataTable>
+						<h:outputText value="#{musicWeb.mensagem2}">
+						</h:outputText>
 					</h:form>
-					<br></br>
-				<h:form>
-					<h:dataTable value="#{musicWeb.minhaMusic}" var="music"
-						styleClass="tabela" headerClass="cabecalho" rowClasses="linha">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Titulo" />
-
-								<!-- <h:commandButton action="#{playlistWeb.orderByNameASC()}"
-									value="&#9650;" />
-								<h:commandButton action="#{playlistWeb.orderByNameDESC()}"
-									value="&#9660;" /> -->
-
-							</f:facet>
-							<h:inputText value="#{music.title}" rendered="#{music.editable}" />
-							<h:outputText value="#{music.title}"
-								rendered="#{!music.editable}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Album" />
-
-								<!-- <h:commandButton action="#{playlistWeb.orderByNameASC()}"
-									value="&#9650;" />
-								<h:commandButton action="#{playlistWeb.orderByNameDESC()}"
-									value="&#9660;" /> -->
-
-							</f:facet>
-							<h:inputText value="#{music.album}" rendered="#{music.editable}" />
-							<h:outputText value="#{music.album}"
-								rendered="#{!music.editable}" />
-						</h:column>
-
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Artista" />
-
-								<!-- <h:commandButton action="#{playlistWeb.orderByNameASC()}"
-									value="&#9650;" />
-								<h:commandButton action="#{playlistWeb.orderByNameDESC()}"
-									value="&#9660;" /> -->
-
-							</f:facet>
-							<h:inputText value="#{music.artist}" rendered="#{music.editable}" />
-							<h:outputText value="#{music.artist}"
-								rendered="#{!music.editable}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Edit</f:facet>
-							<h:commandButton action="#{musicWeb.editAction(music)}"
-								rendered="#{!music.editable}" value="Editar">
-								<f:ajax render="@form" />
-							</h:commandButton>
-						</h:column>
-						<h:column>
-							<f:facet name="header">Save</f:facet>
-							<h:commandButton value="Save Changes"
-								action="#{musicWeb.update(music)}">
-								<f:ajax render="@form" execute="@form" />
-							</h:commandButton>
-						</h:column>
-						<h:column>
-							<f:facet name="header">Delete</f:facet>
-							<h:commandButton action="#{musicWeb.idMusicUtilizadorNull(music)}"
-								value="Apagar">
-								<f:ajax render="@form" execute="@form" />
-							</h:commandButton>
-						</h:column>
-					</h:dataTable>
-					<h:outputText value="#{musicWeb.mensagem2}"> </h:outputText>
-				</h:form>
 				</div>
 			</article>
 		</ui:define>

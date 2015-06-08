@@ -36,7 +36,7 @@ public class MusicFachada implements IntMusicFachada{
 			return "Musica apagada com sucesso!!";
 		}catch (IllegalArgumentException e){
 			logger.error( e.getMessage());
-			return "Ocorreu um erro no sistema!!!";
+			return e.getMessage();
 		}
 	}
 
@@ -47,7 +47,7 @@ public class MusicFachada implements IntMusicFachada{
 			return "Musica alterada com sucesso!!!";
 		}catch (IllegalArgumentException e){
 			logger.error( e.getMessage());
-			return "Ocorreu um erro no sistema!!!";
+			return e.getMessage();
 		}
 	}
 
@@ -66,7 +66,7 @@ public class MusicFachada implements IntMusicFachada{
 			return "Musica criada com sucesso!!!";
 		}catch (IllegalArgumentException e){
 			logger.error( e.getMessage());
-			return "Ocorreu um erro no sistema!!!";
+			return e.getMessage();
 		}
 	}
 
@@ -130,7 +130,7 @@ public class MusicFachada implements IntMusicFachada{
 			return "As musicas já não lhe pertencem!!!";
 		}catch (IllegalArgumentException e){
 			logger.error( e.getMessage());
-			return "Ocorreu um erro no sistema!!!";
+			return e.getMessage();
 		}
 	}
 
@@ -141,7 +141,7 @@ public class MusicFachada implements IntMusicFachada{
 			return "A musica com titulo, "+m.getTitle()+", já não lhe pertence!!!";
 		}catch (IllegalArgumentException e){
 			logger.error( e.getMessage());
-			return "Ocorreu um erro no sistema!!!";
+			return e.getMessage();
 		}
 	}
 

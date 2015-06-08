@@ -4,6 +4,7 @@ body {
 	background-color: Black;
 	font: 12px/18px Arial, sans-serif;
 	height: 100%;
+	min-width: 1315px;
 }
 
 /* article, aside, details, figcaption, figure, footer, header, hgroup,
@@ -19,6 +20,11 @@ body {
 	margin: 0px auto;
 }
 
+
+Style Attribute {
+  color: black;
+}
+
 #page2 {
 	/* 	background-image: url("../resources/images/radio_by_TiViD.jpg");
 	background-repeat: no-repeat;
@@ -32,14 +38,11 @@ body {
 	position: relative;
 	margin-bottom: -3px;
 	color: Cornsilk;
-	/* display: inline-table; */
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #400000;
 	height: auto;
 	text-align: center;
-	/* 	padding-left: 42px;
-	padding-right: 42px; */ */
 	vertical-align: middle;
 	border: solid white;
 	border-bottom-style: none;
@@ -128,7 +131,7 @@ body {
 	font-family: Verdana;
 	text-align: center;
 	color: Cornsilk;
-	height: 400px;
+	min-height: 400px;
 	width: 800px;
 	margin-right: 3px;
 	margin-top: auto;
@@ -138,7 +141,7 @@ body {
 	border: solid white 2px;
 	border-radius: 20px;
 	box-shadow: 5px 5px 5px #888888;
-	padding:50px;
+	padding: 20px;
 }
 
 #login {
@@ -303,7 +306,7 @@ h1 {
 	font-family: Arial;
 	font-size: 16px;
 	font-weight: bold;
-	padding: 13px;
+	padding: 8px;
 	text-align:left;
 	text-decoration: none;
 	text-shadow: 0px 1px 0px #ffffff;

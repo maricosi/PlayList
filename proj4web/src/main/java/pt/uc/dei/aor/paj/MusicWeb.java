@@ -76,14 +76,17 @@ public class MusicWeb implements Serializable{
 				i++;
 			}
 		}
-		logger.info("Tamanho da lista:" + musicaTrue.size() + "numero de Musicas a true: " + i );
 		for(Playlist p:playlist){
 			if(nameplaylist.equals(p.getName())){
+				p.setSize(musicaTrue.size());
 				this.mensagem2=play.adicionarMusic(musicaTrue,p);
 			}
 		}
 		musicaTrue.clear();
 	}
+	
+	
+	
 
 	public List<Playlist> getPlaylist() {
 		if(playlist==null){
@@ -98,9 +101,9 @@ public class MusicWeb implements Serializable{
 
 
 	public void save(){
+		this.mensagem=music.save(title, artist, album, upload.getPath(), year, login.getUsername());
 		upload.upload();
-		this.url=upload.getPath();
-		this.mensagem=music.save(title, artist, album, url, year, login.getUsername());
+		//this.url=upload.getPath();
 		this.album=this.artist=this.title=this.url="";
 		this.year=0;
 	}
